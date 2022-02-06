@@ -8,8 +8,7 @@ class UserModel {
 
   UserModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    vendor =
-    json['vendor'] != null ? new Vendor.fromJson(json['vendor']) : null;
+    vendor = json['vendor'] != null ? new Vendor.fromJson(json['vendor']) : null;
     token = json['token'];
     expire = json['expire'];
   }
@@ -31,20 +30,13 @@ class Vendor {
   String? name;
   String? email;
   String? phone;
+  String? password;
   String? avatar;
   String? nidFrontSide;
   String? nidBackSide;
   var status;
 
-  Vendor(
-      {this.id,
-        this.name,
-        this.email,
-        this.phone,
-        this.avatar,
-        this.nidFrontSide,
-        this.nidBackSide,
-        this.status});
+  Vendor({this.id, this.name, this.email, this.phone, this.password, this.avatar, this.nidFrontSide, this.nidBackSide, this.status});
 
   Vendor.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -63,6 +55,7 @@ class Vendor {
     data['name'] = this.name;
     data['email'] = this.email;
     data['phone'] = this.phone;
+    data['password'] = this.password;
     data['avatar'] = this.avatar;
     data['nid_front_side'] = this.nidFrontSide;
     data['nid_back_side'] = this.nidBackSide;

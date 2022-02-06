@@ -2,6 +2,7 @@ import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/modules/splash_screen/components/splash_component.dart';
 import 'package:biponi_vendor/app/modules/splash_screen/constants/constant_data.dart';
 import 'package:biponi_vendor/app/routes/app_pages.dart';
+import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/splash_screen_controller.dart';
@@ -46,7 +47,11 @@ class SplashScreenView extends GetView<SplashScreenController> {
                       CommonWidgets.customButton(
                           text: 'Continue',
                           press: () {
-                            Get.offNamed(Routes.login);
+                            if (Get.find<AuthService>().isAuth) {
+                              Get.offNamed(Routes.root);
+                            } else {
+                              Get.offNamed(Routes.login);
+                            }
                           })
                     ],
                   ),
@@ -69,9 +74,7 @@ class SplashScreenView extends GetView<SplashScreenController> {
       height: 6,
       width: controller.currentPage.value == index ? 20 : 6,
       decoration: BoxDecoration(
-        color: controller.currentPage.value == index
-            ? Get.theme.primaryColor
-            : Color(0xFFD8D8D8),
+        color: controller.currentPage.value == index ? Get.theme.primaryColor : Color(0xFFD8D8D8),
         borderRadius: BorderRadius.circular(3),
       ),
     );

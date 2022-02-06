@@ -26,6 +26,7 @@ class LoginView extends GetView<LoginController> {
         ),
       ),
       body: Form(
+        key: controller.loginFormKey,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
@@ -45,18 +46,24 @@ class LoginView extends GetView<LoginController> {
                 ),
                 SizedBox(height: 60),
                 TextFieldWidget(
-                  labelText: "Email",
-                  hintText: "example@gmail.com",
-                  onSaved: (input) {},
-                  validator: (input) {},
+                  labelText: "Phone",
+                  hintText: "+880xxxxxx",
+                  onChanged: (input) {
+                    controller.vendorData.value.phone = input;
+                  },
+                  validator: (input) {
+                    return input!.length < 11 ? 'The phone cannot be less than 11 characters.' : null;
+                  },
                   suffixIcon: Icon(CupertinoIcons.phone),
                 ),
                 SizedBox(height: 15),
                 TextFieldWidget(
                   labelText: "Password",
                   hintText: "Enter your password",
-                  onSaved: (input) {},
-                  validator: (input) {},
+                  onChanged: (input) {
+                    controller.vendorData.value.password = input;
+                  },
+                  validator: (input) => input!.length < 6 ? "Should be more than 6 characters".tr : null,
                   obscureText: true,
                   iconData: Icons.lock_outline,
                   keyboardType: TextInputType.visiblePassword,
@@ -87,7 +94,7 @@ class LoginView extends GetView<LoginController> {
                 CommonWidgets.customButton(
                     text: "Login",
                     press: () {
-                      Get.offNamed(Routes.root);
+                      controller.login();
                     },
                     color: secondaryColor),
                 SizedBox(height: 40),
@@ -102,8 +109,7 @@ class LoginView extends GetView<LoginController> {
                       onTap: () => Get.toNamed(Routes.register),
                       child: Text(
                         "Sign Up",
-                        style: TextStyle(
-                            fontSize: 16, color: Get.theme.primaryColor),
+                        style: TextStyle(fontSize: 16, color: Get.theme.primaryColor),
                       ),
                     ),
                   ],
