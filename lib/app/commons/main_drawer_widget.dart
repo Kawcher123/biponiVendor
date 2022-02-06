@@ -1,4 +1,5 @@
 import 'package:biponi_vendor/app/routes/app_pages.dart';
+import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'drawer_link_widget.dart';
@@ -99,6 +100,16 @@ class MainDrawerWidget extends StatelessWidget {
           DrawerLinkWidget(
             icon: Icons.help_outline,
             text: "Help & FAQ",
+          ),
+          DrawerLinkWidget(
+            icon: Icons.folder_special_outlined,
+            text: "Log Out",
+            onTap: (e)
+            {
+             Get.find<AuthService>().removeCurrentUser();
+
+              Get.offAllNamed(Routes.login);
+            },
           ),
         ],
       ),
