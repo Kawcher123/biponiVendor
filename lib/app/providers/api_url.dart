@@ -7,4 +7,6 @@ class ApiClient {
   static String registration = '${baseUrl}api/v1/user-register';
 
   static String login = '${baseUrl}api/v1/seller/login';
+
+  static String orderList = '${baseUrl}api/v1/seller/order/list';
 }

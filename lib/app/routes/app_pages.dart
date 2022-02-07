@@ -12,6 +12,8 @@ import 'package:biponi_vendor/app/modules/home/bindings/home_binding.dart';
 import 'package:biponi_vendor/app/modules/home/views/home_view.dart';
 import 'package:biponi_vendor/app/modules/login/bindings/login_binding.dart';
 import 'package:biponi_vendor/app/modules/login/views/login_view.dart';
+import 'package:biponi_vendor/app/modules/messages/bindings/messages_binding.dart';
+import 'package:biponi_vendor/app/modules/messages/views/messages_view.dart';
 import 'package:biponi_vendor/app/modules/notification/bindings/notification_binding.dart';
 import 'package:biponi_vendor/app/modules/notification/views/notification_view.dart';
 import 'package:biponi_vendor/app/modules/order_details/bindings/order_details_binding.dart';
@@ -106,6 +108,11 @@ class AppPages {
       name: _Paths.ORDER_LIST,
       page: () => OrderListView(),
       binding: OrderListBinding(),
+    ),
+    GetPage(
+      name: _Paths.MESSAGES,
+      page: () => MessagesView(),
+      binding: MessagesBinding(),
     ),
   ];
 }

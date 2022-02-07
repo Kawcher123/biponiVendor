@@ -2,6 +2,8 @@ import 'package:biponi_vendor/app/commons/colors.dart';
 import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/commons/sub_head_widget.dart';
 import 'package:biponi_vendor/app/commons/text_field_widget.dart';
+import 'package:biponi_vendor/app/models/user_model.dart';
+import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -11,6 +13,7 @@ import '../controllers/profile_controller.dart';
 class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
+    UserModel currentUser=Get.find<AuthService>().user.value;
     return Scaffold(
       appBar: CommonWidgets.defaultAppBar(context),
       body: SingleChildScrollView(

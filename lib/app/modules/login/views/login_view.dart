@@ -84,8 +84,7 @@ class LoginView extends GetView<LoginController> {
                     Spacer(),
                     GestureDetector(
                       child: Text(
-                        "Forgot Password",
-                        style: TextStyle(decoration: TextDecoration.underline),
+                        "Forgot Password?",
                       ),
                     )
                   ],

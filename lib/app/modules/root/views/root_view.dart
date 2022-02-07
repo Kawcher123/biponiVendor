@@ -24,6 +24,7 @@ class RootView extends GetView<RootController> {
             tabs: [
               TabData(iconData: CupertinoIcons.circle_grid_3x3, title: "Dashboard"),
               TabData(iconData: CupertinoIcons.square_list, title: "Products"),
+              TabData(iconData: Icons.chat_outlined, title: "Chat"),
               TabData(iconData: CupertinoIcons.person, title: "Profile"),
             ],
             onTabChangedListener: (index) {

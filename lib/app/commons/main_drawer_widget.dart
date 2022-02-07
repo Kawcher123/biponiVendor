@@ -1,4 +1,5 @@
 import 'package:biponi_vendor/app/routes/app_pages.dart';
+import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'drawer_link_widget.dart';
@@ -16,10 +17,6 @@ class MainDrawerWidget extends StatelessWidget {
           DrawerLinkWidget(
             icon: Icons.home_outlined,
             text: "Home",
-            // onTap: (e)
-            // {
-            //   Get.toNamed(Routes.DASHBOARD);
-            // },
           ),
           DrawerLinkWidget(
             icon: Icons.folder_special_outlined,
@@ -37,14 +34,6 @@ class MainDrawerWidget extends StatelessWidget {
               Get.toNamed(Routes.ADD_PRODUCTS);
             },
           ),
-          // DrawerLinkWidget(
-          //   icon: Icons.assignment_outlined,
-          //   text: "Order Details",
-          //   onTap: (e)
-          //   {
-          //     Get.toNamed(Routes.ORDER_DETAILS);
-          //   },
-          // ),
           DrawerLinkWidget(
             icon: Icons.notifications_none_outlined,
             text: "Notifications",
@@ -52,19 +41,6 @@ class MainDrawerWidget extends StatelessWidget {
             {
               Get.toNamed(Routes.NOTIFICATION);
             },
-          ),
-
-          // DrawerLinkWidget(
-          //   icon: Icons.favorite_outline,
-          //   text: "Saved",
-          //   onTap: (e) {
-          //     Get.back();
-          //     Get.find<RootController>().changePage(1);
-          //   },
-          // ),
-          DrawerLinkWidget(
-            icon: Icons.chat_outlined,
-            text: "Messages",
           ),
           ListTile(
             dense: true,
@@ -77,10 +53,6 @@ class MainDrawerWidget extends StatelessWidget {
               color: Get.theme.focusColor.withOpacity(0.3),
             ),
           ),
-          // DrawerLinkWidget(
-          //   icon: Icons.person_outline,
-          //   text: "Account",
-          // ),
           DrawerLinkWidget(
             icon: Icons.settings_outlined,
             text: "Settings",
@@ -99,6 +71,16 @@ class MainDrawerWidget extends StatelessWidget {
           DrawerLinkWidget(
             icon: Icons.help_outline,
             text: "Help & FAQ",
+          ),
+          DrawerLinkWidget(
+            icon: Icons.folder_special_outlined,
+            text: "Log Out",
+            onTap: (e)
+            {
+             Get.find<AuthService>().removeCurrentUser();
+
+              Get.offAllNamed(Routes.login);
+            },
           ),
         ],
       ),

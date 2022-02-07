@@ -74,19 +74,15 @@ class DashboardView extends GetView<DashboardController> {
   }
 
   Widget _verticalListViewWidget() {
-    return ListView.builder(
-        itemCount: 10,
-        shrinkWrap: true,
-        primary: false,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-              onTap: ()
-              {
-                Get.toNamed(Routes.ORDER_DETAILS);
-              },
-
-              child: _orderWidget());
-        });
+    return SingleChildScrollView(
+     scrollDirection: Axis.vertical,
+      child: Column(
+        children: List.generate(5, (index)
+        {
+          return _orderWidget();
+        }),
+      ),
+    );
   }
 
   Widget _orderWidget() {
