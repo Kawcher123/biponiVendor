@@ -1,4 +1,5 @@
  import 'package:biponi_vendor/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:biponi_vendor/app/modules/messages/views/messages_view.dart';
 import 'package:biponi_vendor/app/modules/products/views/products_view.dart';
 import 'package:biponi_vendor/app/modules/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class RootController extends GetxController {
   List<Widget> pages = [
     DashboardView(),
     ProductsView(),
+    MessagesView(),
     ProfileView()
   ];
 
