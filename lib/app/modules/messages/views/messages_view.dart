@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../controllers/messages_controller.dart';
 
-class MessagesView extends GetView<MessagesController> {
+class MessageView extends GetView<MessagesController> {
   final _size = Get.size;
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class MessagesView extends GetView<MessagesController> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            children: List.generate(10, (index){
+            children: List.generate(10, (index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -28,7 +28,9 @@ class MessagesView extends GetView<MessagesController> {
                         backgroundImage: AssetImage('assets/images/mouse.jpeg'),
                         radius: 30,
                       ),
-                      SizedBox(width: 10,),
+                      SizedBox(
+                        width: 10,
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -39,7 +41,9 @@ class MessagesView extends GetView<MessagesController> {
                           Text('hello?')
                         ],
                       ),
-                      SizedBox(width: 140,),
+                      SizedBox(
+                        width: 140,
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -48,10 +52,7 @@ class MessagesView extends GetView<MessagesController> {
                             height: 20,
                             width: 20,
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              shape: BoxShape.circle
-                            ),
+                            decoration: BoxDecoration(color: Colors.red, shape: BoxShape.circle),
                             child: Text('5'),
                           ),
                         ],
