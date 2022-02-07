@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "397239095845",
+    "project_id": "biponi-68135",
+    "storage_bucket": "biponi-68135.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397239095845:android:36b9440d4749f9333de5cc",
+        "android_client_info": {
+          "package_name": "com.biponi.bd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397239095845-4bg3bqvei7v5tfp3hd1fm2rdp1mkruff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD50Bs0EAXJwHHn1jnIl5qcHV6rr-uPvNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397239095845-4bg3bqvei7v5tfp3hd1fm2rdp1mkruff.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "397239095845-43viis96m3l4d62o17h4sfp5qob0pq1k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.biponi.bd"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397239095845:android:24a136a96747f14c3de5cc",
+        "android_client_info": {
+          "package_name": "com.ebiponi.bd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397239095845-4bg3bqvei7v5tfp3hd1fm2rdp1mkruff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD50Bs0EAXJwHHn1jnIl5qcHV6rr-uPvNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397239095845-4bg3bqvei7v5tfp3hd1fm2rdp1mkruff.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "397239095845-43viis96m3l4d62o17h4sfp5qob0pq1k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.biponi.bd"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

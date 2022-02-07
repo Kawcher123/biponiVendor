@@ -46,8 +46,6 @@ class AuthService extends GetxService {
     user.value = UserModel();
 
     await _box.remove('current_user');
-
-    await _box.remove('shipping_info');
   }
 
   bool get isAuth => user.value.token == null ? false : true;

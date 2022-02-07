@@ -1,4 +1,5 @@
- import 'package:biponi_vendor/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:biponi_vendor/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:biponi_vendor/app/modules/messages/views/chat_home.dart';
 import 'package:biponi_vendor/app/modules/messages/views/messages_view.dart';
 import 'package:biponi_vendor/app/modules/products/views/products_view.dart';
 import 'package:biponi_vendor/app/modules/profile/views/profile_view.dart';
@@ -21,12 +22,7 @@ class RootController extends GetxController {
   @override
   void onClose() {}
 
-  List<Widget> pages = [
-    DashboardView(),
-    ProductsView(),
-    MessagesView(),
-    ProfileView()
-  ];
+  List<Widget> pages = [DashboardView(), ProductsView(), MessagesView(), ProfileView()];
 
   Widget get currentPage => pages[currentIndex.value];
 

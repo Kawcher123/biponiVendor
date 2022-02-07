@@ -1,3 +1,4 @@
+import 'package:biponi_vendor/app/modules/messages/views/chat_home.dart';
 import 'package:get/get.dart';
 
 import 'package:biponi_vendor/app/modules/add_products/bindings/add_products_binding.dart';

@@ -20,6 +20,11 @@ dependencies:
   shimmer: ^2.0.0
   flutter_spinkit: ^5.1.0
   get_storage: ^2.0.3
+  firebase_core:
+  cloud_firestore:
+  firebase_storage:
+  timeago:
+  intl: ^0.17.0
   flutter: 
     sdk: flutter
 
