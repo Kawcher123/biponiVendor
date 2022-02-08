@@ -1,8 +1,8 @@
 import 'package:biponi_vendor/app/commons/colors.dart';
 import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/commons/sub_head_widget.dart';
-import 'package:biponi_vendor/app/commons/text_field_widget.dart';
 import 'package:biponi_vendor/app/models/user_model.dart';
+import 'package:biponi_vendor/app/routes/app_pages.dart';
 import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
@@ -17,49 +17,101 @@ class ProfileView extends GetView<ProfileController> {
     return Scaffold(
       appBar: CommonWidgets.defaultAppBar(context),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              SubHeadWidget(title: 'Personal Information'),
-              SizedBox(height: CommonWidgets.size.width*0.05,),
-              TextFieldWidget(
-                labelText: "First Name",
-                hintText: 'Muktadir',
-                onSaved: (input) {},
-                validator: (input) {},
-                iconData: Icons.alternate_email,
+              CircleAvatar(
+                radius: 70,
+                backgroundColor: Colors.white,
+                backgroundImage: AssetImage(
+                    'assets/images/user.png'
+                ),
               ),
               SizedBox(height: CommonWidgets.size.width*0.05,),
-              TextFieldWidget(
-                labelText: "Last Name",
-                hintText: 'Sonyy',
-                onSaved: (input) {},
-                validator: (input) {},
-                iconData: Icons.alternate_email,
-              ),
-              SizedBox(height: CommonWidgets.size.width*0.1,),
-              SubHeadWidget(title: 'Personal Information'),
-              SizedBox(height: CommonWidgets.size.width*0.03,),
-              TextFieldWidget(
-                labelText: "First Name",
-                hintText: 'Muktadir',
-                onSaved: (input) {},
-                validator: (input) {},
-                iconData: Icons.alternate_email,
-              ),
-              SizedBox(height: CommonWidgets.size.width*0.03,),
-              TextFieldWidget(
-                labelText: "Last Name",
-                hintText: 'Sonyy',
-                onSaved: (input) {},
-                validator: (input) {},
-                iconData: Icons.alternate_email,
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      SubHeadWidget(title: 'Personal Information'),
+                      SizedBox(height: CommonWidgets.size.width*0.05,),
+                      
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Shop Name',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16
+                            ),
+                          ),
+                          Text(
+                            '${currentUser.vendor!.name}',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: CommonWidgets.size.width*0.04,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Phone',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16
+                            ),
+                          ),
+                          Text(
+                            '${currentUser.vendor!.phone}',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: CommonWidgets.size.width*0.04,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Email',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16
+                            ),
+                          ),
+                          Text(
+                            '${currentUser.vendor!.email}',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: CommonWidgets.size.width*0.1,),
+
+                    ],
+                  ),
+                ),
               ),
               SizedBox(height: CommonWidgets.size.width*0.1,),
               CommonWidgets.customButton(
-                color: secondaryColor,
-                text: 'Logout'
+                  color: secondaryColor,
+                  text: 'Logout',
+                  press: (){
+                    Get.find<AuthService>().removeCurrentUser();
+
+                    Get.offAllNamed(Routes.login);
+                  }
               )
             ],
           ),

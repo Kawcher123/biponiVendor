@@ -41,99 +41,105 @@ class DashboardView extends GetView<DashboardController> {
                           child: Container(
                             height: CommonWidgets.size.width * 0.22,
                             padding: EdgeInsets.all(5.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                    flex: 150,
-                                    child: Card(
-                                      color: primaryColor,
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+                            child: GestureDetector(
+                              onTap: ()
+                              {
+                                Get.toNamed(Routes.ORDER_DETAILS,arguments: controller.orderlist.value.orders![index].id);
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                      flex: 145,
+                                      child: Card(
+                                        color: primaryColor,
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
+                                        child: Container(
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Text(
+                                                DateFormat.MMMd().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
+                                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                                              ),
+                                              Text(
+                                                DateFormat.y().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
+                                                style: TextStyle(fontSize: 16, color: Colors.white),
+                                              ),
+                                              Text(
+                                                DateFormat.jm().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
+                                                style: TextStyle(fontSize: 16, color: Colors.white),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      )),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        color: Colors.grey,
+                                        height: CommonWidgets.size.width * 0.15,
+                                      )),
+                                  Expanded(
+                                      flex: 400,
                                       child: Container(
                                         child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              DateFormat.MMMd().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
-                                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Text('Total Earning: '),
+                                                Text('${controller.orderlist.value.orders![index].paidAmount} BDT'),
+                                              ],
                                             ),
-                                            Text(
-                                              DateFormat.y().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
-                                              style: TextStyle(fontSize: 16, color: Colors.white),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Text('Commission: '),
+                                                Text('1500 BDT'),
+                                              ],
                                             ),
-                                            Text(
-                                              DateFormat.jm().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
-                                              style: TextStyle(fontSize: 16, color: Colors.white),
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Text('Total: '),
+                                                Text('${controller.orderlist.value.orders![index].paidAmount} BDT'),
+                                              ],
                                             ),
                                           ],
                                         ),
-                                      ),
-                                    )),
-                                Expanded(
-                                    flex: 1,
-                                    child: Container(
-                                      color: Colors.grey,
-                                      height: CommonWidgets.size.width * 0.15,
-                                    )),
-                                Expanded(
-                                    flex: 350,
-                                    child: Container(
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text('Total Earning: '),
-                                              Text('${controller.orderlist.value.orders![index].paidAmount} BDT'),
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text('Commission: '),
-                                              Text('1500 BDT'),
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text('Total: '),
-                                              Text('${controller.orderlist.value.orders![index].paidAmount} BDT'),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    )),
-                                Expanded(
-                                    flex: 1,
-                                    child: Container(
-                                      color: Colors.grey,
-                                      height: CommonWidgets.size.width * 0.15,
-                                    )),
-                                Expanded(
-                                    flex: 150,
-                                    child: Container(
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Text('Order No'),
-                                          Text(
-                                            '#${controller.orderlist.value.orders![index].id}',
-                                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                          ),
-                                          Container(
-                                              decoration: BoxDecoration(color: primaryColor, borderRadius: BorderRadius.circular(5.0)),
-                                              padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
-                                              child: Text(
-                                                '${controller.orderlist.value.orders![index].status}',
-                                                style: TextStyle(color: backgroundColor),
-                                              ))
-                                        ],
-                                      ),
-                                    )),
-                              ],
+                                      )),
+                                  Expanded(
+                                      flex: 1,
+                                      child: Container(
+                                        color: Colors.grey,
+                                        height: CommonWidgets.size.width * 0.15,
+                                      )),
+                                  Expanded(
+                                      flex: 130,
+                                      child: Container(
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text('Order No'),
+                                            Text(
+                                              '#${controller.orderlist.value.orders![index].id}',
+                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                            ),
+                                            Container(
+                                                decoration: BoxDecoration(color: primaryColor, borderRadius: BorderRadius.circular(5.0)),
+                                                padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
+                                                child: Text(
+                                                  '${controller.orderlist.value.orders![index].status}',
+                                                  style: TextStyle(color: backgroundColor),
+                                                ))
+                                          ],
+                                        ),
+                                      )),
+                                ],
+                              ),
                             ),
                           ),
                         );
@@ -153,7 +159,7 @@ class DashboardView extends GetView<DashboardController> {
     return Container(
       height: CommonWidgets.size.width * 0.25,
       child: ListView.builder(
-          itemCount: 8,
+          itemCount: 4,
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
           itemBuilder: (context, index) {
@@ -170,7 +176,7 @@ class DashboardView extends GetView<DashboardController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text('Orders'),
+            Text(''),
             Text(
               '48',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: primaryColor),

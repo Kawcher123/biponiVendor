@@ -72,16 +72,6 @@ class MainDrawerWidget extends StatelessWidget {
             icon: Icons.help_outline,
             text: "Help & FAQ",
           ),
-          DrawerLinkWidget(
-            icon: Icons.folder_special_outlined,
-            text: "Log Out",
-            onTap: (e)
-            {
-             Get.find<AuthService>().removeCurrentUser();
-
-              Get.offAllNamed(Routes.login);
-            },
-          ),
         ],
       ),
     );
