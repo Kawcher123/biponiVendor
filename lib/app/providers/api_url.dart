@@ -13,5 +13,7 @@ class ApiClient {
   static String orderList = '${baseUrl}api/v1/seller/order/list';
 
   static String orderDetails = '${baseUrl}api/v1/seller/order/details/';
+
+  static String productList = '${baseUrl}api/v1/seller/product/list';
   
 }
