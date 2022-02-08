@@ -1,6 +1,7 @@
 import 'package:biponi_vendor/app/models/user_model.dart';
 import 'package:biponi_vendor/app/repositories/auth_repositories.dart';
 import 'package:biponi_vendor/app/routes/app_pages.dart';
+import 'package:biponi_vendor/app/services/firebase_messaging_service.dart';
 import 'package:biponi_vendor/common/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,8 @@ class LoginController extends GetxController {
     Get.focusScope!.unfocus();
     if (loginFormKey.currentState!.validate()) {
       loginFormKey.currentState!.save();
+
+      await Get.find<FireBaseMessagingService>().setDeviceToken();
 
       print(vendorData.value.password);
 
