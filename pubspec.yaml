@@ -23,6 +23,7 @@ dependencies:
   firebase_core:
   cloud_firestore:
   firebase_storage:
+  firebase_messaging:
   timeago:
   intl: ^0.17.0
   flutter: 

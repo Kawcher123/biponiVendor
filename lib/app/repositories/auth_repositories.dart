@@ -7,10 +7,8 @@ import 'package:get/get.dart';
 class AuthRepository {
   ///User Login api call
   Future<UserModel> userLogin(Vendor vendor) async {
-    Map user = {
-      'phone': vendor.phone,
-      'password': vendor.password,
-    };
+    print('device token: ${vendor.deviceToken}');
+    Map user = {'phone': vendor.phone, 'password': vendor.password, 'device_token': vendor.deviceToken};
     APIManager _manager = APIManager();
     final response = await _manager.postAPICall(ApiClient.login, user);
 

@@ -31,12 +31,13 @@ class Vendor {
   String? email;
   String? phone;
   String? password;
+  String? deviceToken;
   String? avatar;
   String? nidFrontSide;
   String? nidBackSide;
   var status;
 
-  Vendor({this.id, this.name, this.email, this.phone, this.password, this.avatar, this.nidFrontSide, this.nidBackSide, this.status});
+  Vendor({this.id, this.name, this.email, this.phone, this.password, this.deviceToken, this.avatar, this.nidFrontSide, this.nidBackSide, this.status});
 
   Vendor.fromJson(Map<String, dynamic> json) {
     id = json['id'];

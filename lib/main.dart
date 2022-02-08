@@ -1,6 +1,7 @@
 import 'package:biponi_vendor/app/modules/dashboard/bindings/dashboard_binding.dart';
 import 'package:biponi_vendor/app/modules/messages/bindings/messages_binding.dart';
 import 'package:biponi_vendor/app/services/auth_service.dart';
+import 'package:biponi_vendor/app/services/firebase_messaging_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ initServices() async {
   await Get.putAsync<AuthService>(() async => await AuthService());
 
   await Firebase.initializeApp();
+  await Get.putAsync(() => FireBaseMessagingService().init());
 
   MessagesBinding().dependencies();
   DashboardBinding().dependencies();

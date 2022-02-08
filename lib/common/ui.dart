@@ -73,8 +73,8 @@ class Ui {
   static GetBar notificationSnackBar({String title = 'Notification', required String message}) {
     Get.log("[$title] $message", isError: false);
     return GetBar(
-      titleText: Text(title.tr, style: Get.textTheme.headline6!.merge(TextStyle(color: Get.theme.hintColor))),
-      messageText: Text(message, style: Get.textTheme.caption!.merge(TextStyle(color: Get.theme.focusColor))),
+      titleText: Text(title.tr, style: Get.textTheme.headline6!.merge(TextStyle(color: Colors.white))),
+      messageText: Text(message, style: Get.textTheme.caption!.merge(TextStyle(color: Colors.white))),
       snackPosition: SnackPosition.TOP,
       margin: EdgeInsets.all(20),
       backgroundColor: Get.theme.primaryColor,
