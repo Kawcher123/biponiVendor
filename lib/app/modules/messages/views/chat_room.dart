@@ -306,7 +306,7 @@ class _ChatRoomState extends State<ChatRoom> {
 
     ChatsRef.doc(widget.messaseid).collection("messages").add({
       'senderId': currentUser.value.vendor!.id,
-      'sendername': currentUser.value.vendor!.firstname,
+      'sendername': currentUser.value.vendor!.name,
       'toUserId': widget.toUserId,
       'text': text,
       'imageUrl': currentUser.value.vendor!.avatar ?? '',
