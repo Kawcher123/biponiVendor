@@ -1,5 +1,6 @@
 import 'package:biponi_vendor/app/providers/api_url.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -40,7 +41,7 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                   child: Card(
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                     child: Container(
-                      height: _size.width * 0.26,
+                      height: _size.width * 0.3,
                       padding: EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -79,22 +80,20 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                                     ),
                                     SizedBox(height: 10,),
                                     Container(
-                                      //alignment: Alignment.centerLeft,
-                                      decoration: BoxDecoration(
-                                        color: Get.theme.primaryColor,
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(5.0),
-                                        child: Text(
-                                          'Accepted',
-                                          style: TextStyle(
-                                              color: Colors.white
-                                          ),
-                                        ),
+                                      width: 165,
+                                      height: 50,
+                                      child: DropdownSearch<String>(
+                                        mode: Mode.MENU,
+                                        showFavoriteItems: true,
+                                        items: [ 'Pending','Processing','On Hold','Failed','Canceled','Completed','Refunded'],
+                                        onChanged:(v)
+                                        {
+                                          controller.product.value=v!;
+                                        },
+                                        selectedItem: controller.product.value,
+
                                       ),
                                     ),
-                                    //Text(''),
                                   ],
                                 ),
                               ),
@@ -105,7 +104,7 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                //alignment: Alignment.centerRight,
+                                alignment: Alignment.center,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -139,7 +138,7 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                     child: Container(
 
-                      height: _size.width * 0.2,
+                      height: _size.width * 0.3,
                       padding: EdgeInsets.all(8.0),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -159,8 +158,14 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                                 ),
                                 SizedBox(height: 10,),
                                 Text(
-                                  '${controller.orderDetails.value.address!.shippingAddress}',
+                                  '${controller.orderDetails.value.address!.union!.title}, '
+                                      '${controller.orderDetails.value.address!.upazila!.title}, '
+                                      '${controller.orderDetails.value.address!.district!.title}, '
+                                      '${controller.orderDetails.value.address!.division!.title}'
+                                  ,
+                                  maxLines: 2,
                                   style: TextStyle(
+                                    overflow: TextOverflow.ellipsis,
                                     fontSize: 12,
                                     color: Colors.black,
                                   ),

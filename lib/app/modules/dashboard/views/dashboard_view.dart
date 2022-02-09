@@ -2,6 +2,7 @@ import 'package:biponi_vendor/app/commons/colors.dart';
 import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/commons/sub_head_widget.dart';
 import 'package:biponi_vendor/app/routes/app_pages.dart';
+import 'package:biponi_vendor/common/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -35,12 +36,12 @@ class DashboardView extends GetView<DashboardController> {
                       },
                     ),
                     Column(
-                      children: List.generate(controller.orderlist.value.orders!.length, (index) {
+                      children: List.generate(5, (index) {
                         return Card(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                           child: Container(
-                            height: CommonWidgets.size.width * 0.22,
-                            padding: EdgeInsets.all(5.0),
+                            height: CommonWidgets.size.width * 0.25,
+                            padding: EdgeInsets.all(4.0),
                             child: GestureDetector(
                               onTap: ()
                               {
@@ -128,12 +129,13 @@ class DashboardView extends GetView<DashboardController> {
                                               '#${controller.orderlist.value.orders![index].id}',
                                               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                             ),
+                                            SizedBox(height: 5,),
                                             Container(
                                                 decoration: BoxDecoration(color: primaryColor, borderRadius: BorderRadius.circular(5.0)),
                                                 padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
                                                 child: Text(
-                                                  '${controller.orderlist.value.orders![index].status}',
-                                                  style: TextStyle(color: backgroundColor),
+                                                  Helper.getStatus(controller.orderlist.value.orders![index].status.toString()),
+                                                  style: TextStyle(fontSize: 12,color: backgroundColor),
                                                 ))
                                           ],
                                         ),

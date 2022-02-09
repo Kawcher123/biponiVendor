@@ -46,10 +46,9 @@ class Orders {
   var id;
   var userId;
   var addressId;
-  var paymentId;
+  String? paymentId;
   String? ipAddress;
-  var email;
-  String? note;
+  var note;
   String? paidAmount;
   String? discountAmount;
   var couponCode;
@@ -68,7 +67,6 @@ class Orders {
         this.addressId,
         this.paymentId,
         this.ipAddress,
-        this.email,
         this.note,
         this.paidAmount,
         this.discountAmount,
@@ -88,7 +86,6 @@ class Orders {
     addressId = json['address_id'];
     paymentId = json['payment_id'];
     ipAddress = json['ip_address'];
-    email = json['email'];
     note = json['note'];
     paidAmount = json['paid_amount'];
     discountAmount = json['discount_amount'];
@@ -112,7 +109,6 @@ class Orders {
     data['address_id'] = this.addressId;
     data['payment_id'] = this.paymentId;
     data['ip_address'] = this.ipAddress;
-    data['email'] = this.email;
     data['note'] = this.note;
     data['paid_amount'] = this.paidAmount;
     data['discount_amount'] = this.discountAmount;
@@ -168,7 +164,7 @@ class OrdersDetails {
   String? productSku;
   var productQty;
   var productOptions;
-  var shippingMethod;
+  String? shippingMethod;
   var shippingCost;
   String? price;
   var sellerId;
@@ -244,9 +240,9 @@ class OrdersDetails {
 class ProductDetails {
   var id;
   var brandId;
-  var brandTitle;
+  String? brandTitle;
   String? categoryId;
-  var categoryTitle;
+  String? categoryTitle;
   String? productType;
   var attributeSetId;
   String? title;
@@ -385,9 +381,10 @@ class Customer {
   String? email;
   String? phone;
   var ipAddress;
-  String? avatar;
+  var avatar;
   var status;
   var defaultAddressId;
+  String? deviceToken;
   var isDeleted;
   var createdAt;
   var updatedAt;
@@ -402,6 +399,7 @@ class Customer {
         this.avatar,
         this.status,
         this.defaultAddressId,
+        this.deviceToken,
         this.isDeleted,
         this.createdAt,
         this.updatedAt});
@@ -416,6 +414,7 @@ class Customer {
     avatar = json['avatar'];
     status = json['status'];
     defaultAddressId = json['default_address_id'];
+    deviceToken = json['device_token'];
     isDeleted = json['is_deleted'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
@@ -432,6 +431,7 @@ class Customer {
     data['avatar'] = this.avatar;
     data['status'] = this.status;
     data['default_address_id'] = this.defaultAddressId;
+    data['device_token'] = this.deviceToken;
     data['is_deleted'] = this.isDeleted;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
@@ -454,6 +454,10 @@ class Address {
   String? shippingEmail;
   String? createdAt;
   String? updatedAt;
+  Division? division;
+  District? district;
+  Upazila? upazila;
+  Union? union;
 
   Address(
       {this.id,
@@ -469,7 +473,11 @@ class Address {
         this.shippingPhone,
         this.shippingEmail,
         this.createdAt,
-        this.updatedAt});
+        this.updatedAt,
+        this.division,
+        this.district,
+        this.upazila,
+        this.union});
 
   Address.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -486,6 +494,15 @@ class Address {
     shippingEmail = json['shipping_email'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    division = json['division'] != null
+        ? new Division.fromJson(json['division'])
+        : null;
+    district = json['district'] != null
+        ? new District.fromJson(json['district'])
+        : null;
+    upazila =
+    json['upazila'] != null ? new Upazila.fromJson(json['upazila']) : null;
+    union = json['union'] != null ? new Union.fromJson(json['union']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -504,6 +521,109 @@ class Address {
     data['shipping_email'] = this.shippingEmail;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
+    if (this.division != null) {
+      data['division'] = this.division!.toJson();
+    }
+    if (this.district != null) {
+      data['district'] = this.district!.toJson();
+    }
+    if (this.upazila != null) {
+      data['upazila'] = this.upazila!.toJson();
+    }
+    if (this.union != null) {
+      data['union'] = this.union!.toJson();
+    }
+    return data;
+  }
+}
+
+class Division {
+  var id;
+  String? title;
+
+  Division({this.id, this.title});
+
+  Division.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    return data;
+  }
+}
+
+class District {
+  var id;
+  var divisionId;
+  String? title;
+
+  District({this.id, this.divisionId, this.title});
+
+  District.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    divisionId = json['division_id'];
+    title = json['title'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['division_id'] = this.divisionId;
+    data['title'] = this.title;
+    return data;
+  }
+}
+
+class Upazila {
+  var id;
+  var districtId;
+  String? title;
+  var status;
+
+  Upazila({this.id, this.districtId, this.title, this.status});
+
+  Upazila.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    districtId = json['district_id'];
+    title = json['title'];
+    status = json['status'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['district_id'] = this.districtId;
+    data['title'] = this.title;
+    data['status'] = this.status;
+    return data;
+  }
+}
+
+class Union {
+  var id;
+  var upazilaId;
+  String? title;
+  var status;
+
+  Union({this.id, this.upazilaId, this.title, this.status});
+
+  Union.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    upazilaId = json['upazila_id'];
+    title = json['title'];
+    status = json['status'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['upazila_id'] = this.upazilaId;
+    data['title'] = this.title;
+    data['status'] = this.status;
     return data;
   }
 }

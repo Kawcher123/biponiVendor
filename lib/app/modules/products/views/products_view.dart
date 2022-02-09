@@ -71,38 +71,4 @@ class ProductsView extends GetView<ProductsController> {
       })
     );
   }
-
-  // Widget _productWidget() {
-  //   return Card(
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.circular(10.0)
-  //     ),
-  //     child: ListTile(
-  //       leading: Image.asset('assets/images/mouse.jpeg'),
-  //       title: Text('${controller.productList.value.product!.i}'),
-  //       subtitle: Column(
-  //         children: [
-  //           Row(
-  //             children: [
-  //               Text('Product Type: '),
-  //               Text('Simple'),
-  //             ],
-  //           ),
-  //           Row(
-  //             children: [
-  //               Text('Price: '),
-  //               Text('500 BDT'),
-  //             ],
-  //           ),
-  //           Row(
-  //             children: [
-  //               Text('Special Price: '),
-  //               Text('450 BDT'),
-  //             ],
-  //           )
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
 }
