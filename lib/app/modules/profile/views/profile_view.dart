@@ -2,8 +2,11 @@ import 'package:biponi_vendor/app/commons/colors.dart';
 import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/commons/sub_head_widget.dart';
 import 'package:biponi_vendor/app/models/user_model.dart';
+import 'package:biponi_vendor/app/providers/api_manager.dart';
+import 'package:biponi_vendor/app/providers/api_url.dart';
 import 'package:biponi_vendor/app/routes/app_pages.dart';
 import 'package:biponi_vendor/app/services/auth_service.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -23,10 +26,9 @@ class ProfileView extends GetView<ProfileController> {
           child: Column(
             children: [
               CircleAvatar(
-                radius: 70,
-                backgroundColor: Colors.white,
-                backgroundImage: AssetImage(
-                    'assets/images/user.png'
+                radius: 60,
+                backgroundImage: CachedNetworkImageProvider(
+                   ApiClient.imageHead+currentUser.vendor!.avatar!,
                 ),
               ),
               SizedBox(height: CommonWidgets.size.width*0.05,),
@@ -37,7 +39,7 @@ class ProfileView extends GetView<ProfileController> {
                     children: [
                       SubHeadWidget(title: 'Personal Information'),
                       SizedBox(height: CommonWidgets.size.width*0.05,),
-                      
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

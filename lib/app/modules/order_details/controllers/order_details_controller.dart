@@ -8,11 +8,12 @@ class OrderDetailsController extends GetxController {
   final orderDetails=OrderDetailsModel().obs;
   final orderDetailsLoaded=false.obs;
   final orderID=''.obs;
+  final product = 'Pending'.obs;
 
   @override
   void onInit() {
     orderID.value=Get.arguments.toString();
-getOrderDetails();
+    getOrderDetails();
     super.onInit();
   }
 
