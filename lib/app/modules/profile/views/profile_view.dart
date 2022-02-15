@@ -39,7 +39,6 @@ class ProfileView extends GetView<ProfileController> {
                     children: [
                       SubHeadWidget(title: 'Personal Information'),
                       SizedBox(height: CommonWidgets.size.width*0.05,),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -99,8 +98,7 @@ class ProfileView extends GetView<ProfileController> {
                           ),
                         ],
                       ),
-                      SizedBox(height: CommonWidgets.size.width*0.1,),
-
+                      SizedBox(height: CommonWidgets.size.width*0.01,),
                     ],
                   ),
                 ),

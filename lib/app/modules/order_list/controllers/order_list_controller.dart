@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 class OrderListController extends GetxController {
   //TODO: Implement OrderListController
-final orderlist=OrderListModel().obs;
-final orderListLoaded=false.obs;
+  final orderlist=OrderListModel().obs;
+  final orderListLoaded=false.obs;
   @override
   void onInit() {
     getOrderList();
