@@ -21,5 +21,6 @@ class ApiClient {
   static String notifications = '${baseUrl}api/v1/seller/get/seller/notifications';
 
   static String dashboard = '${baseUrl}api/v1/seller/dashboard';
-  
+
+  static String updateorderStatus = '${baseUrl}api/v1/seller/order/update';
 }

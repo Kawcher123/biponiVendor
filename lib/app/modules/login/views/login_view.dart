@@ -48,6 +48,7 @@ class LoginView extends GetView<LoginController> {
                 TextFieldWidget(
                   labelText: "Phone",
                   hintText: "+880xxxxxx",
+                  keyboardType: TextInputType.number,
                   onChanged: (input) {
                     controller.vendorData.value.phone = input;
                   },

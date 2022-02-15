@@ -20,6 +20,7 @@ dependencies:
   shimmer: ^2.0.0
   flutter_spinkit: ^5.1.0
   get_storage: ^2.0.3
+  google_fonts: ^2.0.0
   firebase_core:
   cloud_firestore:
   firebase_storage:
@@ -41,4 +42,5 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/icons/
 

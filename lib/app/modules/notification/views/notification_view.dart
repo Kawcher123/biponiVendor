@@ -13,7 +13,7 @@ class NotificationView extends GetView<NotificationController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Get.theme.appBarTheme.backgroundColor,
+          backgroundColor: Colors.white,
           elevation: 0,
           title: Text(
             'Notifications',
@@ -27,7 +27,7 @@ class NotificationView extends GetView<NotificationController> {
                 svgSrc: 'assets/icons/arrow_back.svg',
                 height: _size.width * .13,
                 width: _size.width * .13,
-                color: Colors.white.withOpacity(0.15),
+                color: Colors.blue.withOpacity(0.15),
                 svgColor: Get.theme.textTheme.bodyText1!.color,
                 radius: 30,
                 press: () {
@@ -63,7 +63,7 @@ class NotificationView extends GetView<NotificationController> {
                                     Expanded(
                                       flex: 1,
                                       child: Ui.getIconButton(
-                                          svgSrc: "assets/images/Bell.svg",
+                                          svgSrc: "assets/icons/Bell.svg",
                                           height: _size.width * .15,
                                           width: _size.width * .15,
                                           color: Color(0xFF979797).withOpacity(0.1),

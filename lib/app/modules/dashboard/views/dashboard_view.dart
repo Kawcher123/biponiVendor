@@ -22,7 +22,80 @@ class DashboardView extends GetView<DashboardController> {
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   children: [
-                    _horizontalListViewWidget(),
+                    Container(
+                      height: CommonWidgets.size.width * 0.25,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            Card(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                              child: Container(
+                                width: CommonWidgets.size.width * 0.42,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text('Total Revenue'),
+                                    Text(
+                                      controller.totalRevenue.value,
+                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: primaryColor),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Card(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                              child: Container(
+                                width: CommonWidgets.size.width * 0.42,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text('Total Orders'),
+                                    Text(
+                                      controller.totalOrders.value,
+                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: primaryColor),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Card(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                              child: Container(
+                                width: CommonWidgets.size.width * 0.42,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text('Total Products'),
+                                    Text(
+                                      controller.totalProducts.value,
+                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: primaryColor),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Card(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                              child: Container(
+                                width: CommonWidgets.size.width * 0.42,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text('Total Customer'),
+                                    Text(
+                                      controller.totalCustomers.value,
+                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: primaryColor),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: CommonWidgets.size.width * 0.03,
                     ),
@@ -41,9 +114,8 @@ class DashboardView extends GetView<DashboardController> {
                             height: CommonWidgets.size.width * 0.25,
                             padding: EdgeInsets.all(4.0),
                             child: GestureDetector(
-                              onTap: ()
-                              {
-                                Get.toNamed(Routes.ORDER_DETAILS,arguments: controller.orderlist.value.orders![index].id);
+                              onTap: () {
+                                Get.toNamed(Routes.ORDER_DETAILS, arguments: controller.orderlist.value.orders![index].id);
                               },
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,7 +138,7 @@ class DashboardView extends GetView<DashboardController> {
                                                 style: TextStyle(fontSize: 16, color: Colors.white),
                                               ),
                                               Text(
-                                               DateFormat.jm().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
+                                                DateFormat.jm().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
                                                 style: TextStyle(fontSize: 14, color: Colors.white),
                                               ),
                                             ],
@@ -127,13 +199,15 @@ class DashboardView extends GetView<DashboardController> {
                                               '#${controller.orderlist.value.orders![index].id}',
                                               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                             ),
-                                            SizedBox(height: 5,),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
                                             Container(
                                                 decoration: BoxDecoration(color: primaryColor, borderRadius: BorderRadius.circular(5.0)),
                                                 padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
                                                 child: Text(
                                                   Helper.getStatus(controller.orderlist.value.orders![index].status.toString()),
-                                                  style: TextStyle(fontSize: 12,color: backgroundColor),
+                                                  style: TextStyle(fontSize: 12, color: backgroundColor),
                                                 ))
                                           ],
                                         ),
@@ -153,37 +227,5 @@ class DashboardView extends GetView<DashboardController> {
             return Center(child: CircularProgressIndicator());
           }
         }));
-  }
-
-  Widget _horizontalListViewWidget() {
-    return Container(
-      height: CommonWidgets.size.width * 0.25,
-      child: ListView.builder(
-          itemCount: 4,
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            return _horizontalListWidget();
-          }),
-    );
-  }
-
-  Widget _horizontalListWidget() {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      child: Container(
-        width: CommonWidgets.size.width * 0.22,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(''),
-            Text(
-              '48',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: primaryColor),
-            )
-          ],
-        ),
-      ),
-    );
   }
 }
