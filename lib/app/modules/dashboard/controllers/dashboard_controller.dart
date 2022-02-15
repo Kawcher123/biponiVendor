@@ -1,4 +1,5 @@
 import 'package:biponi_vendor/app/models/orderlist_model.dart';
+import 'package:biponi_vendor/app/repositories/dashboard_repository.dart';
 import 'package:biponi_vendor/app/repositories/order_repositories.dart';
 import 'package:get/get.dart';
 
@@ -8,18 +9,31 @@ class DashboardController extends GetxController {
   final orderlist = OrderListModel().obs;
   final orderListLoaded = false.obs;
 
+  final totalOrders = ''.obs;
+  final totalRevenue = ''.obs;
+  final totalProducts = ''.obs;
+  final totalCustomers = ''.obs;
+
   @override
   void onInit() {
+    getDashboardData();
     getOrderList();
     super.onInit();
   }
 
-  getOrderList()async
-  {
-    OrderRepository().getOrderList().then((resp)
-    {
-      orderlist.value=resp;
-      orderListLoaded.value=true;
+  getOrderList() async {
+    OrderRepository().getOrderList().then((resp) {
+      orderlist.value = resp;
+      orderListLoaded.value = true;
+    });
+  }
+
+  getDashboardData() async {
+    DashBoardRepository().getDashboardData().then((resp) {
+      totalOrders.value = resp['order'].toString();
+      totalCustomers.value = resp['users'].toString();
+      totalProducts.value = resp['product'].toString();
+      totalRevenue.value = resp['revenue'].toString();
     });
   }
 }

@@ -43,7 +43,7 @@ class TextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: TextInputType.text,
+      keyboardType: keyboardType ?? TextInputType.text,
       onSaved: onSaved,
       onChanged: onChanged,
       validator: validator,
