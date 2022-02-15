@@ -5,10 +5,8 @@ import 'package:biponi_vendor/app/routes/app_pages.dart';
 import 'package:biponi_vendor/common/helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
@@ -36,7 +34,7 @@ class DashboardView extends GetView<DashboardController> {
                       },
                     ),
                     Column(
-                      children: List.generate(5, (index) {
+                      children: List.generate(controller.orderlist.value.orders!.length, (index) {
                         return Card(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                           child: Container(
@@ -61,15 +59,15 @@ class DashboardView extends GetView<DashboardController> {
                                             children: [
                                               Text(
                                                 DateFormat.MMMd().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
-                                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                                               ),
                                               Text(
                                                 DateFormat.y().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
                                                 style: TextStyle(fontSize: 16, color: Colors.white),
                                               ),
                                               Text(
-                                                DateFormat.jm().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
-                                                style: TextStyle(fontSize: 16, color: Colors.white),
+                                               DateFormat.jm().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
+                                                style: TextStyle(fontSize: 14, color: Colors.white),
                                               ),
                                             ],
                                           ),

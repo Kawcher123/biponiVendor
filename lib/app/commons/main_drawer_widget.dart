@@ -19,7 +19,7 @@ class MainDrawerWidget extends StatelessWidget {
             text: "Home",
           ),
           DrawerLinkWidget(
-            icon: Icons.folder_special_outlined,
+            icon: Icons.people_outline,
             text: "Customer List",
             onTap: (e)
             {
@@ -27,7 +27,7 @@ class MainDrawerWidget extends StatelessWidget {
             },
           ),
           DrawerLinkWidget(
-            icon: Icons.folder_special_outlined,
+            icon: Icons.add_circle_outline,
             text: "Add Product",
             onTap: (e)
             {

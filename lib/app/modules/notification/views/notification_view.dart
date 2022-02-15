@@ -1,109 +1,121 @@
+import 'package:biponi_vendor/common/ui.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../controllers/notification_controller.dart';
 
 class NotificationView extends GetView<NotificationController> {
+  final Size _size = Get.size;
 
-  final _size=Get.size;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
+        appBar: AppBar(
+          backgroundColor: Get.theme.appBarTheme.backgroundColor,
+          elevation: 0,
+          title: Text(
             'Notifications',
-          style: TextStyle(
-            color: Colors.black
+            style: TextStyle(color: Get.theme.textTheme.bodyText1!.color),
+          ),
+          centerTitle: true,
+          automaticallyImplyLeading: true,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 10.0, top: 5, bottom: 5),
+            child: Ui.getIconButton(
+                svgSrc: 'assets/icons/arrow_back.svg',
+                height: _size.width * .13,
+                width: _size.width * .13,
+                color: Colors.white.withOpacity(0.15),
+                svgColor: Get.theme.textTheme.bodyText1!.color,
+                radius: 30,
+                press: () {
+                  Get.back();
+                }),
           ),
         ),
-        leading:IconButton(
-          onPressed: (){
-            Get.back();
-          },
-          icon: Icon(Icons.arrow_back,color: Colors.black,),
-        ) ,
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Your Activity',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
+        body: Obx(() {
+          if (controller.notificationLoaded.isTrue) {
+            return SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text(
+                      'Your Activity'.tr,
+                      style: TextStyle(fontSize: 18, color: Get.theme.textTheme.bodyText1!.color),
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(10, (index){
-                    return Row(
-                      children: [
-                        Icon(Icons.notifications_none,
-                          size: 60,color: Colors.blue,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Notification title',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold
+                  Column(
+                    children: List.generate(controller.notifications.value.notification!.length, (index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                            width: _size.width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: Ui.getIconButton(
+                                          svgSrc: "assets/images/Bell.svg",
+                                          height: _size.width * .15,
+                                          width: _size.width * .15,
+                                          color: Color(0xFF979797).withOpacity(0.1),
+                                          svgColor: Get.theme.primaryColor,
+                                          radius: 30,
+                                          press: () {}),
                                     ),
-                              ),
-                              Container(
-                                width: _size.width*.7,
-                                child: Text(
-                                  'Order no. 233344445 has been success. Please wait for the product',
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold
+                                    Expanded(
+                                      flex: 5,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 10.0, right: 10),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              controller.notifications.value.notification![index].title!,
+                                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Get.theme.textTheme.bodyText2!.color),
+                                            ),
+                                            Text(
+                                              controller.notifications.value.notification![index].description!,
+                                              maxLines: 3,
+                                              style: TextStyle(fontSize: 14),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                    left: _size.width * .15 + 10,
                                   ),
-                                  maxLines: 2,
+                                  child: Text(
+                                    '${DateFormat.yMMMMd().format(DateTime.parse(controller.notifications.value.notification![index].createdAt!))}, ${DateFormat.jms().format(DateTime.parse(controller.notifications.value.notification![index].createdAt!))}',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 5,),
-                              Text(
-                                'July 20, 2022(8.00PM)',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    );
-                  }),
-                ),
-              )
-            ],
-
-          ),
-        ),
-      ),
-    );
+                              ],
+                            )),
+                      );
+                    }),
+                  )
+                ],
+              ),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        }));
   }
 }

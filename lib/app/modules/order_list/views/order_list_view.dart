@@ -1,6 +1,7 @@
 import 'package:biponi_vendor/app/commons/colors.dart';
 import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/routes/app_pages.dart';
+import 'package:biponi_vendor/common/helper.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -59,7 +60,7 @@ class OrderListView extends GetView<OrderListController> {
                                     children: [
                                       Text(
                                         DateFormat.MMMd().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
-                                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                                       ),
                                       Text(
                                         DateFormat.y().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
@@ -67,7 +68,7 @@ class OrderListView extends GetView<OrderListController> {
                                       ),
                                       Text(
                                         DateFormat.jm().format(DateTime.parse(controller.orderlist.value.orders![index].createdAt!)),
-                                        style: TextStyle(fontSize: 16, color: Colors.white),
+                                        style: TextStyle(fontSize: 14, color: Colors.white),
                                       ),
                                     ],
                                   ),
@@ -127,12 +128,13 @@ class OrderListView extends GetView<OrderListController> {
                                       '#${controller.orderlist.value.orders![index].id}',
                                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                     ),
+                                    SizedBox(height: 5,),
                                     Container(
                                         decoration: BoxDecoration(color: primaryColor, borderRadius: BorderRadius.circular(5.0)),
                                         padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
                                         child: Text(
-                                          '${controller.orderlist.value.orders![index].status}',
-                                          style: TextStyle(color: backgroundColor),
+                                          Helper.getStatus(controller.orderlist.value.orders![index].status.toString()),
+                                          style: TextStyle(fontSize: 12,color: backgroundColor),
                                         ))
                                   ],
                                 ),

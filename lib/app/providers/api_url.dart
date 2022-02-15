@@ -15,5 +15,11 @@ class ApiClient {
   static String orderDetails = '${baseUrl}api/v1/seller/order/details/';
 
   static String productList = '${baseUrl}api/v1/seller/product/list';
+
+  static String customerList = '${baseUrl}api/v1/seller/customer/list';
+
+  static String notifications = '${baseUrl}api/v1/seller/get/seller/notifications';
+
+  static String dashboard = '${baseUrl}api/v1/seller/dashboard';
   
 }

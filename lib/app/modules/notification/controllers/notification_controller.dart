@@ -1,11 +1,16 @@
+import 'package:biponi_vendor/app/models/notification_model.dart';
+import 'package:biponi_vendor/app/repositories/notification_repositories.dart';
 import 'package:get/get.dart';
 
 class NotificationController extends GetxController {
   //TODO: Implement NotificationController
 
-  final count = 0.obs;
+  final notifications = NotificationModel().obs;
+  final notificationLoaded = false.obs;
+
   @override
-  void onInit() {
+  Future<void> onInit() async {
+    await getNotifications();
     super.onInit();
   }
 
@@ -14,7 +19,10 @@ class NotificationController extends GetxController {
     super.onReady();
   }
 
-  @override
-  void onClose() {}
-  void increment() => count.value++;
+  Future getNotifications() async {
+    NotificationRepository().getNotifications().then((resp) {
+      notifications.value = resp;
+      notificationLoaded.value = true;
+    });
+  }
 }

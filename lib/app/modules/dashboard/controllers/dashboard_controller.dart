@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 
 class DashboardController extends GetxController {
   //TODO: Implement DashboardController
-  final orderlist=OrderListModel().obs;
-  final orderListLoaded=false.obs;
+
+  final orderlist = OrderListModel().obs;
+  final orderListLoaded = false.obs;
+
   @override
   void onInit() {
     getOrderList();
