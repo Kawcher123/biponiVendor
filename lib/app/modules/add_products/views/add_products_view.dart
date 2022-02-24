@@ -63,7 +63,6 @@ class AddProductsView extends GetView<AddProductsController> {
                                     mode: Mode.MENU,
                                     showFavoriteItems: true,
                                     items: [ 'Simple','Variable','Digital'],
-
                                     onChanged:(v)
                                     {
                                       controller.productType.value=v!;

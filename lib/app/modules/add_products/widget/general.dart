@@ -11,10 +11,7 @@ class General extends StatefulWidget {
 }
 
 class _GeneralState extends State<General> {
-  TextEditingController _title=TextEditingController();
-  TextEditingController _weight=TextEditingController();
-  TextEditingController _shortdescription=TextEditingController();
-  TextEditingController _description=TextEditingController();
+
   bool status = true;
 
   @override
@@ -51,17 +48,6 @@ class _GeneralState extends State<General> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: Text(
-                    //     'General',
-                    //     style: TextStyle(
-                    //       fontSize: 16,
-                    //       color: Colors.black,
-                    //       fontWeight: FontWeight.bold,
-                    //     ),
-                    //   ),
-                    // ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column (
@@ -77,15 +63,14 @@ class _GeneralState extends State<General> {
                           ),
                           SizedBox(height: 8,),
                           TextFormField(
-                            controller: _title,
+                            //controller: _title,
                             keyboardType: TextInputType.text,
                             validator: (input){},
+                            onChanged: (input){},
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                             ),
                           ),
-
-
                         ],
                       ),
                     ),
@@ -104,9 +89,9 @@ class _GeneralState extends State<General> {
                           ),
                           SizedBox(height: 8,),
                           TextFormField(
-                            controller: _weight,
                             keyboardType: TextInputType.text,
                             validator: (input){},
+                            onChanged: (input){},
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                             ),
@@ -129,9 +114,9 @@ class _GeneralState extends State<General> {
                           ),
                           SizedBox(height: 8,),
                           TextFormField(
-                            controller: _shortdescription,
                             keyboardType: TextInputType.text,
                             validator: (input){},
+                            onChanged: (input){},
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                             ),
@@ -158,9 +143,9 @@ class _GeneralState extends State<General> {
                           TextFormField(
                             //maxLength: 3,
                             maxLines: 3,
-                            controller: _description,
                             keyboardType: TextInputType.text,
                             validator: (input){},
+                            onChanged: (input){},
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                             ),
@@ -188,10 +173,8 @@ class _GeneralState extends State<General> {
                               showSearchBox: true,
                               items: [ 'Walton','Yamaha', 'Minister'],
                               popupItemDisabled: (String s) => s.startsWith('I'),
-                              onChanged: print,
+                              onChanged: (input){},
                               selectedItem: ""),
-
-
                         ],
                       ),
                     ),
@@ -215,7 +198,7 @@ class _GeneralState extends State<General> {
                               showSearchBox: true,
                               items: [ 'Primary Category','Automotive & Motorbike', 'Laptops'],
                               popupItemDisabled: (String s) => s.startsWith('I'),
-                              onChanged: print,
+                              onChanged: (input){},
                               selectedItem: ""),
 
 
@@ -242,7 +225,7 @@ class _GeneralState extends State<General> {
                               showSearchBox: true,
                               items: [ 'Agora','Yamaha', 'Apex','Ryans','Startech'],
                               popupItemDisabled: (String s) => s.startsWith('I'),
-                              onChanged: print,
+                              onChanged: (input){},
                               selectedItem: ""),
 
                         ],

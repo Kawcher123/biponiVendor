@@ -3,9 +3,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 class Seo extends StatelessWidget {
   Seo({Key? key}) : super(key: key);
-  TextEditingController _title=TextEditingController();
-  TextEditingController _weight=TextEditingController();
-  TextEditingController _shortdescription=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,17 +37,6 @@ class Seo extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: Text(
-                    //     'SEO',
-                    //     style: TextStyle(
-                    //       fontSize: 16,
-                    //       color: Colors.black,
-                    //       fontWeight: FontWeight.bold,
-                    //     ),
-                    //   ),
-                    // ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column (
@@ -66,15 +52,12 @@ class Seo extends StatelessWidget {
                           ),
                           SizedBox(height: 8,),
                           TextField(
-                            controller: _title,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-
                             ),
+                            onChanged: (input){},
                           ),
-
-
                         ],
                       ),
                     ),
@@ -93,15 +76,12 @@ class Seo extends StatelessWidget {
                           ),
                           SizedBox(height: 8,),
                           TextField(
-                            controller: _weight,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-
                             ),
+                            onChanged: (input){},
                           ),
-
-
                         ],
                       ),
                     ),
@@ -120,15 +100,12 @@ class Seo extends StatelessWidget {
                           ),
                           SizedBox(height: 8,),
                           TextField(
-                            controller: _weight,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-
                             ),
+                            onChanged: (input){},
                           ),
-
-
                         ],
                       ),
                     ),
@@ -148,16 +125,13 @@ class Seo extends StatelessWidget {
                           SizedBox(height: 8,),
                           TextField(
                             minLines: 4,
-                            controller: _shortdescription,
                             keyboardType: TextInputType.multiline,
                             maxLines: null,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-
                             ),
+                            onChanged: (input){},
                           ),
-
-
                         ],
                       ),
                     ),

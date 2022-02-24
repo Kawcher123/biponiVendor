@@ -1,16 +1,12 @@
 import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_controller.dart';
-import 'package:biponi_vendor/app/modules/add_products/widget/general.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-class Specification extends GetView<AddProductsController>{
 
-  TextEditingController _enginecapacity = TextEditingController();
-  TextEditingController _description = TextEditingController();
-  TextEditingController _ram = TextEditingController();
+class Specification extends GetView<AddProductsController>{
 
   @override
   Widget build(BuildContext context) {
@@ -105,11 +101,11 @@ class Specification extends GetView<AddProductsController>{
                   ),
                   SizedBox(height: 8,),
                   TextField(
-                    controller: _enginecapacity,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
+                    onChanged: (input){},
                   ),
 
                 ],
@@ -127,11 +123,11 @@ class Specification extends GetView<AddProductsController>{
                   ),
                   SizedBox(height: 8,),
                   TextField(
-                    controller: _enginecapacity,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
+                    onChanged: (input){},
                   ),
 
                 ],
@@ -149,11 +145,11 @@ class Specification extends GetView<AddProductsController>{
                   ),
                   SizedBox(height: 8,),
                   TextField(
-                    controller: _enginecapacity,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
+                    onChanged: (input){},
                   ),
 
                 ],
@@ -171,11 +167,11 @@ class Specification extends GetView<AddProductsController>{
                   ),
                   SizedBox(height: 8,),
                   TextField(
-                    controller: _enginecapacity,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
+                    onChanged: (input){},
                   ),
 
                 ],
@@ -193,11 +189,11 @@ class Specification extends GetView<AddProductsController>{
                   ),
                   SizedBox(height: 8,),
                   TextField(
-                    controller: _enginecapacity,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
+                    onChanged: (input){},
                   ),
 
                 ],
@@ -234,11 +230,11 @@ class Specification extends GetView<AddProductsController>{
                   TextField(
                     maxLines: 4,
                     minLines: null,
-                    controller: _description,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
+                    onChanged: (input){},
                   ),
 
                 ],
@@ -256,11 +252,11 @@ class Specification extends GetView<AddProductsController>{
                   ),
                   SizedBox(height: 8,),
                   TextField(
-                    controller: _ram,
                     keyboardType: TextInputType.text,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
+                    onChanged: (input){},
                   ),
 
                 ],

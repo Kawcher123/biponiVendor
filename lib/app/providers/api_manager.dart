@@ -14,6 +14,7 @@ class APIManager {
     var responseJson;
     try {
       final response = await http.post(Uri.parse(url), body: param, headers: headerData);
+    print(response.body);
       responseJson = _response(response);
       print(responseJson);
     } on SocketException {

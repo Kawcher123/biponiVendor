@@ -1,4 +1,5 @@
 import 'package:biponi_vendor/app/commons/text_field_widget.dart';
+import 'package:biponi_vendor/app/modules/add_products/widget/additional_options.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/price.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/seo.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/specification.dart';
@@ -231,6 +232,40 @@ class VariableProduct extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: ()
+            {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>AdditionalOptions()));
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                child: Container(
+                  height: _size.width*.15,
+                  width: _size.width,
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Additional Options',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Icon(Icons.arrow_forward),
+                      ],
+                    ),
                   ),
                 ),
               ),

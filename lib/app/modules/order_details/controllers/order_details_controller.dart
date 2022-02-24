@@ -1,5 +1,6 @@
 import 'package:biponi_vendor/app/models/orderDetails_model.dart';
 import 'package:biponi_vendor/app/repositories/order_details_repositories.dart';
+import 'package:biponi_vendor/common/helper.dart';
 import 'package:biponi_vendor/common/ui.dart';
 import 'package:get/get.dart';
 
@@ -24,7 +25,7 @@ class OrderDetailsController extends GetxController {
   @override
   void onInit() {
     orderID.value = Get.arguments.toString();
-    selectedStatus.value = orderStatus[0];
+
     getOrderDetails();
     super.onInit();
   }
@@ -32,6 +33,10 @@ class OrderDetailsController extends GetxController {
   getOrderDetails() async {
     OrderDetailsRepository().getOrderDetails(orderID.value).then((response) {
       orderDetails.value = response;
+      selectedStatus.value = {
+        'status': '${Helper.getStatus(orderDetails.value.orders!.status.toString())}', 'id': '${orderDetails.value.orders!.status}'
+        
+      };
       orderDetailsLoaded.value = true;
     });
   }

@@ -4,9 +4,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 class Inventory extends StatelessWidget {
   Inventory({Key? key}) : super(key: key);
-  TextEditingController _title=TextEditingController();
-  TextEditingController _weight=TextEditingController();
-  TextEditingController _shortdescription=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,17 +39,6 @@ class Inventory extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Padding(
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: Text(
-                    //     'Inventory',
-                    //     style: TextStyle(
-                    //       fontSize: 16,
-                    //       color: Colors.black,
-                    //       fontWeight: FontWeight.bold,
-                    //     ),
-                    //   ),
-                    // ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column (
@@ -68,15 +54,12 @@ class Inventory extends StatelessWidget {
                           ),
                           SizedBox(height: 8,),
                           TextField(
-                            controller: _title,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-
                             ),
+                            onChanged: (input){},
                           ),
-
-
                         ],
                       ),
                     ),
@@ -98,7 +81,7 @@ class Inventory extends StatelessWidget {
                               mode: Mode.MENU,
                               showFavoriteItems: true,
                               items: [ "Don't Track Inventory",'Track Inventory',],
-                              onChanged: print,
+                              onChanged: (input){},
                               selectedItem: ""),
                         ],
                       ),
@@ -118,12 +101,11 @@ class Inventory extends StatelessWidget {
                           ),
                           SizedBox(height: 8,),
                           TextField(
-                            controller: _shortdescription,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-
                             ),
+                            onChanged: (input){},
                           ),
 
 
@@ -148,10 +130,8 @@ class Inventory extends StatelessWidget {
                               mode: Mode.MENU,
                               showFavoriteItems: true,
                               items: [ 'In Stock','Out of Stock',],
-                              onChanged: print,
+                              onChanged: (input){},
                               selectedItem: ""),
-
-
                         ],
                       ),
                     ),
