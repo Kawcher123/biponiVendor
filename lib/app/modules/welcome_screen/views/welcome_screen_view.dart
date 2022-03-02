@@ -1,13 +1,15 @@
 import 'package:biponi_vendor/app/commons/common_widgets.dart';
-import 'package:biponi_vendor/app/modules/splash_screen/components/splash_component.dart';
-import 'package:biponi_vendor/app/modules/splash_screen/constants/constant_data.dart';
+import 'package:biponi_vendor/app/modules/welcome_screen/components/welcome_component.dart';
+import 'package:biponi_vendor/app/modules/welcome_screen/constants/constant_data.dart';
 import 'package:biponi_vendor/app/routes/app_pages.dart';
 import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../controllers/splash_screen_controller.dart';
 
-class SplashScreenView extends GetView<SplashScreenController> {
+import 'package:get/get.dart';
+
+import '../controllers/welcome_screen_controller.dart';
+
+class WelcomeScreenView extends GetView<WelcomeScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +24,10 @@ class SplashScreenView extends GetView<SplashScreenController> {
                   onPageChanged: (value) {
                     controller.currentPage.value = value;
                   },
-                  itemCount: ConstantData().splashData.length,
-                  itemBuilder: (context, index) => SplashComponent(
-                    image: ConstantData().splashData[index]["image"],
-                    text: ConstantData().splashData[index]['text'],
+                  itemCount: ConstantData().welcomeData.length,
+                  itemBuilder: (context, index) => WelcomeComponent(
+                    image: ConstantData().welcomeData[index]["image"],
+                    text: ConstantData().welcomeData[index]['text'],
                   ),
                 ),
               ),
@@ -39,8 +41,8 @@ class SplashScreenView extends GetView<SplashScreenController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: List.generate(
-                          ConstantData().splashData.length,
-                          (index) => buildDot(index: index),
+                          ConstantData().welcomeData.length,
+                              (index) => buildDot(index: index),
                         ),
                       ),
                       Spacer(flex: 1),

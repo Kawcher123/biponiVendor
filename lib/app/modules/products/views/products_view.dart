@@ -63,7 +63,7 @@ class ProductsView extends GetView<ProductsController> {
                   ),
                 );
               },
-              shrinkWrap: true,),
+            ),
           );
         }else{
           return Center(child: CircularProgressIndicator(),);

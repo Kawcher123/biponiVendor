@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class SplashScreenController extends GetxController {
-  //TODO: Implement SplashScreenController
+class WelcomeScreenController extends GetxController {
+  //TODO: Implement WelcomeScreenController
 
   final count = 0.obs;
   RxInt currentPage = 0.obs;

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-class SplashComponent extends StatelessWidget {
-  SplashComponent({
-    Key? key,
-    this.text,
-    this.image,
-  }) : super(key: key);
+class WelcomeComponent extends StatelessWidget {
+  WelcomeComponent({Key? key,this.text, this.image,}) : super(key: key);
   final String? text, image;
 
   final Size _size = Get.size;

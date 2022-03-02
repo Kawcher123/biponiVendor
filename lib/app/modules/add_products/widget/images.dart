@@ -62,7 +62,7 @@ class Images extends GetView<AddProductsController>{
                                 onTap: () {
                                   controller.productGetImage(ImageSource.gallery).then((res)
                                   {
-                                    controller.selectedImage.value=res;
+                                    controller.defaultImage.value=res;
                                   });
 
                                 },
@@ -102,11 +102,11 @@ class Images extends GetView<AddProductsController>{
                                 ),
                                 child: Stack(
                                   children: [
-                                    controller.selectedImage.value.path.isNotEmpty?  ClipRRect(
+                                    controller.defaultImage.value.path.isNotEmpty?  ClipRRect(
                                       borderRadius: BorderRadius.circular(15),
                                       child: Image(
                                         width:Get.size.width,
-                                        image: FileImage(controller.selectedImage.value),
+                                        image: FileImage(controller.defaultImage.value),
                                         fit: BoxFit.fill,
                                       ),
                                     ):  ClipRRect(
@@ -137,7 +137,7 @@ class Images extends GetView<AddProductsController>{
                                 onTap: () {
                                   controller.productGetImage(ImageSource.gallery).then((res)
                                   {
-                                    controller.selectedImage1.value=res;
+                                    controller.galleryImage.value=res;
                                   });
 
                                 },
@@ -177,11 +177,11 @@ class Images extends GetView<AddProductsController>{
                                 ),
                                 child: Stack(
                                   children: [
-                                    controller.selectedImage1.value.path.isNotEmpty?  ClipRRect(
+                                    controller.galleryImage.value.path.isNotEmpty?  ClipRRect(
                                       borderRadius: BorderRadius.circular(15),
                                       child: Image(
                                         width:Get.size.width,
-                                        image: FileImage(controller.selectedImage1.value),
+                                        image: FileImage(controller.galleryImage.value),
                                         fit: BoxFit.fill,
                                       ),
                                     ):  ClipRRect(

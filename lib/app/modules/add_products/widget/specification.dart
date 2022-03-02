@@ -107,7 +107,6 @@ class Specification extends GetView<AddProductsController>{
                     ),
                     onChanged: (input){},
                   ),
-
                 ],
               ),
               SizedBox(height: 15,),

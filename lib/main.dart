@@ -1,5 +1,6 @@
 import 'package:biponi_vendor/app/modules/dashboard/bindings/dashboard_binding.dart';
 import 'package:biponi_vendor/app/modules/messages/bindings/messages_binding.dart';
+import 'package:biponi_vendor/app/modules/notification/bindings/notification_binding.dart';
 import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:biponi_vendor/app/services/firebase_messaging_service.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,6 +22,7 @@ initServices() async {
 
   MessagesBinding().dependencies();
   DashboardBinding().dependencies();
+  NotificationBinding().dependencies();
 
   Get.log('All services started...');
 }

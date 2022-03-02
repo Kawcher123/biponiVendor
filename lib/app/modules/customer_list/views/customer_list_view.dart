@@ -1,26 +1,38 @@
 import 'package:biponi_vendor/app/commons/common_widgets.dart';
+import 'package:biponi_vendor/common/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/customer_list_controller.dart';
 
 class CustomerListView extends GetView<CustomerListController> {
+
+  final Size _size = Get.size;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text('Customer List',
-        style: TextStyle(
-          color: Colors.black
+        elevation: 0,
+        title: Text(
+          'Customer List',
+          style: TextStyle(color: Get.theme.textTheme.bodyText1!.color),
         ),
-        ),
-        leading:IconButton(
-          onPressed: (){
-            Get.back();
-          },
-          icon: Icon(Icons.arrow_back,color: Colors.blue,),
-        ) ,
         centerTitle: true,
+        automaticallyImplyLeading: true,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 10.0, top: 5, bottom: 5),
+          child: Ui.getIconButton(
+              svgSrc: 'assets/icons/arrow_back.svg',
+              height: _size.width * .13,
+              width: _size.width * .13,
+              color: Colors.blue.withOpacity(0.15),
+              svgColor: Get.theme.textTheme.bodyText1!.color,
+              radius: 30,
+              press: () {
+                Get.back();
+              }),
+        ),
       ),
       body: Obx((){
         if(controller.customerListLoaded.isTrue){

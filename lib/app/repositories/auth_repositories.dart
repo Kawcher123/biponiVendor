@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:biponi_vendor/app/models/place_model.dart';
 import 'package:biponi_vendor/app/models/user_model.dart';
 import 'package:biponi_vendor/app/providers/api_manager.dart';
@@ -6,47 +8,77 @@ import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:get/get.dart';
 
 class AuthRepository {
+
   ///User Registration api call
   Future userRegistration(
-      Vendor vendor,
+      String name,
+      String email,
+      String phone,
+      String password,
+      var profileImage,
+      var nidFrontImage,
+      var nidBackImage,
+      String shopName,
+      String shopUrl,
+      String shopPhone,
+      String shopEmail,
+      var shopLogo,
+      var shopBanner,
+      var tradeLicense,
       String division,
       String district,
       String upazila,
       String union,
+      String address,
+      String bankName,
+      String accountName,
+      String accountNumber,
+      String routingNumber,
+      String bkash,
+      String nagad,
+      String rocket,
+      String upay,
       ) async{
 
-    print('device token: ${vendor.deviceToken}');
-
-    Map user = {
-      'name': '',
-      'email': '',
-      'phone': '',
+    Map<String,String> user = {
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'password': password,
       'avatar': '',
       'nid_front_side': '',
       'nid_back_side': '',
-      'password': '',
-      'shop_name': '',
-      'slug': '',
-      'shop_phone': '',
-      'shop_email': '',
+      'status': '1',
+      'shop_name': shopName,
+      'slug': shopUrl,
+      'shop_phone': shopPhone,
+      'shop_email': shopEmail,
       'shop_logo': '',
+      'shop_banner':'',
       'trade_license': '',
-      'division': '',
-      'district': '',
-      'area': '',
-      'address': '',
-      'bank_name': '',
-      'account_name': '',
-      'account_number': '',
-      'routing_number': '',
-      'bkash': '',
-      'rocket': '',
-      'nagad': '',
-      'upay': ''
+      'division': division,
+      'district': district,
+      'shop_area': upazila,
+      'shop_union': union,
+      'address': address,
+      'bank_name': bankName,
+      'account_name': accountName,
+      'account_number': accountNumber,
+      'routing_number': routingNumber,
+      'bkash': bkash,
+      'rocket': rocket,
+      'nagad': nagad,
+      'upay': upay,
     };
-    APIManager _manager=APIManager();
 
-    //final response = await _manager.multipartPostAPI(ApiClient.registration, user,);
+    APIManager _manager = APIManager();
+
+    final response = await _manager.multipartPostSignupAPI(ApiClient.registration, user,profileImage,nidFrontImage,nidBackImage,shopLogo,shopBanner,tradeLicense,{});
+
+
+
+    print('sign up:$response');
+    return response;
   }
 
   ///User Login api call

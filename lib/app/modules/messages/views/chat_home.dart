@@ -1,3 +1,4 @@
+import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/modules/messages/controllers/messages_controller.dart';
 import 'package:biponi_vendor/app/modules/messages/views/chat_room.dart';
 import 'package:biponi_vendor/app/services/auth_service.dart';
@@ -19,23 +20,7 @@ class MessagesView extends GetView<MessagesController> {
     var currentUser = Get.find<AuthService>().user;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Chats".tr,
-          style: Get.textTheme.headline6,
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        // leading: new IconButton(
-        //   icon: new Icon(Icons.sort, color: Get.theme.hintColor),
-        //   onPressed: () {
-        //     Scaffold.of(context).openDrawer();
-        //   },
-        // ),
-        // actions: [NotificationsButtonWidget()],
-      ),
+      appBar: CommonWidgets.defaultAppBar(context),
       body: SafeArea(
         child: Column(
           children: <Widget>[

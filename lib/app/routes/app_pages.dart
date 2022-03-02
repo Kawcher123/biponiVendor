@@ -1,4 +1,3 @@
-import 'package:biponi_vendor/app/modules/messages/views/chat_home.dart';
 import 'package:get/get.dart';
 
 import 'package:biponi_vendor/app/modules/add_products/bindings/add_products_binding.dart';
@@ -14,7 +13,7 @@ import 'package:biponi_vendor/app/modules/home/views/home_view.dart';
 import 'package:biponi_vendor/app/modules/login/bindings/login_binding.dart';
 import 'package:biponi_vendor/app/modules/login/views/login_view.dart';
 import 'package:biponi_vendor/app/modules/messages/bindings/messages_binding.dart';
-import 'package:biponi_vendor/app/modules/messages/views/messages_view.dart';
+import 'package:biponi_vendor/app/modules/messages/views/chat_home.dart';
 import 'package:biponi_vendor/app/modules/notification/bindings/notification_binding.dart';
 import 'package:biponi_vendor/app/modules/notification/views/notification_view.dart';
 import 'package:biponi_vendor/app/modules/order_details/bindings/order_details_binding.dart';
@@ -29,15 +28,15 @@ import 'package:biponi_vendor/app/modules/register/bindings/register_binding.dar
 import 'package:biponi_vendor/app/modules/register/views/register_view.dart';
 import 'package:biponi_vendor/app/modules/root/bindings/root_binding.dart';
 import 'package:biponi_vendor/app/modules/root/views/root_view.dart';
-import 'package:biponi_vendor/app/modules/splash_screen/bindings/splash_screen_binding.dart';
-import 'package:biponi_vendor/app/modules/splash_screen/views/splash_screen_view.dart';
+import 'package:biponi_vendor/app/modules/welcome_screen/bindings/welcome_screen_binding.dart';
+import 'package:biponi_vendor/app/modules/welcome_screen/views/welcome_screen_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.splashScreen;
+  static const initial = Routes.WELCOME_SCREEN;
 
   static final routes = [
     GetPage(
@@ -46,9 +45,9 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.splashScreen,
-      page: () => SplashScreenView(),
-      binding: SplashScreenBinding(),
+      name: _Paths.WELCOME_SCREEN,
+      page: () => WelcomeScreenView(),
+      binding: WelcomeScreenBinding(),
     ),
     GetPage(
       name: _Paths.login,

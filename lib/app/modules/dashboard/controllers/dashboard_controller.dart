@@ -1,4 +1,5 @@
 import 'package:biponi_vendor/app/models/orderlist_model.dart';
+import 'package:biponi_vendor/app/modules/notification/controllers/notification_controller.dart';
 import 'package:biponi_vendor/app/repositories/dashboard_repository.dart';
 import 'package:biponi_vendor/app/repositories/order_repositories.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,13 @@ class DashboardController extends GetxController {
   void onInit() {
     getDashboardData();
     getOrderList();
+    Get.put(NotificationController()).getNotifications();
     super.onInit();
+  }
+
+  refreshOrder()async
+  {
+    getOrderList();
   }
 
   getOrderList() async {

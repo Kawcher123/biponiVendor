@@ -29,4 +29,12 @@ class ApiClient {
   static String upazila = '${baseUrl}api/v1/get-upazila/';
 
   static String union = '${baseUrl}api/v1/get-union/';
+
+  static String addProduct = '${baseUrl}api/v1/seller/product/store';
+
+  static String brands = '${baseUrl}api/v1/brands';
+
+  static String categories = '${baseUrl}api/v1/categories';
+
+  static String subCategories = '${baseUrl}api/v1/get-sub-category';
 }
