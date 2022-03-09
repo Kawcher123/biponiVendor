@@ -38,7 +38,6 @@ class General extends GetView<AddProductsController> {
               child: Card(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 child: Container(
-
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -94,6 +93,32 @@ class General extends GetView<AddProductsController> {
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Weight Unit',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(height: 8,),
+                              DropdownSearch<String>(
+                                  mode: Mode.MENU,
+                                  showFavoriteItems: true,
+                                  items: [ 'Gram','Kilogram','Milliliter','Litre'],
+                                  onChanged: (v){
+                                    controller.weightUnit.value = v!;
+                                  },
+                                  selectedItem: controller.weightUnit.value
                               ),
                             ],
                           ),
@@ -188,32 +213,6 @@ class General extends GetView<AddProductsController> {
                             ],
                           ),
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: Column (
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     crossAxisAlignment: CrossAxisAlignment.start,
-                        //     children: [
-                        //       Text(
-                        //         'Seller',
-                        //         style: TextStyle(
-                        //           fontSize: 15,
-                        //           color: Colors.black,
-                        //         ),
-                        //       ),
-                        //       SizedBox(height: 8,),
-                        //       DropdownSearch<String>(
-                        //           mode: Mode.MENU,
-                        //           showFavoriteItems: true,
-                        //           showSearchBox: true,
-                        //           items: [ 'Agora','Yamaha', 'Apex','Ryans','Startech'],
-                        //           popupItemDisabled: (String s) => s.startsWith('I'),
-                        //           onChanged: (input){},
-                        //           selectedItem: ""),
-                        //
-                        //     ],
-                        //   ),
-                        // ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(

@@ -129,6 +129,34 @@ class Inventory extends GetView<AddProductsController>{
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
+                                'Maximum Cart Qty',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(height: 8,),
+                              TextField(
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                ),
+                                onChanged: (input){
+                                  controller.productData.value.maxCartQty=input;
+                                },
+                              ),
+
+
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
                                 'Stock Availability',
                                 style: TextStyle(
                                   fontSize: 15,

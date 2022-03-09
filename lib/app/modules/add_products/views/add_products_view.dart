@@ -50,7 +50,6 @@ class AddProductsView extends GetView<AddProductsController> {
                 child: Card(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   child: Container(
-
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(

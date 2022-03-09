@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:biponi_vendor/app/models/addProduct_model.dart';
 import 'package:biponi_vendor/app/models/brand_model.dart';
 import 'package:biponi_vendor/app/models/category_model.dart';
 import 'package:biponi_vendor/app/repositories/addproduct_repository.dart';
-import 'package:biponi_vendor/app/repositories/auth_repositories.dart';
 import 'package:biponi_vendor/common/ui.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,32 +11,37 @@ import 'package:image_picker/image_picker.dart';
 class AddProductsController extends GetxController {
   //TODO: Implement AddProductsController
 
-
   final productData = AddProductModel().obs;
 
+  late GlobalKey<FormState> addProductFormKey;
+
+  ///switch
   final generalStatus = true.obs;
   final freeShippingStatus1 = true.obs;
   final freeShippingStatus2 = true.obs;
   final codStatus = true.obs;
   final comStatus = true.obs;
 
+  ///categories
   final categoryList = <CategoryModel>[].obs;
   final categoryId=''.obs;
   final categoryListLoaded = false.obs;
   final categoryTitle=''.obs;
 
-  late GlobalKey<FormState> addProductFormKey;
-
+  ///dropdown
+  final weightUnit = ''.obs;
   final productType = ''.obs;
   final specification = ''.obs;
   final specialPriceType = ''.obs;
   final inventoryManagement = ''.obs;
   final stockAvailability = ''.obs;
 
+  ///brand
   final brand = <BrandModel>[].obs;
   final brandId = ''.obs;
   final brandLoaded = true.obs;
 
+  ///images
   var defaultImage = File('').obs;
   var galleryImage = File('').obs;
 
@@ -99,6 +102,7 @@ class AddProductsController extends GetxController {
     print(productType.value);
     print(productData.value.title);
     print(productData.value.weight);
+    print(weightUnit.value);
     print(productData.value.shortDescription);
     print(productData.value.description);
     print(brandId);
@@ -108,10 +112,8 @@ class AddProductsController extends GetxController {
     print(productData.value.specialPrice);
     print(productData.value.specialPriceStart);
     print(productData.value.specialPriceEnd);
-
     print(inventoryManagement.value);
     print(stockAvailability);
-
 
     print(defaultImage.value);
     print(galleryImage.value);
@@ -119,14 +121,26 @@ class AddProductsController extends GetxController {
     AddProductRepository().addProduct(
       productData.value.title!,
       productData.value.weight!,
+      weightUnit.value,
       productData.value.shortDescription!,
       productData.value.description!,
+      brandId.value,
+      categoryId.value,
       productData.value.price!,
+      stockAvailability.value,
       productData.value.sku!,
+      productData.value.slug!,
+      productType.value,
       productData.value.specialPrice!,
+      specialPriceType.value,
       productData.value.specialPriceStart!,
       productData.value.specialPriceEnd!,
-      productData.value.brandTitle!,
+      productData.value.qty!,
+      defaultImage.value,
+      galleryImage.value,
+      productData.value.maxCartQty!,
+      //productData.value.brandTitle,
+      //productData.value.categoryTitle!,
       productData.value.metaTitle!,
       productData.value.metaKeyword!,
       productData.value.metaDescription!,

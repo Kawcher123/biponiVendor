@@ -25,7 +25,7 @@ class OrderDetailsController extends GetxController {
     {'status': 'Refunded', 'id': '7'},
   ];
 
-  final selectedStatusForProduct=''.obs;
+  final selectedStatusForProduct = ''.obs;
 
   @override
   void onInit() {

@@ -19,6 +19,8 @@ class AddProductModel {
   String? specialPriceType;
   String? specialPriceStart;
   String? specialPriceEnd;
+  String? defaultImage;
+  String? galleryImage;
   String? manageStock;
   String? qty;
   String? viewed;
@@ -58,6 +60,8 @@ class AddProductModel {
         this.specialPriceType,
         this.specialPriceStart,
         this.specialPriceEnd,
+        this.defaultImage,
+        this.galleryImage,
         this.manageStock,
         this.qty,
         this.viewed,
@@ -97,6 +101,8 @@ class AddProductModel {
     specialPriceType = json['special_price_type'];
     specialPriceStart = json['special_price_start'];
     specialPriceEnd = json['special_price_end'];
+    defaultImage = json['default_image'];
+    defaultImage = json['gallery_images'];
     manageStock = json['manage_stock'];
     qty = json['qty'];
     viewed = json['viewed'];
@@ -147,6 +153,8 @@ class AddProductModel {
     data['special_price_type'] = this.specialPriceType;
     data['special_price_start'] = this.specialPriceStart;
     data['special_price_end'] = this.specialPriceEnd;
+    data['default_image'] = this.defaultImage;
+    data['gallery_images'] = this.galleryImage;
     data['manage_stock'] = this.manageStock;
     data['qty'] = this.qty;
     data['viewed'] = this.viewed;
