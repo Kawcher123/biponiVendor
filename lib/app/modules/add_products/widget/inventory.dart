@@ -2,8 +2,6 @@ import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 class Inventory extends GetView<AddProductsController>{
 
   @override
@@ -56,11 +54,12 @@ class Inventory extends GetView<AddProductsController>{
                                 ),
                               ),
                               SizedBox(height: 8,),
-                              TextField(
+                              TextFormField(
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),
+                                initialValue: controller.productData.value.sku,
                                 onChanged: (input){
                                   controller.productData.value.sku=input;
                                 },
@@ -94,34 +93,7 @@ class Inventory extends GetView<AddProductsController>{
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Quantity',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              SizedBox(height: 8,),
-                              TextField(
-                                keyboardType: TextInputType.text,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                ),
-                                onChanged: (input){
-                                  controller.productData.value.qty=input;
-                                },
-                              ),
-
-
-                            ],
-                          ),
-                        ),
+                        controller.inventoryManagement.value=='Track Inventory'? buildWidget() : Wrap(),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
@@ -136,42 +108,15 @@ class Inventory extends GetView<AddProductsController>{
                                 ),
                               ),
                               SizedBox(height: 8,),
-                              TextField(
+                              TextFormField(
                                 keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),
+                                initialValue: controller.productData.value.maxCartQty,
                                 onChanged: (input){
                                   controller.productData.value.maxCartQty=input;
                                 },
-                              ),
-
-
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Stock Availability',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              SizedBox(height: 8,),
-                              DropdownSearch<String>(
-                                  mode: Mode.MENU,
-                                  showFavoriteItems: true,
-                                  items: [ 'In Stock','Out of Stock',],
-                                  onChanged: (input){
-                                    controller.stockAvailability.value=input!;
-                                  },
-                                  selectedItem: controller.stockAvailability.value
                               ),
                             ],
                           ),
@@ -185,6 +130,65 @@ class Inventory extends GetView<AddProductsController>{
           ),
         );
       })
+    );
+  }
+  buildWidget(){
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Quantity',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
+              ),
+              SizedBox(height: 8,),
+              TextFormField(
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                initialValue: controller.productData.value.qty,
+                onChanged: (input){
+                  controller.productData.value.qty=input;
+                },
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Stock Availability',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
+              ),
+              SizedBox(height: 8,),
+              DropdownSearch<String>(
+                  mode: Mode.MENU,
+                  showFavoriteItems: true,
+                  items: [ 'In Stock','Out of Stock',],
+                  onChanged: (input){
+                    controller.stockAvailability.value=input!;
+                  },
+                  selectedItem: controller.stockAvailability.value
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

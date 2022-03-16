@@ -1,4 +1,3 @@
-import 'package:biponi_vendor/app/modules/add_products/widget/category.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/digital_product.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/simple_product.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/variable_product.dart';
@@ -11,7 +10,6 @@ import '../controllers/add_products_controller.dart';
 class AddProductsView extends GetView<AddProductsController> {
 
   final _size=Get.size;
-
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +73,10 @@ class AddProductsView extends GetView<AddProductsController> {
                                     showFavoriteItems: true,
                                     items: [ 'Simple','Variable','Digital'],
                                     onChanged:(v) {
-
                                       controller.productType.value=v!;
-
+                                      controller.getAttribute();
                                       },
-                                  selectedItem: controller.productType.value,
+                                  selectedItem: 'Select Product Type',
                                 ),
                               ],
                             ),
@@ -90,43 +87,8 @@ class AddProductsView extends GetView<AddProductsController> {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: ()
-                {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Category()));
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    child: Container(
-                      height: _size.width*.15,
-                      width: _size.width,
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Category',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Icon(Icons.arrow_forward),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-
               controller.productType.value=='Simple'?SimpleProduct()
-              :controller.productType.value=='Variable'?VariableProduct():DigitalProduct(),
+              :controller.productType.value=='Variable'?VariableProduct():controller.productType.value=='Digital'?DigitalProduct():Wrap(),
 
             ],
           ),

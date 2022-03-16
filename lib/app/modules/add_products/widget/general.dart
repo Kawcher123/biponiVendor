@@ -60,6 +60,7 @@ class General extends GetView<AddProductsController> {
                               TextFormField(
                                 keyboardType: TextInputType.text,
                                 validator: (input){},
+                                initialValue: controller.productData.value.title,
                                 onChanged: (input){
                                   controller.productData.value.title=input;
                                 },
@@ -87,6 +88,7 @@ class General extends GetView<AddProductsController> {
                               TextFormField(
                                 keyboardType: TextInputType.text,
                                 validator: (input){},
+                                initialValue: controller.productData.value.weight,
                                 onChanged: (input){
                                   controller.productData.value.weight=input;
                                 },
@@ -140,6 +142,7 @@ class General extends GetView<AddProductsController> {
                               TextFormField(
                                 keyboardType: TextInputType.text,
                                 validator: (input){},
+                                initialValue: controller.productData.value.shortDescription,
                                 onChanged: (input){
                                   controller.productData.value.shortDescription=input;
                                 },
@@ -171,6 +174,7 @@ class General extends GetView<AddProductsController> {
                                 maxLines: 3,
                                 keyboardType: TextInputType.text,
                                 validator: (input){},
+                                initialValue: controller.productData.value.description,
                                 onChanged: (input){
                                   controller.productData.value.description=input;
                                 },
@@ -201,15 +205,17 @@ class General extends GetView<AddProductsController> {
                                   showSearchBox: true,
                                   items: controller.brand.map((item) => item.title!).toList(),
                                   onChanged: (input){
-                                    for (var item in controller.brand) {
+                                    for(var item in controller.brand) {
                                       if (item.title == input) {
                                         controller.brandId.value = item.id!.toString();
+                                        controller.brandName.value = item.title!.toString();
                                         break;
                                       }
                                     }
                                     print(controller.brandId.value);
+                                    print(controller.brandName.value);
                                   },
-                                  selectedItem: ""),
+                                  selectedItem: controller.brandName.value),
                             ],
                           ),
                         ),

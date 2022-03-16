@@ -48,6 +48,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                               style: TextStyle(
                                 fontSize: 17,
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold
                               ),
                             ),
                             Divider(),
@@ -93,6 +94,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                               //controller: _title,
                               keyboardType: TextInputType.text,
                               validator: (input){},
+                              initialValue: controller.productData.value.shippingOptionInsideOriginInsideStandardShipping,
                               onChanged: (input){
                                 controller.productData.value.shippingOptionInsideOriginInsideStandardShipping=input;
                               },
@@ -114,6 +116,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                               //controller: _title,
                               keyboardType: TextInputType.text,
                               validator: (input){},
+                              initialValue: controller.productData.value.shippingOptionInsideOriginInsideExpressShipping,
                               onChanged: (input){
                                 controller.productData.value.shippingOptionInsideOriginInsideExpressShipping=input;
                               },
@@ -140,6 +143,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                               style: TextStyle(
                                 fontSize: 17,
                                 color: Colors.black,
+                                fontWeight: FontWeight.bold
                               ),
                             ),
                             Divider(),
@@ -185,6 +189,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                               //controller: _title,
                               keyboardType: TextInputType.text,
                               validator: (input){},
+                              initialValue: controller.productData.value.shippingOptionOutsideOriginOutsideStandardShipping,
                               onChanged: (input){
                                 controller.productData.value.shippingOptionOutsideOriginOutsideStandardShipping=input;
                               },
@@ -206,6 +211,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                               //controller: _title,
                               keyboardType: TextInputType.text,
                               validator: (input){},
+                              initialValue: controller.productData.value.shippingOptionOutsideOriginOutsideExpressShipping,
                               onChanged: (input){
                                 controller.productData.value.shippingOptionOutsideOriginOutsideExpressShipping=input;
                               },
@@ -276,6 +282,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                             TextFormField(
                               keyboardType: TextInputType.text,
                               validator: (input){},
+                              initialValue: controller.productData.value.miscellaneousInformationWarrentyPeriod,
                               onChanged: (input){
                                 controller.productData.value.miscellaneousInformationWarrentyPeriod=input;
                               },
@@ -316,6 +323,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                       ),
                     ),
                   ),
+                  SizedBox(height: 10,),
                 ],
               ),
             ),

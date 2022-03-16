@@ -31,47 +31,60 @@ class Specification extends GetView<AddProductsController>{
       ),
       body: Obx(()
       {
-        return SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Card(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              child: Container(
-
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column (
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Attribute Set',
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black,
+        return Form(
+          key: controller.addProductFormKey,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                child: Container(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column (
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Attribute Set',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 8,),
-                            DropdownSearch<String>(
-                              mode: Mode.MENU,
-                              showFavoriteItems: true,
-                              items: [ 'Motorcycle','Computer'],
-                              onChanged: (v)
-                              {
-                                controller.specification.value=v!;
-                              },
-                              selectedItem: controller.specification.value,
-                            ),
-                          ],),
-                        ),
-                      controller.specification.value=='Motorcycle'? Motorcycle():Computer(),
-                    ],
+                              SizedBox(height: 8,),
+                              DropdownSearch<String>(
+                                mode: Mode.MENU,
+                                showFavoriteItems: true,
+                                items: controller.attributeList.map((item) => item.title!).toList(),
+                                onChanged: (input){
+                                  for(var item in controller.attributeList){
+                                    if(item.title == input){
+                                      controller.attributeId.value = item.id!.toString();
+                                      controller.attributeName.value = item.title!.toString();
+                                      controller.selectedAttribute.value=item;
+                                      break;
+                                    }
+                                  }
+                                  // print(controller.attributeId.value);
+                                  // print(controller.attributeName.value);
+                                },
+                                selectedItem: controller.attributeName.value,
+                              ),
+                              SizedBox(height: 8,),
+                              controller.selectedAttribute.value.title!=null?
+                              buildTextField():Wrap(),
+
+                            ],),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -81,192 +94,95 @@ class Specification extends GetView<AddProductsController>{
       }),
     );
   }
-  Motorcycle(){
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Form(
-        child: Container(
-          child: Column(
+  buildTextField() {
+    return Column(
+      children: List.generate(controller.selectedAttribute.value.attribute!.length, (index) {
+        if(controller.selectedAttribute.value.attribute![index].catalogInputType== 'radio')
+        {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Engine Capacity',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 8,),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (input){},
-                  ),
-                ],
+              Text(
+                '${controller.selectedAttribute.value.attribute![index].title}',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
               ),
-              SizedBox(height: 15,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Fuel Tank Capacity',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 8,),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (input){},
-                  ),
-
-                ],
-              ),
-              SizedBox(height: 15,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Mileage',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 8,),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (input){},
-                  ),
-
-                ],
-              ),
-              SizedBox(height: 15,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Seat Height',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 8,),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (input){},
-                  ),
-
-                ],
-              ),
-              SizedBox(height: 15,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Transmission',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 8,),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (input){},
-                  ),
-
-                ],
-              ),
-
+              SizedBox(height: 8,),
+              DropdownSearch<String>(
+                  mode: Mode.MENU,
+                  showFavoriteItems: true,
+                  items: controller.selectedAttribute.value.attribute![index].attributeValues!.map((item) => item.label!).toList(),
+                  onChanged: (input){
+                    controller.attributeValue.value=input!;
+                  },
+                  selectedItem: controller.attributeValue.value),
+              SizedBox(height: 8,),
             ],
-          ),
-
-        ),
-
-      ),
-    );
-  }
-
-  Computer(){
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Form(
-        child: Container(
-          child: Column(
+          );
+        }
+        else if(controller.selectedAttribute.value.attribute![index].catalogInputType=='textfield')
+        {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Additional Description',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 8,),
-                  TextField(
-                    maxLines: 4,
-                    minLines: null,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (input){},
-                  ),
-
-                ],
+              Text(
+                '${controller.selectedAttribute.value.attribute![index].title}',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
               ),
-              SizedBox(height: 15,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Ram',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black,
-                    ),
-                  ),
-                  SizedBox(height: 8,),
-                  TextField(
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    onChanged: (input){},
-                  ),
-
-                ],
+              SizedBox(height: 8,),
+              TextFormField(
+                keyboardType: TextInputType.text,
+                validator: (input){},
+                initialValue: controller.selectedAttribute.value.attribute![index].description,
+                onChanged: (input){
+                  controller.selectedAttribute.value.attribute![index].description=input;
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
               ),
-
+              SizedBox(height: 8,),
             ],
-          ),
-
-        ),
-
-      ),
+          );
+        }
+        else
+          {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${controller.selectedAttribute.value.attribute![index].title}',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(height: 8,),
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  maxLines: 4,
+                  validator: (input){},
+                  initialValue: controller.selectedAttribute.value.attribute![index].description,
+                  onChanged: (input){
+                    controller.selectedAttribute.value.attribute![index].description=input;
+                  },
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(height: 8,),
+              ],
+            );
+          }
+      })
     );
   }
 }

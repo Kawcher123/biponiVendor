@@ -41,32 +41,33 @@ class Seo extends GetView<AddProductsController>{
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column (
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Slug',
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black,
-                              ),
-                            ),
-                            SizedBox(height: 8,),
-                            TextField(
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                              ),
-                              onChanged: (input){
-                                controller.productData.value.slug=input;
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(8.0),
+                      //   child: Column (
+                      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //     crossAxisAlignment: CrossAxisAlignment.start,
+                      //     children: [
+                      //       Text(
+                      //         'Slug',
+                      //         style: TextStyle(
+                      //           fontSize: 15,
+                      //           color: Colors.black,
+                      //         ),
+                      //       ),
+                      //       SizedBox(height: 8,),
+                      //       TextFormField(
+                      //         keyboardType: TextInputType.text,
+                      //         decoration: InputDecoration(
+                      //           border: OutlineInputBorder(),
+                      //         ),
+                      //         initialValue: controller.productData.value.slug,
+                      //         onChanged: (input){
+                      //           controller.productData.value.slug=input;
+                      //         },
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -81,11 +82,12 @@ class Seo extends GetView<AddProductsController>{
                               ),
                             ),
                             SizedBox(height: 8,),
-                            TextField(
+                            TextFormField(
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                               ),
+                              initialValue: controller.productData.value.metaTitle,
                               onChanged: (input){
                                 controller.productData.value.metaTitle=input;
                               },
@@ -107,11 +109,12 @@ class Seo extends GetView<AddProductsController>{
                               ),
                             ),
                             SizedBox(height: 8,),
-                            TextField(
+                            TextFormField(
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                               ),
+                              initialValue: controller.productData.value.metaKeyword,
                               onChanged: (input){
                                 controller.productData.value.metaKeyword=input;
                               },
@@ -133,13 +136,14 @@ class Seo extends GetView<AddProductsController>{
                               ),
                             ),
                             SizedBox(height: 8,),
-                            TextField(
+                            TextFormField(
                               minLines: 4,
                               keyboardType: TextInputType.multiline,
                               maxLines: null,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                               ),
+                              initialValue: controller.productData.value.metaDescription,
                               onChanged: (input){
                                 controller.productData.value.metaDescription=input;
                               },

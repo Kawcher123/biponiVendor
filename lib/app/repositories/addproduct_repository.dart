@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:biponi_vendor/app/models/attributeSet_model.dart';
 import 'package:biponi_vendor/app/models/brand_model.dart';
 import 'package:biponi_vendor/app/models/category_model.dart';
 import 'package:biponi_vendor/app/providers/api_manager.dart';
@@ -29,8 +32,9 @@ class AddProductRepository {
   String specialPriceEnd,
   //String manageStock,
   String qty,
-  var defaultImage,
-  var galleryImage,
+  String isActive,
+  // File defaultImage,
+  // File galleryImage,
   //String viewed,
   //String isActive,
   String maxCartQty,
@@ -69,8 +73,10 @@ class AddProductRepository {
     'special_price_type': specialPriceType,
     'special_price_start': specialPriceStart,
     'special_price_end': specialPriceEnd,
-    'default_image': defaultImage,
-    'gallery_images': galleryImage,
+    'qty': qty,
+    'is_active': isActive,
+    'default_image': '',
+    'gallery_images': '',
     'manage_stock':'',
     'qty': qty,
     'viewed':'',
@@ -91,16 +97,34 @@ class AddProductRepository {
     };
 
     String token = Get.find<AuthService>().user.value.token!;
+
     print(token);
 
     var headers = {'Authorization': 'Bearer $token'};
+
     APIManager _manager = APIManager();
 
-    final response = await _manager.multipartPostAddProductAPI(ApiClient.addProduct, product, defaultImage, galleryImage, headers);
+    final response = await _manager.postAPICallWithHeader(ApiClient.addProduct, product, headers);
+
+    //final response = await _manager.multipartPostAddProductAPI(ApiClient.addProduct, product, defaultImage, galleryImage, headers);
 
     print('addProduct:$response');
 
     return response;
+
+  }
+
+  Future<List<AttributeSetModel>> getAttribute() async{
+
+    String token = Get.find<AuthService>().user.value.token!;
+
+    var headers = {'Authorization': 'Bearer $token'};
+
+    APIManager _manager = APIManager();
+
+    final response = await _manager.getWithHeader(ApiClient.attributes, headers);
+
+    return List.from(response.map((item)=> AttributeSetModel.fromJson(item)));
 
   }
 
@@ -116,7 +140,7 @@ class AddProductRepository {
     APIManager _manager = APIManager();
 
     final response = await _manager.get(ApiClient.categories);
-    print(response);
+    //print(response);
     return List.from(response.map((item) => CategoryModel.fromJson(item)));
   }
 
@@ -128,7 +152,7 @@ class AddProductRepository {
 
     final response = await _manager.postAPICall(ApiClient.subCategories,data);
 
-    print(response);
+    //print(response);
 
     return List.from(response.map((item) => CategoryModel.fromJson(item)));
   }

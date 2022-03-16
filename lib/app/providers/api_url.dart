@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 
 class ApiClient {
   String api_token = '';
-  static String baseUrl = 'http://192.168.86.100:8000/';
+  static String baseUrl = 'http://192.168.1.205:8000/';
 
-  static String imageHead = 'http://192.168.86.100:8000/';
+  static String imageHead = 'http://192.168.1.205:8000/';
 
   static String registration = '${baseUrl}api/v1/seller/seller-register';
 
@@ -31,6 +31,8 @@ class ApiClient {
   static String union = '${baseUrl}api/v1/get-union/';
 
   static String addProduct = '${baseUrl}api/v1/seller/product/store';
+
+  static String attributes = '${baseUrl}api/v1/seller/product/attribute-set';
 
   static String brands = '${baseUrl}api/v1/brands';
 
