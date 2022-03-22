@@ -15,6 +15,12 @@ class AddProductsController extends GetxController {
   final productData = AddProductModel().obs;
 
   late GlobalKey<FormState> addProductFormKey;
+  late GlobalKey<FormState> generalFormKey;
+  // late GlobalKey<FormState> specificationFormKey;
+  late GlobalKey<FormState> priceFormKey;
+  late GlobalKey<FormState> inventoryFormKey;
+  late GlobalKey<FormState> seoFormKey;
+  late GlobalKey<FormState> additionalFormKey;
 
   ///date & time picker
   final selectedStartDate = DateTime.now().obs;
@@ -23,7 +29,7 @@ class AddProductsController extends GetxController {
   final selectedEndTime = TimeOfDay.now().obs;
 
   ///switch
-  final generalStatus = true.obs;
+  final generalStatus = false.obs;
   final freeShippingStatus1 = false.obs;
   final freeShippingStatus2 = false.obs;
   final codStatus = false.obs;
@@ -42,6 +48,7 @@ class AddProductsController extends GetxController {
   final categoryId=''.obs;
   final categoryListLoaded = false.obs;
   final categoryTitle=''.obs;
+  final select = ''.obs;
 
   ///dropdown
   final weightUnit = ''.obs;
@@ -66,6 +73,11 @@ class AddProductsController extends GetxController {
   @override
   void onInit() {
     addProductFormKey = GlobalKey<FormState>();
+    generalFormKey = GlobalKey<FormState>();
+    priceFormKey = GlobalKey<FormState>();
+    inventoryFormKey = GlobalKey<FormState>();
+    seoFormKey = GlobalKey<FormState>();
+    additionalFormKey = GlobalKey<FormState>();
     getBrand();
     getAttribute();
     getCategoryList();
@@ -168,7 +180,7 @@ class AddProductsController extends GetxController {
     print(productData.value.shortDescription);
     print(productData.value.description);
     print(brandName);
-    print(generalStatus);
+    print('General Status: $generalStatus');
 
     print(attributeName.value);
 
@@ -213,13 +225,14 @@ class AddProductsController extends GetxController {
       stockAvailability.value,
       productData.value.sku!,
       productData.value.slug??'',
-      productType.value,
       productData.value.specialPrice??'',
       specialPriceType.value,
       productData.value.specialPriceStart??'',
       productData.value.specialPriceEnd??'',
       productData.value.qty??'',
       generalStatus.value.toString(),
+      defaultImage.value,
+      galleryImage.value,
       productData.value.maxCartQty!,
       //productData.value.brandTitle,
       //productData.value.categoryTitle!,
@@ -227,11 +240,17 @@ class AddProductsController extends GetxController {
       productData.value.metaKeyword??'',
       productData.value.metaDescription??'',
 
+      freeShippingStatus1.value.toString(),
       productData.value.shippingOptionInsideOriginInsideStandardShipping!,
-      productData.value.shippingOptionInsideOriginInsideExpressShipping!,
+      productData.value.shippingOptionInsideOriginInsideExpressShipping??'',
+      freeShippingStatus2.value.toString(),
       productData.value.shippingOptionOutsideOriginOutsideStandardShipping!,
-      productData.value.shippingOptionOutsideOriginOutsideExpressShipping!,
-      productData.value.miscellaneousInformationWarrentyPeriod!,).then((res){
+      productData.value.shippingOptionOutsideOriginOutsideExpressShipping??'',
+      codStatus.value.toString(),
+      productData.value.miscellaneousInformationWarrentyPeriod??'',
+      comStatus.value.toString(),
+      productType.value,).then((res){
+
       print(res);
       if(res['status'].toString()=='1')
       {

@@ -1,3 +1,5 @@
+import 'package:biponi_vendor/app/commons/colors.dart';
+import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
       ),
       body: Obx((){
         return Form(
-          key: controller.addProductFormKey,
+          key: controller.additionalFormKey,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Padding(
@@ -93,9 +95,11 @@ class AdditionalOptions extends GetView<AddProductsController>{
                             TextFormField(
                               //controller: _title,
                               keyboardType: TextInputType.text,
-                              validator: (input){},
+                              validator: (input) {
+                                return input == null || input.isEmpty? "The Field is Required": null ;
+                              },
                               initialValue: controller.productData.value.shippingOptionInsideOriginInsideStandardShipping,
-                              onChanged: (input){
+                              onSaved: (input){
                                 controller.productData.value.shippingOptionInsideOriginInsideStandardShipping=input;
                               },
                               decoration: InputDecoration(
@@ -117,7 +121,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                               keyboardType: TextInputType.text,
                               validator: (input){},
                               initialValue: controller.productData.value.shippingOptionInsideOriginInsideExpressShipping,
-                              onChanged: (input){
+                              onSaved: (input){
                                 controller.productData.value.shippingOptionInsideOriginInsideExpressShipping=input;
                               },
                               decoration: InputDecoration(
@@ -188,9 +192,11 @@ class AdditionalOptions extends GetView<AddProductsController>{
                             TextFormField(
                               //controller: _title,
                               keyboardType: TextInputType.text,
-                              validator: (input){},
+                              validator: (input) {
+                                return input == null || input.isEmpty? "The Field is Required": null ;
+                              },
                               initialValue: controller.productData.value.shippingOptionOutsideOriginOutsideStandardShipping,
-                              onChanged: (input){
+                              onSaved: (input){
                                 controller.productData.value.shippingOptionOutsideOriginOutsideStandardShipping=input;
                               },
                               decoration: InputDecoration(
@@ -212,7 +218,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                               keyboardType: TextInputType.text,
                               validator: (input){},
                               initialValue: controller.productData.value.shippingOptionOutsideOriginOutsideExpressShipping,
-                              onChanged: (input){
+                              onSaved: (input){
                                 controller.productData.value.shippingOptionOutsideOriginOutsideExpressShipping=input;
                               },
                               decoration: InputDecoration(
@@ -283,7 +289,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                               keyboardType: TextInputType.text,
                               validator: (input){},
                               initialValue: controller.productData.value.miscellaneousInformationWarrentyPeriod,
-                              onChanged: (input){
+                              onSaved: (input){
                                 controller.productData.value.miscellaneousInformationWarrentyPeriod=input;
                               },
                               decoration: InputDecoration(
@@ -324,6 +330,20 @@ class AdditionalOptions extends GetView<AddProductsController>{
                     ),
                   ),
                   SizedBox(height: 10,),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CommonWidgets.customButton(
+                        color: secondaryColor,
+                        text: 'Confirm',
+                        press: (){
+                          if( controller.additionalFormKey.currentState!.validate())
+                          {
+                            controller.additionalFormKey.currentState!.save();
+                            Get.back();
+                          }
+                        }
+                    ),
+                  ),
                 ],
               ),
             ),

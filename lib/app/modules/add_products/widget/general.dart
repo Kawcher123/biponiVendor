@@ -1,3 +1,5 @@
+import 'package:biponi_vendor/app/commons/colors.dart';
+import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_controller.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +32,7 @@ class General extends GetView<AddProductsController> {
       ),
       body: Obx((){
         return Form(
-          key: controller.addProductFormKey,
+          key: controller.generalFormKey,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Padding(
@@ -59,9 +61,11 @@ class General extends GetView<AddProductsController> {
                               SizedBox(height: 8,),
                               TextFormField(
                                 keyboardType: TextInputType.text,
-                                validator: (input){},
+                                validator: (input) {
+                                  return input == null || input.isEmpty? "The Field is Required": null ;
+                                },
                                 initialValue: controller.productData.value.title,
-                                onChanged: (input){
+                                onSaved: (input){
                                   controller.productData.value.title=input;
                                 },
                                 decoration: InputDecoration(
@@ -87,9 +91,11 @@ class General extends GetView<AddProductsController> {
                               SizedBox(height: 8,),
                               TextFormField(
                                 keyboardType: TextInputType.text,
-                                validator: (input){},
+                                validator: (input) {
+                                  return input == null || input.isEmpty? "The Field is Required": null ;
+                                },
                                 initialValue: controller.productData.value.weight,
-                                onChanged: (input){
+                                onSaved: (input){
                                   controller.productData.value.weight=input;
                                 },
                                 decoration: InputDecoration(
@@ -116,8 +122,11 @@ class General extends GetView<AddProductsController> {
                               DropdownSearch<String>(
                                   mode: Mode.MENU,
                                   showFavoriteItems: true,
+                                  validator: (input) {
+                                    return input == null || input.isEmpty? "The Field is Required": null ;
+                                  },
                                   items: [ 'Gram','Kilogram','Milliliter','Litre'],
-                                  onChanged: (v){
+                                  onSaved: (v){
                                     controller.weightUnit.value = v!;
                                   },
                                   selectedItem: controller.weightUnit.value
@@ -141,9 +150,11 @@ class General extends GetView<AddProductsController> {
                               SizedBox(height: 8,),
                               TextFormField(
                                 keyboardType: TextInputType.text,
-                                validator: (input){},
+                                validator: (input) {
+                                  return input == null || input.isEmpty? "The Field is Required": null ;
+                                },
                                 initialValue: controller.productData.value.shortDescription,
-                                onChanged: (input){
+                                onSaved: (input){
                                   controller.productData.value.shortDescription=input;
                                 },
                                 decoration: InputDecoration(
@@ -173,9 +184,8 @@ class General extends GetView<AddProductsController> {
                                 //maxLength: 3,
                                 maxLines: 3,
                                 keyboardType: TextInputType.text,
-                                validator: (input){},
                                 initialValue: controller.productData.value.description,
-                                onChanged: (input){
+                                onSaved: (input){
                                   controller.productData.value.description=input;
                                 },
                                 decoration: InputDecoration(
@@ -204,7 +214,7 @@ class General extends GetView<AddProductsController> {
                                   showFavoriteItems: true,
                                   showSearchBox: true,
                                   items: controller.brand.map((item) => item.title!).toList(),
-                                  onChanged: (input){
+                                  onSaved: (input){
                                     for(var item in controller.brand) {
                                       if (item.title == input) {
                                         controller.brandId.value = item.id!.toString();
@@ -248,6 +258,20 @@ class General extends GetView<AddProductsController> {
                             ],
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CommonWidgets.customButton(
+                              color: secondaryColor,
+                              text: 'Confirm',
+                              press: (){
+                               if( controller.generalFormKey.currentState!.validate())
+                                    {
+                                      controller.generalFormKey.currentState!.save();
+                                      Get.back();
+                                    }
+                              }
+                          ),
+                        )
                       ],
                     ),
                   ),

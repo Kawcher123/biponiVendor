@@ -12,7 +12,6 @@ class AddProductModel {
   String? slug;
   String? isApproximate;
   String? brandTitle;
-  String? productType;
   String? attributeSetId;
   String? categoryTitle;
   String? specialPrice;
@@ -38,6 +37,7 @@ class AddProductModel {
   String? miscellaneousInformationAllowCashOnDelivery;
   String? miscellaneousInformationWarrentyPeriod;
   String? miscellaneousInformationAllowChangeOfMind;
+  String? productType;
 
   AddProductModel(
       {this.title,
@@ -53,7 +53,6 @@ class AddProductModel {
         this.slug,
         this.isApproximate,
         this.brandTitle,
-        this.productType,
         this.attributeSetId,
         this.categoryTitle,
         this.specialPrice,
@@ -78,7 +77,8 @@ class AddProductModel {
         this.shippingOptionOutsideOriginOutsideExpressShipping,
         this.miscellaneousInformationAllowCashOnDelivery,
         this.miscellaneousInformationWarrentyPeriod,
-        this.miscellaneousInformationAllowChangeOfMind});
+        this.miscellaneousInformationAllowChangeOfMind,
+        this.productType,});
 
   AddProductModel.fromJson(Map<String, dynamic> json) {
     title = json['title'];
@@ -94,7 +94,6 @@ class AddProductModel {
     slug = json['slug'];
     isApproximate = json['is_approximate'];
     brandTitle = json['brand_title'];
-    productType = json['product_type'];
     attributeSetId = json['attribute_set_id'];
     categoryTitle = json['category_title'];
     specialPrice = json['special_price'];
@@ -129,6 +128,7 @@ class AddProductModel {
     json['miscellaneous_information[warrenty_period]'];
     miscellaneousInformationAllowChangeOfMind =
     json['miscellaneous_information[allow_change_of_mind]'];
+    productType = json['product_type'];
   }
 
   Map<String, dynamic> toJson() {
@@ -146,7 +146,6 @@ class AddProductModel {
     data['slug'] = this.slug;
     data['is_approximate'] = this.isApproximate;
     data['brand_title'] = this.brandTitle;
-    data['product_type'] = this.productType;
     data['attribute_set_id'] = this.attributeSetId;
     data['category_title'] = this.categoryTitle;
     data['special_price'] = this.specialPrice;
@@ -181,6 +180,7 @@ class AddProductModel {
         this.miscellaneousInformationWarrentyPeriod;
     data['miscellaneous_information[allow_change_of_mind]'] =
         this.miscellaneousInformationAllowChangeOfMind;
+    data['product_type'] = this.productType;
     return data;
   }
 }

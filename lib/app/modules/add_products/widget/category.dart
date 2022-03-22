@@ -1,5 +1,6 @@
 import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_controller.dart';
 import 'package:biponi_vendor/app/providers/api_url.dart';
+import 'package:biponi_vendor/common/ui.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -87,21 +88,19 @@ class Category extends GetView<AddProductsController> {
                                       onTap: () {
                                         controller.categoryId.value=controller.categoryList[index].id!.toString();
                                         controller.categoryTitle.value=controller.categoryList[index].title!;
-                                        // print(controller.categoryId.value);
-                                        // print(controller.categoryTitle.value);
                                       },
                                       child: Container(
-                                        height: _size.width*.08,
-                                        width: _size.width*.2,
+                                        height: _size.width*.1,
+                                        width: _size.width*.32,
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
-                                            color: Colors.blue,
-                                            borderRadius: BorderRadius.circular(10)
+                                            color: Colors.blue.shade600,
+                                            borderRadius: BorderRadius.circular(5)
                                         ),
                                         child: Text(
                                           'Select',
                                           style: TextStyle(
-                                            fontSize: 16,
+                                            fontSize: 15,
                                             color: Colors.white,
                                           ),
                                         ),),
@@ -112,18 +111,18 @@ class Category extends GetView<AddProductsController> {
                                         controller.subCategoryList(controller.categoryList[index].id!.toString());
                                         },
                                       child: Container(
-                                        height: _size.width*.08,
-                                        width: _size.width*.44,
+                                        height: _size.width*.1,
+                                        width: _size.width*.32,
                                         alignment: Alignment.center,
                                      decoration: BoxDecoration(
-                                         color: Colors.blue,
-                                         borderRadius: BorderRadius.circular(10)
+                                         color: Colors.grey.shade300,
+                                         borderRadius: BorderRadius.circular(5)
                                      ),
                                      child: Text(
-                                       'View Sub Category',
+                                       'Sub Category',
                                        style: TextStyle(
-                                         fontSize: 16,
-                                         color: Colors.white,
+                                         fontSize: 15,
+                                         color: Colors.black,
                                        ),
                                      ),
                                    ),

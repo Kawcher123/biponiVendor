@@ -1,3 +1,5 @@
+import 'package:biponi_vendor/app/commons/colors.dart';
+import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_controller.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,7 @@ class Inventory extends GetView<AddProductsController>{
       ),
       body: Obx((){
         return Form(
-          key: controller.addProductFormKey,
+          key: controller.inventoryFormKey,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Padding(
@@ -60,7 +62,10 @@ class Inventory extends GetView<AddProductsController>{
                                   border: OutlineInputBorder(),
                                 ),
                                 initialValue: controller.productData.value.sku,
-                                onChanged: (input){
+                                validator: (input) {
+                                  return input == null || input.isEmpty? "The Field is Required": null ;
+                                },
+                                onSaved: (input){
                                   controller.productData.value.sku=input;
                                 },
                               ),
@@ -84,7 +89,7 @@ class Inventory extends GetView<AddProductsController>{
                               DropdownSearch<String>(
                                   mode: Mode.MENU,
                                   showFavoriteItems: true,
-                                  items: [ "Don't Track Inventory",'Track Inventory',],
+                                  items: [ 'Track Inventory',"Don't Track Inventory"],
                                   onChanged: (input){
                                     controller.inventoryManagement.value=input!;
                                   },
@@ -114,11 +119,25 @@ class Inventory extends GetView<AddProductsController>{
                                   border: OutlineInputBorder(),
                                 ),
                                 initialValue: controller.productData.value.maxCartQty,
-                                onChanged: (input){
+                                onSaved: (input){
                                   controller.productData.value.maxCartQty=input;
                                 },
                               ),
                             ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CommonWidgets.customButton(
+                              color: secondaryColor,
+                              text: 'Confirm',
+                              press: (){
+                                if( controller.inventoryFormKey.currentState!.validate())
+                                {
+                                  controller.inventoryFormKey.currentState!.save();
+                                  Get.back();
+                                }
+                              }
                           ),
                         ),
                       ],
@@ -155,7 +174,7 @@ class Inventory extends GetView<AddProductsController>{
                   border: OutlineInputBorder(),
                 ),
                 initialValue: controller.productData.value.qty,
-                onChanged: (input){
+                onSaved: (input){
                   controller.productData.value.qty=input;
                 },
               ),
@@ -180,7 +199,7 @@ class Inventory extends GetView<AddProductsController>{
                   mode: Mode.MENU,
                   showFavoriteItems: true,
                   items: [ 'In Stock','Out of Stock',],
-                  onChanged: (input){
+                  onSaved: (input){
                     controller.stockAvailability.value=input!;
                   },
                   selectedItem: controller.stockAvailability.value

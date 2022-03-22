@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:biponi_vendor/app/repositories/chat_repository.dart';
 import 'package:biponi_vendor/common/ui.dart';
 import 'package:flutter/material.dart';

@@ -1,3 +1,5 @@
+import 'package:biponi_vendor/app/commons/colors.dart';
+import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,7 +29,7 @@ class Seo extends GetView<AddProductsController>{
         centerTitle: true,
       ),
       body: Form(
-        key: controller.addProductFormKey,
+        key: controller.seoFormKey,
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(
@@ -149,6 +151,20 @@ class Seo extends GetView<AddProductsController>{
                               },
                             ),
                           ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CommonWidgets.customButton(
+                            color: secondaryColor,
+                            text: 'Confirm',
+                            press: (){
+                              if( controller.seoFormKey.currentState!.validate())
+                              {
+                                controller.seoFormKey.currentState!.save();
+                                Get.back();
+                              }
+                            }
                         ),
                       ),
                     ],

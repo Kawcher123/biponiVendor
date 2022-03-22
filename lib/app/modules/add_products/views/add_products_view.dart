@@ -9,7 +9,7 @@ import '../controllers/add_products_controller.dart';
 
 class AddProductsView extends GetView<AddProductsController> {
 
-  final _size=Get.size;
+  final _size = Get.size;
 
   @override
   Widget build(BuildContext context) {
@@ -88,8 +88,8 @@ class AddProductsView extends GetView<AddProductsController> {
                 ),
               ),
               controller.productType.value=='Simple'?SimpleProduct()
-              :controller.productType.value=='Variable'?VariableProduct():controller.productType.value=='Digital'?DigitalProduct():Wrap(),
-
+              :controller.productType.value=='Variable'?VariableProduct()
+                  :controller.productType.value=='Digital'?DigitalProduct():Wrap(),
             ],
           ),
         );

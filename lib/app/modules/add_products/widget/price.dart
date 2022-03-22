@@ -1,3 +1,5 @@
+import 'package:biponi_vendor/app/commons/colors.dart';
+import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_controller.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +35,7 @@ class Price extends GetView<AddProductsController>{
       ),
       body: Obx((){
         return Form(
-          key: controller.addProductFormKey,
+          key: controller.priceFormKey,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Padding(
@@ -66,7 +68,10 @@ class Price extends GetView<AddProductsController>{
                                   border: OutlineInputBorder(),
                                 ),
                                 initialValue: controller.productData.value.price,
-                                onChanged: (input){
+                                validator: (input) {
+                                  return input == null || input.isEmpty? "The Field is Required": null ;
+                                },
+                                onSaved: (input){
                                   controller.productData.value.price=input;
                                 },
                               ),
@@ -95,7 +100,7 @@ class Price extends GetView<AddProductsController>{
                                   border: OutlineInputBorder(),
                                 ),
                                 initialValue: controller.productData.value.specialPrice,
-                                onChanged: (input){
+                                onSaved: (input){
                                   controller.productData.value.specialPrice=input;
                                 },
                               ),
@@ -120,7 +125,7 @@ class Price extends GetView<AddProductsController>{
                                   mode: Mode.MENU,
                                   showFavoriteItems: true,
                                   items: [ 'Fixed','Percent'],
-                                  onChanged: (v){
+                                  onSaved: (v){
                                     controller.specialPriceType.value = v!;
                                   },
                                   selectedItem: controller.specialPriceType.value
@@ -250,7 +255,20 @@ class Price extends GetView<AddProductsController>{
                             ],
                           ),
                         ),
-
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CommonWidgets.customButton(
+                              color: secondaryColor,
+                              text: 'Confirm',
+                              press: (){
+                                if( controller.priceFormKey.currentState!.validate())
+                                {
+                                  controller.priceFormKey.currentState!.save();
+                                  Get.back();
+                                }
+                              }
+                          ),
+                        ),
                       ],
                     ),
                   ),

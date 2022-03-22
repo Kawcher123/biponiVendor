@@ -209,11 +209,12 @@ class DashboardView extends GetView<DashboardController> {
                                                 height: 5,
                                               ),
                                               Container(
+                                                alignment: Alignment.center,
                                                   decoration: BoxDecoration(color: primaryColor, borderRadius: BorderRadius.circular(5.0)),
                                                   padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
                                                   child: Text(
                                                     Helper.getStatus(controller.orderlist.value.orders![index].status.toString()),
-                                                    style: TextStyle(fontSize: 12, color: backgroundColor),
+                                                    style: TextStyle(fontSize: 10, color: backgroundColor),
                                                   ))
                                             ],
                                           ),
