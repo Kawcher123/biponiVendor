@@ -1,6 +1,7 @@
 import 'package:biponi_vendor/app/modules/add_products/widget/digital_product.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/simple_product.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/variable_product.dart';
+import 'package:biponi_vendor/common/ui.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,24 +9,33 @@ import '../controllers/add_products_controller.dart';
 
 class AddProductsView extends GetView<AddProductsController> {
 
-  final _size=Get.size;
-
+  final _size = Get.size;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text('Add Products',
-          style: TextStyle(
-              color: Colors.blue
-          ),),
-        leading: IconButton(
-          onPressed: (){
-            Get.back();
-            },
-          icon: Icon(Icons.arrow_back,color: Colors.blue,),),
+        elevation: 0,
+        title: Text(
+          'Add Products',
+          style: TextStyle(color: Get.theme.textTheme.bodyText1!.color),
+        ),
         centerTitle: true,
+        automaticallyImplyLeading: true,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 10.0, top: 5, bottom: 5),
+          child: Ui.getIconButton(
+              svgSrc: 'assets/icons/arrow_back.svg',
+              height: _size.width * .13,
+              width: _size.width * .13,
+              color: Colors.blue.withOpacity(0.15),
+              svgColor: Get.theme.textTheme.bodyText1!.color,
+              radius: 30,
+              press: () {
+                Get.back();
+              }),
+        ),
       ),
       body:Obx(()
       {
@@ -38,7 +48,6 @@ class AddProductsView extends GetView<AddProductsController> {
                 child: Card(
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                   child: Container(
-
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -63,12 +72,11 @@ class AddProductsView extends GetView<AddProductsController> {
                                     mode: Mode.MENU,
                                     showFavoriteItems: true,
                                     items: [ 'Simple','Variable','Digital'],
-
-                                    onChanged:(v)
-                                    {
+                                    onChanged:(v) {
                                       controller.productType.value=v!;
+                                      controller.getAttribute();
                                       },
-                                  selectedItem: controller.productType.value,
+                                  selectedItem: 'Select Product Type',
                                 ),
                               ],
                             ),
@@ -79,29 +87,32 @@ class AddProductsView extends GetView<AddProductsController> {
                   ),
                 ),
               ),
-
-
               controller.productType.value=='Simple'?SimpleProduct()
-              :controller.productType.value=='Variable'?VariableProduct():DigitalProduct(),
-
+              :controller.productType.value=='Variable'?VariableProduct()
+                  :controller.productType.value=='Digital'?DigitalProduct():Wrap(),
             ],
           ),
         );
       }),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Container(
-          height: _size.width*.15,
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.circular(20)
-          ),
-          alignment: Alignment.center,
-          child: Text(
-            'Create Product',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
+      bottomNavigationBar: GestureDetector(
+        onTap: (){
+          controller.addProduct();
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            height: _size.width*.15,
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(20)
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              'Create Product',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
             ),
           ),
         ),

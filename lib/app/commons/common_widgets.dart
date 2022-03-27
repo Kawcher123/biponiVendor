@@ -1,4 +1,5 @@
 import 'package:biponi_vendor/app/commons/colors.dart';
+import 'package:biponi_vendor/app/modules/notification/controllers/notification_controller.dart';
 import 'package:biponi_vendor/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,22 +44,44 @@ class CommonWidgets {
         onPressed: () => {Scaffold.of(context).openDrawer()},
       ),
       actions: [
-        GestureDetector(
-          onTap: ()
-          {
-            Get.toNamed(Routes.NOTIFICATION);
-          },
-          child: Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: CircleAvatar(
-                backgroundColor: primaryColor,
-                radius: 15.0,
-                child: Icon(
-                  CupertinoIcons.bell,
-                  size: 15.0,
-                )),
-          ),
-        )
+        Obx((){
+          return GestureDetector(
+            onTap: ()
+            {
+              Get.toNamed(Routes.NOTIFICATION);
+            },
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: CircleAvatar(
+                      backgroundColor: Colors.grey.withOpacity(.15),
+                      radius: 20.0,
+                      child: Icon(
+                        CupertinoIcons.bell,
+                        size: 20.0,
+                        color: primaryColor,
+                      )),
+                ),
+                Positioned(
+                    top: 0,
+                    right: 6,
+                    child: CircleAvatar(
+                        backgroundColor: Colors.red,
+                        radius: 9,
+                        child: Text(
+                          Get.put(NotificationController()).notificationLoaded.isTrue?
+                          '${ Get.put(NotificationController()).notifications.value.notification!.length}':'0',
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: backgroundColor,
+                          ),
+                        ))
+                ),
+              ],
+            ),
+          );
+        })
       ],
     );
   }

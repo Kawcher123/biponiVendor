@@ -1,4 +1,7 @@
+import 'package:biponi_vendor/app/commons/colors.dart';
 import 'package:biponi_vendor/app/providers/api_url.dart';
+import 'package:biponi_vendor/common/helper.dart';
+import 'package:biponi_vendor/common/ui.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -16,20 +19,26 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
         backgroundColor: Colors.blue.shade50,
         appBar: AppBar(
           backgroundColor: Colors.white,
+          elevation: 0,
           title: Text(
             'Order Details',
-            style: TextStyle(color: Colors.blue),
-          ),
-          leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.blue,
-            ),
+            style: TextStyle(color: Get.theme.textTheme.bodyText1!.color),
           ),
           centerTitle: true,
+          automaticallyImplyLeading: true,
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 10.0, top: 5, bottom: 5),
+            child: Ui.getIconButton(
+                svgSrc: 'assets/icons/arrow_back.svg',
+                height: _size.width * .13,
+                width: _size.width * .13,
+                color: Colors.blue.withOpacity(0.15),
+                svgColor: Get.theme.textTheme.bodyText1!.color,
+                radius: 30,
+                press: () {
+                  Get.back();
+                }),
+          ),
         ),
         body: Obx(() {
           if (controller.orderDetailsLoaded.isTrue) {
@@ -42,65 +51,39 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                     child: Card(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                       child: Container(
-                        height: _size.width * 0.3,
+                        height: _size.width * 0.25,
                         padding: EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
-                              flex: 250,
+                              flex: 230,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
-                                  alignment: Alignment.topRight,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                  alignment: Alignment.center,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            DateFormat.MMMd().format(DateTime.parse(controller.orderDetails.value.orders!.createdAt!)),
-                                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
-                                          ),
-                                          Text(
-                                            ',',
-                                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
-                                          ),
-                                          //SizedBox(width: 10,),
-                                          Text(
-                                            DateFormat.y().format(DateTime.parse(controller.orderDetails.value.orders!.createdAt!)),
-                                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
-                                          ),
-                                          SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            DateFormat.jm().format(DateTime.parse(controller.orderDetails.value.orders!.createdAt!)),
-                                            style: TextStyle(fontSize: 16, color: Colors.blue),
-                                          ),
-                                        ],
+                                      Text(
+                                        DateFormat.MMMd().format(DateTime.parse(controller.orderDetails.value.orders!.createdAt!)),
+                                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
+                                      ),
+                                      Text(
+                                        ',',
+                                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
+                                      ),
+                                      //SizedBox(width: 10,),
+                                      Text(
+                                        DateFormat.y().format(DateTime.parse(controller.orderDetails.value.orders!.createdAt!)),
+                                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
                                       ),
                                       SizedBox(
-                                        height: 10,
+                                        width: 10,
                                       ),
-                                      Container(
-                                        width: 165,
-                                        height: 50,
-                                        child: DropdownSearch<String>(
-                                          mode: Mode.MENU,
-                                          showFavoriteItems: true,
-                                          items: controller.orderStatus.map((item) => item['status']!).toList(),
-                                          onChanged: (input) {
-                                            for (var item in controller.orderStatus) {
-                                              if (item['status'] == input) {
-                                                controller.selectedStatus.value = item;
-                                              }
-                                            }
-                                            controller.updateOrder();
-                                          },
-                                          selectedItem: controller.selectedStatus['status'],
-                                        ),
+                                      Text(
+                                        DateFormat.jm().format(DateTime.parse(controller.orderDetails.value.orders!.createdAt!)),
+                                        style: TextStyle(fontSize: 16, color: Colors.blue),
                                       ),
                                     ],
                                   ),
@@ -108,7 +91,7 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                               ),
                             ),
                             Expanded(
-                              flex: 100,
+                              flex: 120,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Container(
@@ -138,45 +121,184 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                       ),
                     ),
                   ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(controller.orderStatus.length, (index){
+                        return GestureDetector(
+                         onTap: ()
+                          {
+                            controller.selectedStatusForProduct.value=controller.orderStatus[index]['id']!;
+                            controller.orderDetailsPerStatus.value=controller.orderDetails.value.ordersDetails!.where((element) => element.status==controller.selectedStatusForProduct.value).toList();
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: _size.width*.13,
+                              width: _size.width*.4,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color:controller.selectedStatusForProduct.value==controller.orderStatus[index]['id']!? primaryColor:Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Text(
+                                '${controller.orderStatus[index]['status']}',
+                                style: TextStyle(
+                                  color:controller.selectedStatusForProduct.value==controller.orderStatus[index]['id']!? backgroundColor:Colors.black,
+                                  fontSize: 16
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                  SingleChildScrollView(
+                    physics: NeverScrollableScrollPhysics(),
+                    primary: false,
+                    child: Column(
+                      children: List.generate(controller.orderDetailsPerStatus.length, (index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                            child: Container(
+                              height: _size.width * 0.55,
+                              padding: EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    flex: 90,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        //color: Colors.blue,
+                                        alignment: Alignment.centerLeft,
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(10),
+                                          child: CachedNetworkImage(
+                                            imageUrl: ApiClient.imageHead + controller.orderDetailsPerStatus[index].productDetails!.defaultImage!,
+                                            progressIndicatorBuilder: (context, url, downloadProgress) => Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
+                                            errorWidget: (context, url, error) => Icon(Icons.error),
+                                            //fit: BoxFit.fill,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 200,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Text('${controller.orderDetailsPerStatus[index].productDetails!.title}',
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                )),
+                                            SizedBox(height: 4,),
+                                            Text('Quantity: ${controller.orderDetailsPerStatus[index].productQty}',
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.black,
+                                                )),
+                                            SizedBox(height: 4,),
+                                            Text('Price: ${controller.orderDetailsPerStatus[index].price}',
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.black,
+                                                )),
+                                            SizedBox(height: 4,),
+                                            Text('Shipping Cost: ${controller.orderDetailsPerStatus[index].shippingCost}',
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.black,
+                                                )),
+                                            SizedBox(height: 4,),
+                                            Text('Shipping Method: ${controller.orderDetailsPerStatus[index].shippingMethod!.replaceAll('_', ' ')}',
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.black,
+                                                )),
+                                            SizedBox(height: 10,),
+                                            Container(
+                                              width: 165,
+                                              height: 50,
+                                              child: DropdownSearch<String>(
+                                                mode: Mode.MENU,
+                                                showFavoriteItems: true,
+                                                items: controller.orderStatus.map((item) => item['status']!).toList(),
+                                                onChanged: (input) {
+                                                  for (var item in controller.orderStatus) {
+                                                    if (item['status'] == input) {
+                                                      controller.selectedStatus.value = item;
+                                                    }
+                                                  }
+                                                  controller.updateOrder(controller.orderDetailsPerStatus[index].id!.toString());
+                                                  controller.getOrderDetails();
+                                                  controller.selectedStatusForProduct.value=controller.selectedStatus['id'];
+
+                                                 print(controller.selectedStatusForProduct.value);
+                                                },
+                                                selectedItem: Helper.getStatus(controller.orderDetailsPerStatus[index].status.toString()),
+                                              ),
+                                            ),
+                                            //Text(''),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0, right: 8, bottom: 8),
                     child: Card(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                       child: Container(
-                        height: _size.width * 0.3,
+                        height: _size.width * 0.25,
+                        width: _size.width,
                         padding: EdgeInsets.all(8.0),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Address',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                              Text(
+                                'Address',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 10,),
+                              Expanded(
+                                child: Text(
+                                  '${controller.orderDetails.value.address!.union!.title}, '
+                                  '${controller.orderDetails.value.address!.upazila!.title}, '
+                                  '${controller.orderDetails.value.address!.district!.title}, '
+                                  '${controller.orderDetails.value.address!.division!.title}',
+                                  maxLines: 3,
+                                  style: TextStyle(
+                                    overflow: TextOverflow.ellipsis,
+                                    fontSize: 12,
+                                    color: Colors.black,
                                   ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    '${controller.orderDetails.value.address!.union!.title}, '
-                                    '${controller.orderDetails.value.address!.upazila!.title}, '
-                                    '${controller.orderDetails.value.address!.district!.title}, '
-                                    '${controller.orderDetails.value.address!.division!.title}',
-                                    maxLines: 2,
-                                    style: TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      fontSize: 12,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
                             ],
                           ),
@@ -207,11 +329,9 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
+                                  SizedBox(height: 10,),
                                   Text(
-                                    '${controller.orderDetails.value.orders!.paymentMethod}',
+                                    '${controller.orderDetails.value.orders!.paymentMethod!.replaceAll('_', ' ')}',
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.black,
@@ -230,237 +350,69 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                     child: Card(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                       child: Container(
-                        height: _size.width * 0.5,
+                        //height: _size.width * 0.3,
                         padding: EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              flex: 250,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  alignment: Alignment.centerLeft,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Payment',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        'Subtotal',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        'Shipping Cost',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        'Vat(+15%)',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        'Coupon Discount',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        'Total',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 250,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  alignment: Alignment.centerRight,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      SizedBox(
-                                        height: 28,
-                                      ),
-                                      Text(
-                                        '${controller.orderDetails.value.orders!.paidAmount}',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        '${controller.orderDetails.value.orders!.shippingCost}',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        '0',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        '${controller.orderDetails.value.orders!.couponAmount}',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        '${controller.orderDetails.value.orders!.paidAmount}',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SingleChildScrollView(
-                    physics: NeverScrollableScrollPhysics(),
-                    primary: false,
-                    child: Column(
-                      children: List.generate(controller.orderDetails.value.ordersDetails!.length, (index) {
-                        return Padding(
+                        child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Card(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                            child: Container(
-                              height: _size.width * 0.35,
-                              padding: EdgeInsets.all(8.0),
-                              child: Row(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Payment',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 10,),
+                              Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Expanded(
-                                    flex: 100,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        alignment: Alignment.centerLeft,
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius: BorderRadius.circular(10),
-                                              child: CachedNetworkImage(
-                                                imageUrl: ApiClient.imageHead + controller.orderDetails.value.ordersDetails![index].productDetails!.defaultImage!,
-                                                progressIndicatorBuilder: (context, url, downloadProgress) => Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
-                                                errorWidget: (context, url, error) => Icon(Icons.error),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                  Text(
+                                    'Subtotal',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.black,
                                     ),
                                   ),
-                                  Expanded(
-                                    flex: 200,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Container(
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Text('${controller.orderDetails.value.ordersDetails![index].productDetails!.title}',
-                                                style: TextStyle(
-                                                  fontSize: 15,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                )),
-                                            SizedBox(
-                                              height: 4,
-                                            ),
-                                            Text('Quantity: ${controller.orderDetails.value.ordersDetails![index].productQty}',
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  color: Colors.black,
-                                                )),
-                                            SizedBox(
-                                              height: 4,
-                                            ),
-                                            Text('Price: ${controller.orderDetails.value.ordersDetails![index].price}',
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  color: Colors.black,
-                                                )),
-
-                                            //Text(''),
-                                          ],
-                                        ),
-                                      ),
+                                  Text(
+                                    '${controller.orderDetails.value.orders!.paidAmount}',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.black,
                                     ),
                                   ),
                                 ],
                               ),
-                            ),
+                              SizedBox(height: 8,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Total',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${controller.orderDetails.value.orders!.paidAmount}',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        );
-                      }),
+                        ),
+                      ),
                     ),
-                  )
+                  ),
                 ],
               ),
             );

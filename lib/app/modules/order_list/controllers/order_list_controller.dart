@@ -12,6 +12,10 @@ class OrderListController extends GetxController {
     super.onInit();
   }
 
+  refreshOrderList()async{
+    getOrderList();
+  }
+
   getOrderList()async
   {
     OrderRepository().getOrderList().then((resp)

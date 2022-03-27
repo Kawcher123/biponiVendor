@@ -17,6 +17,7 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     UserModel currentUser=Get.find<AuthService>().user.value;
+    print('image:${currentUser.vendor!.avatar!}');
     return Scaffold(
       appBar: CommonWidgets.defaultAppBar(context),
       body: SingleChildScrollView(
@@ -25,12 +26,14 @@ class ProfileView extends GetView<ProfileController> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
+              currentUser.vendor!.avatar!=null?
               CircleAvatar(
                 radius: 60,
                 backgroundImage: CachedNetworkImageProvider(
                    ApiClient.imageHead+currentUser.vendor!.avatar!,
+                  
                 ),
-              ),
+              ):Image.asset('assets/images/user.png'),
               SizedBox(height: CommonWidgets.size.width*0.05,),
               Card(
                 child: Padding(

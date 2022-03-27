@@ -15,6 +15,11 @@ class ProductsController extends GetxController {
     super.onInit();
   }
 
+  refreshProduct()async
+  {
+    getProductList();
+  }
+
   getProductList()async
   {
     ProductListRepository().getProductList().then((resp)

@@ -1,3 +1,5 @@
+import 'package:biponi_vendor/app/modules/add_products/widget/additional_options.dart';
+import 'package:biponi_vendor/app/modules/add_products/widget/category.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/general.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/images.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/inventory.dart';
@@ -37,6 +39,40 @@ class SimpleProduct extends StatelessWidget {
                       children: [
                         Text(
                           'General',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Icon(Icons.arrow_forward),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: ()
+            {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Category()));
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                child: Container(
+                  height: _size.width*.15,
+                  width: _size.width,
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Category',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.black,
@@ -207,6 +243,40 @@ class SimpleProduct extends StatelessWidget {
                       children: [
                         Text(
                           'Seo',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Icon(Icons.arrow_forward),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: ()
+            {
+             Navigator.push(context, MaterialPageRoute(builder: (context)=>AdditionalOptions()));
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                child: Container(
+                  height: _size.width*.15,
+                  width: _size.width,
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Additional Options',
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.black,

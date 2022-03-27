@@ -14,6 +14,10 @@ class CustomerListController extends GetxController {
     super.onInit();
   }
 
+  refreshCustomerList()async{
+    getCustomerList();
+  }
+
   getCustomerList() async
   {
     CustomerListRepository().getCustomerList().then((resp)

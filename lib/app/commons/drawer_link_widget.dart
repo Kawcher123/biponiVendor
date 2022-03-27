@@ -5,6 +5,7 @@ class DrawerLinkWidget extends StatelessWidget {
   final IconData? icon;
   final String? text;
   final ValueChanged<void>? onTap;
+
   const DrawerLinkWidget({
     Key? key,
     this.icon,

@@ -8,9 +8,9 @@ import 'package:shimmer/shimmer.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Ui {
-  static GetBar SuccessSnackBar({String title = 'Success', required String message}) {
+  static GetSnackBar SuccessSnackBar({String title = 'Success', required String message}) {
     Get.log("[$title] $message");
-    return GetBar(
+    return GetSnackBar(
       titleText: Text(title.tr, style: Get.textTheme.headline6!.merge(TextStyle(color: Colors.white))),
       messageText: Text(message, style: Get.textTheme.caption!.merge(TextStyle(color: Colors.white))),
       snackPosition: SnackPosition.BOTTOM,

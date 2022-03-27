@@ -1,5 +1,6 @@
 import 'package:biponi_vendor/app/routes/app_pages.dart';
 import 'package:biponi_vendor/app/services/auth_service.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'drawer_link_widget.dart';
@@ -17,6 +18,9 @@ class MainDrawerWidget extends StatelessWidget {
           DrawerLinkWidget(
             icon: Icons.home_outlined,
             text: "Home",
+            onTap: (e){
+              Get.back();
+            },
           ),
           DrawerLinkWidget(
             icon: Icons.people_outline,
@@ -72,6 +76,55 @@ class MainDrawerWidget extends StatelessWidget {
             icon: Icons.help_outline,
             text: "Help & FAQ",
           ),
+          DrawerLinkWidget(
+            icon: Icons.logout_outlined,
+            text: "Logout",
+            onTap: (e){
+              Get.find<AuthService>().removeCurrentUser();
+              Get.offAllNamed(Routes.login);
+            }
+          ),
+          ListTile(
+            dense: true,
+            title: Text(
+              "Design & Developed by VMSL".tr,
+              style: Get.textTheme.caption,
+            ),
+          ),
+
+          // Align(
+          //   alignment: Alignment.bottomRight,
+          //   child: ListTile(
+          //     title: Padding(
+          //       padding: const EdgeInsets.only(right: 8.0),
+          //       child: RichText(
+          //         text: TextSpan(children: [
+          //           TextSpan(
+          //             text: 'Design & Developed by ',
+          //             style: TextStyle(
+          //               color: Colors.black,
+          //               fontSize: 14.0,
+          //               fontWeight: FontWeight.w400,
+          //             ),
+          //           ),
+          //           TextSpan(
+          //             text: 'VMSL',
+          //             style: TextStyle(
+          //               color: Colors.blue,
+          //               fontSize: 15.0,
+          //               fontWeight: FontWeight.bold,
+          //             ),
+          //             // recognizer: TapGestureRecognizer()
+          //             //   ..onTap = () {
+          //             //     launc('https://vmsl.com.bd/');
+          //             //   },
+          //           ),
+          //         ]),
+          //       ),
+          //     ),
+          //   ),
+          // )
+
         ],
       ),
     );

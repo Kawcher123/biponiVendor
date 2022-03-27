@@ -5,6 +5,7 @@ import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:get/get.dart';
 
 class OrderDetailsRepository {
+
   Future<OrderDetailsModel> getOrderDetails(String orderId) async {
     String token = Get.find<AuthService>().user.value.token!;
 

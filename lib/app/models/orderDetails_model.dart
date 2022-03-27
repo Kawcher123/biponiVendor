@@ -204,7 +204,7 @@ class OrdersDetails {
     shippingCost = json['shipping_cost'];
     price = json['price'];
     sellerId = json['seller_id'];
-    status = json['status'];
+    status = json['status'].toString();
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     detailsStatus = json['details_status'];

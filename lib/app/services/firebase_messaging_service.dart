@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:biponi_vendor/app/modules/login/controllers/login_controller.dart';
 import 'package:get/get.dart';
 
@@ -20,10 +22,14 @@ class FireBaseMessagingService extends GetxService {
         RemoteNotification notification = message.notification!;
         print(notification);
 
+        Map nbody = jsonDecode(notification.body!);
+        print(nbody);
+
 //      Get.to(BookingsView());
         Get.showSnackbar(Ui.notificationSnackBar(
           title: notification.title!,
-          message: notification.body!,
+         // message: notification.body!,
+          message: nbody['message']
         ));
       }
     });
