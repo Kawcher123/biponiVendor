@@ -1,10 +1,10 @@
-import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_controller.dart';
+import 'package:biponi_vendor/app/modules/product_edit/controllers/product_edit_controller.dart';
+import 'package:biponi_vendor/app/providers/api_url.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:image_picker/image_picker.dart';
-class Images extends GetView<AddProductsController>{
+class ImagesEdit extends GetView<ProductEditController> {
 
   final _size = Get.size;
 
@@ -53,8 +53,8 @@ class Images extends GetView<AddProductsController>{
                               Text(
                                 'Default Product Image',
                                 style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15
+                                    color: Colors.black,
+                                    fontSize: 15
                                 ),
                               ),
                               GestureDetector(
@@ -70,13 +70,13 @@ class Images extends GetView<AddProductsController>{
                                   width: _size.width*.25,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(10)
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.circular(10)
                                   ),
                                   child: Text(
                                     'Select File',
                                     style: TextStyle(
-                                      color: Colors.white
+                                        color: Colors.white
                                     ),
                                   ),
                                 ),
@@ -110,9 +110,12 @@ class Images extends GetView<AddProductsController>{
                                       ),
                                     ):  ClipRRect(
                                       borderRadius: BorderRadius.circular(15),
-                                      child: Image(
-                                        width:Get.size.width,
-                                        image: AssetImage('assets/images/mouse.jpeg'),
+                                      child: CachedNetworkImage(
+                                        width: _size.width,
+                                        imageUrl: ApiClient.imageHead+controller.editProductData.value.product!.defaultImage!,
+                                        progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                            Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
+                                        errorWidget: (context, url, error) => Icon(Icons.error),
                                         fit: BoxFit.fill,
                                       ),
                                     ),
@@ -176,7 +179,7 @@ class Images extends GetView<AddProductsController>{
                                     borderRadius: BorderRadius.circular(15)
                                 ),
                                 child: controller.galleryImageList.isNotEmpty?  SingleChildScrollView(
-                                 scrollDirection: Axis.horizontal,
+                                  scrollDirection: Axis.horizontal,
                                   child: Row(
                                     children: List.generate(controller.galleryImageList.length, (index)
                                     {

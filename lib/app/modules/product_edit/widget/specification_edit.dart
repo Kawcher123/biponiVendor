@@ -1,14 +1,10 @@
 import 'package:biponi_vendor/app/commons/colors.dart';
 import 'package:biponi_vendor/app/commons/common_widgets.dart';
-import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_controller.dart';
+import 'package:biponi_vendor/app/modules/product_edit/controllers/product_edit_controller.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
-
-class Specification extends GetView<AddProductsController>{
+class SpecificationEdit extends GetView<ProductEditController> {
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +30,7 @@ class Specification extends GetView<AddProductsController>{
       body: Obx(()
       {
         return Form(
-          key: controller.specificationFormKey,
+          key: controller.specificationEditFormKey,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Padding(
@@ -77,28 +73,29 @@ class Specification extends GetView<AddProductsController>{
                                   // print(controller.attributeId.value);
                                   // print(controller.attributeName.value);
                                 },
-                                selectedItem: controller.attributeName.value,
+                                selectedItem: controller.editProductData.value.product!.attributeSetId.toString(),
                               ),
                               SizedBox(height: 8,),
                               controller.selectedAttribute.value.title!=null?
                               buildTextField():Wrap(),
 
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: CommonWidgets.customButton(
+                                    color: secondaryColor,
+                                    text: 'Confirm',
+                                    press: (){
+                                      if( controller.specificationEditFormKey.currentState!.validate())
+                                      {
+                                        controller.specificationEditFormKey.currentState!.save();
+                                        Get.back();
+                                      }
+                                    }
+                                ),
+                              )
+
                             ],),
-                          ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CommonWidgets.customButton(
-                              color: secondaryColor,
-                              text: 'Confirm',
-                              press: (){
-                                if( controller.specificationFormKey.currentState!.validate())
-                                {
-                                  controller.specificationFormKey.currentState!.save();
-                                  Get.back();
-                                }
-                              }
-                          ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -112,63 +109,63 @@ class Specification extends GetView<AddProductsController>{
   }
   buildTextField() {
     return Column(
-      children: List.generate(controller.selectedAttribute.value.attribute!.length, (index) {
-        if(controller.selectedAttribute.value.attribute![index].catalogInputType== 'radio')
-        {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '${controller.selectedAttribute.value.attribute![index].title}',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black,
+        children: List.generate(controller.selectedAttribute.value.attribute!.length, (index) {
+          if(controller.selectedAttribute.value.attribute![index].catalogInputType== 'radio')
+          {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${controller.selectedAttribute.value.attribute![index].title}',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-              SizedBox(height: 8,),
-              DropdownSearch<String>(
-                  mode: Mode.MENU,
-                  showFavoriteItems: true,
-                  items: controller.selectedAttribute.value.attribute![index].attributeValues!.map((item) => item.label!).toList(),
+                SizedBox(height: 8,),
+                DropdownSearch<String>(
+                    mode: Mode.MENU,
+                    showFavoriteItems: true,
+                    items: controller.selectedAttribute.value.attribute![index].attributeValues!.map((item) => item.label!).toList(),
+                    onChanged: (input){
+                      //controller.productData.value.specificationMobileColor!;
+                    },
+                    selectedItem: controller.attributeValue.value),
+                SizedBox(height: 8,),
+              ],
+            );
+          }
+          else if(controller.selectedAttribute.value.attribute![index].catalogInputType=='textfield')
+          {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${controller.selectedAttribute.value.attribute![index].title}',
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(height: 8,),
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  validator: (input){},
+                  initialValue: controller.selectedAttribute.value.attribute![index].description,
                   onChanged: (input){
-                    controller.productData.value.specificationMobileColor!;
+                    //controller.productData.value.specificationMobileDisplay=input;
                   },
-                  selectedItem: controller.attributeValue.value),
-              SizedBox(height: 8,),
-            ],
-          );
-        }
-        else if(controller.selectedAttribute.value.attribute![index].catalogInputType=='textfield')
-        {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '${controller.selectedAttribute.value.attribute![index].title}',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                  ),
                 ),
-              ),
-              SizedBox(height: 8,),
-              TextFormField(
-                keyboardType: TextInputType.text,
-                validator: (input){},
-                initialValue: controller.selectedAttribute.value.attribute![index].description,
-                onChanged: (input){
-                  controller.productData.value.specificationMobileDisplay=input;
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              SizedBox(height: 8,),
-            ],
-          );
-        }
-        else
+                SizedBox(height: 8,),
+              ],
+            );
+          }
+          else
           {
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -188,7 +185,7 @@ class Specification extends GetView<AddProductsController>{
                   validator: (input){},
                   initialValue: controller.selectedAttribute.value.attribute![index].description,
                   onChanged: (input){
-                    controller.productData.value.specificationMobileNetwork=input;
+                    //controller.productData.value.specificationMobileNetwork=input;
                   },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -198,7 +195,7 @@ class Specification extends GetView<AddProductsController>{
               ],
             );
           }
-      })
+        })
     );
   }
 }

@@ -241,19 +241,16 @@ class General extends GetView<AddProductsController> {
                                   color: Colors.black,
                                 ),
                               ),
-                              FlutterSwitch(
-                                width: 90,
-                                height: 40,
-                                valueFontSize: 25.0,
-                                toggleSize: 40.0,
-                                value: controller.generalStatus.value,
-                                borderRadius: 30.0,
-                                padding: 8.0,
-                                showOnOff: false,
-                                activeColor: Colors.greenAccent,
-                                onToggle: (val) {
-                                  controller.generalStatus.value=val;
-                                },
+                              Transform.scale(
+                                scale: 1.2,
+                                child: Switch.adaptive(
+                                  inactiveTrackColor: Colors.grey,
+                                  activeColor: Colors.greenAccent,
+                                  value: controller.generalStatus.value,
+                                  onChanged: (val){
+                                    controller.generalStatus.value=val;
+                                  },
+                                ),
                               ),
                             ],
                           ),

@@ -1,15 +1,15 @@
-import 'package:biponi_vendor/app/modules/add_products/widget/additional_options.dart';
-import 'package:biponi_vendor/app/modules/add_products/widget/category.dart';
-import 'package:biponi_vendor/app/modules/add_products/widget/price.dart';
-import 'package:biponi_vendor/app/modules/add_products/widget/seo.dart';
-import 'package:biponi_vendor/app/modules/add_products/widget/specification.dart';
+import 'package:biponi_vendor/app/modules/product_edit/widget/additional_options_edit.dart';
+import 'package:biponi_vendor/app/modules/product_edit/widget/category_edit.dart';
+import 'package:biponi_vendor/app/modules/product_edit/widget/general_edit.dart';
+import 'package:biponi_vendor/app/modules/product_edit/widget/images_edit.dart';
+import 'package:biponi_vendor/app/modules/product_edit/widget/price_edit.dart';
+import 'package:biponi_vendor/app/modules/product_edit/widget/seo_edit.dart';
+import 'package:biponi_vendor/app/modules/product_edit/widget/specification_edit.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'general.dart';
-import 'images.dart';
-class VariableProduct extends StatelessWidget {
-  VariableProduct({Key? key}) : super(key: key);
+import 'package:get/get.dart';
+
+class VariableProductEdit extends StatelessWidget {
+  VariableProductEdit({Key? key}) : super(key: key);
 
   final _size=Get.size;
 
@@ -21,7 +21,7 @@ class VariableProduct extends StatelessWidget {
           GestureDetector(
             onTap: ()
             {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>General()));
+              Get.to(()=>GeneralEdit());
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -55,7 +55,7 @@ class VariableProduct extends StatelessWidget {
           GestureDetector(
             onTap: ()
             {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Category()));
+              Get.to(()=>CategoryEdit());
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -89,7 +89,7 @@ class VariableProduct extends StatelessWidget {
           GestureDetector(
             onTap: ()
             {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Specification()));
+              Get.to(()=>SpecificationEdit());
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -123,7 +123,7 @@ class VariableProduct extends StatelessWidget {
           GestureDetector(
             onTap: ()
             {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Price()));
+              Get.to(()=>PriceEdit());
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -157,7 +157,7 @@ class VariableProduct extends StatelessWidget {
           GestureDetector(
             onTap: ()
             {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Images()));
+              Get.to(()=>ImagesEdit());
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -191,7 +191,7 @@ class VariableProduct extends StatelessWidget {
           GestureDetector(
             onTap: ()
             {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Seo()));
+              Get.to(()=>SeoEdit());
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -273,7 +273,7 @@ class VariableProduct extends StatelessWidget {
           GestureDetector(
             onTap: ()
             {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>AdditionalOptions()));
+              Get.to(()=>AdditionalOptionsEdit());
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -308,5 +308,4 @@ class VariableProduct extends StatelessWidget {
       ),
     );
   }
-
 }

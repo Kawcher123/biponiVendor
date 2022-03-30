@@ -39,4 +39,10 @@ class ApiClient {
   static String categories = '${baseUrl}api/v1/categories';
 
   static String subCategories = '${baseUrl}api/v1/get-sub-category';
+
+
+  static String editProduct = '${baseUrl}api/v1/seller/product/edit/';
+
+
+  static String saveeditedProduct = '${baseUrl}api/v1/seller/product/update/';
 }

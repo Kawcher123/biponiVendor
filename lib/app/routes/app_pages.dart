@@ -6,8 +6,6 @@ import 'package:biponi_vendor/app/modules/customer_list/bindings/customer_list_b
 import 'package:biponi_vendor/app/modules/customer_list/views/customer_list_view.dart';
 import 'package:biponi_vendor/app/modules/dashboard/bindings/dashboard_binding.dart';
 import 'package:biponi_vendor/app/modules/dashboard/views/dashboard_view.dart';
-import 'package:biponi_vendor/app/modules/edit_product/bindings/edit_product_binding.dart';
-import 'package:biponi_vendor/app/modules/edit_product/views/edit_product_view.dart';
 import 'package:biponi_vendor/app/modules/home/bindings/home_binding.dart';
 import 'package:biponi_vendor/app/modules/home/views/home_view.dart';
 import 'package:biponi_vendor/app/modules/login/bindings/login_binding.dart';
@@ -20,6 +18,8 @@ import 'package:biponi_vendor/app/modules/order_details/bindings/order_details_b
 import 'package:biponi_vendor/app/modules/order_details/views/order_details_view.dart';
 import 'package:biponi_vendor/app/modules/order_list/bindings/order_list_binding.dart';
 import 'package:biponi_vendor/app/modules/order_list/views/order_list_view.dart';
+import 'package:biponi_vendor/app/modules/product_edit/bindings/product_edit_binding.dart';
+import 'package:biponi_vendor/app/modules/product_edit/views/product_edit_view.dart';
 import 'package:biponi_vendor/app/modules/products/bindings/products_binding.dart';
 import 'package:biponi_vendor/app/modules/products/views/products_view.dart';
 import 'package:biponi_vendor/app/modules/profile/bindings/profile_binding.dart';
@@ -95,11 +95,6 @@ class AppPages {
       binding: OrderDetailsBinding(),
     ),
     GetPage(
-      name: _Paths.EDIT_PRODUCT,
-      page: () => EditProductView(),
-      binding: EditProductBinding(),
-    ),
-    GetPage(
       name: _Paths.NOTIFICATION,
       page: () => NotificationView(),
       binding: NotificationBinding(),
@@ -113,6 +108,11 @@ class AppPages {
       name: _Paths.MESSAGES,
       page: () => MessagesView(),
       binding: MessagesBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRODUCT_EDIT,
+      page: () => ProductEditView(),
+      binding: ProductEditBinding(),
     ),
   ];
 }

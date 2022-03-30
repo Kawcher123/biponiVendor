@@ -16,7 +16,7 @@ class AddProductsController extends GetxController {
 
   late GlobalKey<FormState> addProductFormKey;
   late GlobalKey<FormState> generalFormKey;
-  // late GlobalKey<FormState> specificationFormKey;
+  late GlobalKey<FormState> specificationFormKey;
   late GlobalKey<FormState> priceFormKey;
   late GlobalKey<FormState> inventoryFormKey;
   late GlobalKey<FormState> seoFormKey;
@@ -48,16 +48,17 @@ class AddProductsController extends GetxController {
   final categoryId=''.obs;
   final categoryListLoaded = false.obs;
   final categoryTitle=''.obs;
-  final select = ''.obs;
+  final categorySelect = ''.obs;
 
   ///dropdown
   final weightUnit = ''.obs;
   final productType = ''.obs;
-  final specification = ''.obs;
+  //final specification = ''.obs;
   final specialPriceType = ''.obs;
   final inventoryManagement = ''.obs;
   final stockAvailability = ''.obs;
   final saleOption = ''.obs;
+  final specificationMobileColor = ''.obs;
 
   ///brand
   final brand = <BrandModel>[].obs;
@@ -74,6 +75,7 @@ class AddProductsController extends GetxController {
   void onInit() {
     addProductFormKey = GlobalKey<FormState>();
     generalFormKey = GlobalKey<FormState>();
+    specificationFormKey = GlobalKey<FormState>();
     priceFormKey = GlobalKey<FormState>();
     inventoryFormKey = GlobalKey<FormState>();
     seoFormKey = GlobalKey<FormState>();
@@ -92,7 +94,7 @@ class AddProductsController extends GetxController {
       if(image != null)
       {
         file = File(image.path);
-        galleryImageList.add(file);
+        // galleryImageList.add(file);
       }else
       {
         Get.snackbar(
@@ -104,7 +106,7 @@ class AddProductsController extends GetxController {
     return file;
   }
 
-  getAttribute() async{
+  getAttribute() async {
     AddProductRepository().getAttribute().then((res){
       attributeList.value = res;
     });
@@ -117,8 +119,7 @@ class AddProductsController extends GetxController {
     });
   }
 
-  getCategoryList() async
-  {
+  getCategoryList() async {
     AddProductRepository().getCategoryList().then((res)
     {
       categoryList.value = res;
@@ -126,8 +127,7 @@ class AddProductsController extends GetxController {
     });
   }
 
-  subCategoryList(String id) async
-  {
+  subCategoryList(String id) async {
     categoryListLoaded.value = false;
     AddProductRepository().getSubCategoryList(id).then((res)
     {
@@ -223,23 +223,20 @@ class AddProductsController extends GetxController {
       categoryId.value,
       productData.value.price!,
       stockAvailability.value,
-      productData.value.sku!,
+      productData.value.sku??'',
       productData.value.slug??'',
       productData.value.specialPrice??'',
       specialPriceType.value,
       productData.value.specialPriceStart??'',
       productData.value.specialPriceEnd??'',
+      defaultImage.value,
+      galleryImageList,
       productData.value.qty??'',
       generalStatus.value.toString(),
-      defaultImage.value,
-      galleryImage.value,
-      productData.value.maxCartQty!,
-      //productData.value.brandTitle,
-      //productData.value.categoryTitle!,
+      productData.value.maxCartQty??'',
       productData.value.metaTitle??'',
       productData.value.metaKeyword??'',
       productData.value.metaDescription??'',
-
       freeShippingStatus1.value.toString(),
       productData.value.shippingOptionInsideOriginInsideStandardShipping!,
       productData.value.shippingOptionInsideOriginInsideExpressShipping??'',
@@ -249,7 +246,11 @@ class AddProductsController extends GetxController {
       codStatus.value.toString(),
       productData.value.miscellaneousInformationWarrentyPeriod??'',
       comStatus.value.toString(),
-      productType.value,).then((res){
+      productType.value,
+      specificationMobileColor.value,
+      productData.value.specificationMobileDisplay??'',
+      productData.value.specificationMobileNetwork??'',
+    ).then((res){
 
       print(res);
       if(res['status'].toString()=='1')

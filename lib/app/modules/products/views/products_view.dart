@@ -1,5 +1,7 @@
 import 'package:biponi_vendor/app/commons/common_widgets.dart';
+import 'package:biponi_vendor/app/modules/add_products/views/add_products_view.dart';
 import 'package:biponi_vendor/app/providers/api_url.dart';
+import 'package:biponi_vendor/app/routes/app_pages.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -63,6 +65,30 @@ class ProductsView extends GetView<ProductsController> {
                               Text('${controller.productList.value.product![index].specialPrice}'),
                             ],
                           ): Wrap(),
+                        ],
+                      ),
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: (){
+                               print('prod id: ${controller.productList.value.product![index].id}');
+                               Get.toNamed(Routes.PRODUCT_EDIT,arguments:controller.productList.value.product![index].id );
+
+                            },
+                            child: Icon(
+                              Icons.edit_rounded,
+                              color: Colors.blue,
+                            ),
+                          ),
+                          SizedBox(height: 7,),
+                          // GestureDetector(
+                          //   onTap: (){},
+                          //   child: Icon(
+                          //     Icons.delete,
+                          //     color: Colors.red.shade500,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

@@ -49,7 +49,7 @@ class NotificationView extends GetView<NotificationController> {
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Text(
-                        'Your Activity'.tr,
+                        'Your Activity',
                         style: TextStyle(fontSize: 18, color: Get.theme.textTheme.bodyText1!.color),
                       ),
                     ),
