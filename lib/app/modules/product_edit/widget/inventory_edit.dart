@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class InventoryEdit extends GetView<ProductEditController> {
 
+  final _size=Get.size;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,20 +186,20 @@ class InventoryEdit extends GetView<ProductEditController> {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CommonWidgets.customButton(
-                                color: secondaryColor,
-                                text: 'Confirm',
-                                press: (){
-                                  if( controller.inventoryEditFormKey.currentState!.validate())
-                                  {
-                                    controller.inventoryEditFormKey.currentState!.save();
-                                    Get.back();
-                                  }
-                                }
-                            ),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: CommonWidgets.customButton(
+                          //       color: secondaryColor,
+                          //       text: 'Confirm',
+                          //       press: (){
+                          //         if( controller.inventoryEditFormKey.currentState!.validate())
+                          //         {
+                          //           controller.inventoryEditFormKey.currentState!.save();
+                          //           Get.back();
+                          //         }
+                          //       }
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -206,7 +208,34 @@ class InventoryEdit extends GetView<ProductEditController> {
               ),
             ),
           );
-        })
+        }),
+      bottomNavigationBar: GestureDetector(
+        onTap: (){
+          if( controller.inventoryEditFormKey.currentState!.validate())
+          {
+            controller.inventoryEditFormKey.currentState!.save();
+            Get.back();
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            height: _size.width*.15,
+            decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20)
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              'Confirm',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
   // buildWidget(){

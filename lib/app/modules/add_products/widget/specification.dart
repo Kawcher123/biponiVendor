@@ -4,9 +4,6 @@ import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class Specification extends GetView<AddProductsController>{
 
@@ -74,14 +71,11 @@ class Specification extends GetView<AddProductsController>{
                                       break;
                                     }
                                   }
-                                  // print(controller.attributeId.value);
-                                  // print(controller.attributeName.value);
                                 },
                                 selectedItem: controller.attributeName.value,
                               ),
                               SizedBox(height: 8,),
-                              controller.selectedAttribute.value.title!=null?
-                              buildTextField():Wrap(),
+                              controller.selectedAttribute.value.title!=null? buildTextField():Wrap(),
 
                             ],),
                           ),
@@ -131,8 +125,8 @@ class Specification extends GetView<AddProductsController>{
                   mode: Mode.MENU,
                   showFavoriteItems: true,
                   items: controller.selectedAttribute.value.attribute![index].attributeValues!.map((item) => item.label!).toList(),
-                  onChanged: (input){
-                    controller.productData.value.specificationMobileColor!;
+                  onSaved: (input){
+                    controller.productData.value.specificationMobileColor = input;
                   },
                   selectedItem: controller.attributeValue.value),
               SizedBox(height: 8,),
@@ -157,8 +151,8 @@ class Specification extends GetView<AddProductsController>{
                 keyboardType: TextInputType.text,
                 validator: (input){},
                 initialValue: controller.selectedAttribute.value.attribute![index].description,
-                onChanged: (input){
-                  controller.productData.value.specificationMobileDisplay=input;
+                onSaved: (input){
+                  controller.productData.value.specificationMobileDisplay = input;
                 },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -187,7 +181,7 @@ class Specification extends GetView<AddProductsController>{
                   maxLines: 4,
                   validator: (input){},
                   initialValue: controller.selectedAttribute.value.attribute![index].description,
-                  onChanged: (input){
+                  onSaved: (input){
                     controller.productData.value.specificationMobileNetwork=input;
                   },
                   decoration: InputDecoration(

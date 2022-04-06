@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 
 class ApiClient {
   String api_token = '';
-  static String baseUrl = 'http://192.168.1.248:8000/';
+  static String baseUrl = 'https://admin.biponi.com/';
 
-  static String imageHead = 'http://192.168.1.248:8000/';
+  static String imageHead = 'https://admin.biponi.com/';
 
   static String registration = '${baseUrl}api/v1/seller/seller-register';
 

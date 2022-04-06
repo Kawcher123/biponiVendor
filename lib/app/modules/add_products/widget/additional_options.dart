@@ -74,6 +74,8 @@ class AdditionalOptions extends GetView<AddProductsController>{
                                     value: controller.freeShippingStatus1.value,
                                     onChanged: (val){
                                       controller.freeShippingStatus1.value=val;
+                                      controller.insideAllowFreeShipping.value=val==true?'on':'off';
+                                      print( controller.insideAllowFreeShipping.value);
                                     },
                                   ),
                                 ),
@@ -168,6 +170,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                                     value: controller.freeShippingStatus2.value,
                                     onChanged: (val){
                                       controller.freeShippingStatus2.value=val;
+                                      controller.outsideAllowFreeShipping.value=val==true?'on':'off';
                                     },
                                   ),
                                 ),
@@ -261,6 +264,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                                     value: controller.codStatus.value,
                                     onChanged: (val){
                                       controller.codStatus.value=val;
+                                      controller.cashOnDelivery.value=val==true?'on':'off';
                                     },
                                   ),
                                 ),
@@ -307,6 +311,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                                     value: controller.comStatus.value,
                                     onChanged: (val){
                                         controller.comStatus.value=val;
+                                        controller.changeOfMind.value=val==true?'on':'off';
                                       },
                                   ),
                                 ),

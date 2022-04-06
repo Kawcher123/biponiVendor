@@ -87,7 +87,7 @@ class NotificationView extends GetView<NotificationController> {
                                                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Get.theme.textTheme.bodyText2!.color),
                                               ),
                                               Text(
-                                                controller.notifications.value.notification![index].description!,
+                                                controller.notifications.value.notification![index].description!.message!,
                                                 maxLines: 3,
                                                 style: TextStyle(fontSize: 14),
                                               ),
@@ -102,7 +102,7 @@ class NotificationView extends GetView<NotificationController> {
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(
-                                      left: _size.width * .15 + 10,
+                                      left: _size.width * .16 + 10,
                                     ),
                                     child: Text(
                                       '${DateFormat.yMMMMd().format(DateTime.parse(controller.notifications.value.notification![index].createdAt!))}, ${DateFormat.jms().format(DateTime.parse(controller.notifications.value.notification![index].createdAt!))}',

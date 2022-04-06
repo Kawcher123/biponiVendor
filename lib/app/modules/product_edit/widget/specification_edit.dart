@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class SpecificationEdit extends GetView<ProductEditController> {
 
+  final _size=Get.size;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,29 +71,13 @@ class SpecificationEdit extends GetView<ProductEditController> {
                                       break;
                                     }
                                   }
-                                  // print(controller.attributeId.value);
-                                  // print(controller.attributeName.value);
                                 },
-                                selectedItem: controller.editProductData.value.product!.attributeSetId.toString(),
+                                selectedItem: controller.editProductData.value.product!.attributes?.title,
                               ),
                               SizedBox(height: 8,),
-                              controller.selectedAttribute.value.title!=null?
+                              controller.selectedAttribute.value.title != null?
                               buildTextField():Wrap(),
 
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: CommonWidgets.customButton(
-                                    color: secondaryColor,
-                                    text: 'Confirm',
-                                    press: (){
-                                      if( controller.specificationEditFormKey.currentState!.validate())
-                                      {
-                                        controller.specificationEditFormKey.currentState!.save();
-                                        Get.back();
-                                      }
-                                    }
-                                ),
-                              )
 
                             ],),
                         ),
@@ -105,6 +90,33 @@ class SpecificationEdit extends GetView<ProductEditController> {
           ),
         );
       }),
+      bottomNavigationBar: GestureDetector(
+        onTap: (){
+          if( controller.specificationEditFormKey.currentState!.validate())
+          {
+            controller.specificationEditFormKey.currentState!.save();
+            Get.back();
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            height: _size.width*.15,
+            decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20)
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              'Confirm',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
   buildTextField() {
@@ -128,10 +140,11 @@ class SpecificationEdit extends GetView<ProductEditController> {
                     mode: Mode.MENU,
                     showFavoriteItems: true,
                     items: controller.selectedAttribute.value.attribute![index].attributeValues!.map((item) => item.label!).toList(),
-                    onChanged: (input){
-                      //controller.productData.value.specificationMobileColor!;
+                    onSaved: (input){
+                      controller.editProductData.value.specification!.metaValues?.mobileColor=input;
                     },
-                    selectedItem: controller.attributeValue.value),
+                    selectedItem: controller.editProductData.value.specification!.metaValues?.mobileColor,
+                ),
                 SizedBox(height: 8,),
               ],
             );
@@ -153,9 +166,9 @@ class SpecificationEdit extends GetView<ProductEditController> {
                 TextFormField(
                   keyboardType: TextInputType.text,
                   validator: (input){},
-                  initialValue: controller.selectedAttribute.value.attribute![index].description,
+                  initialValue: controller.editProductData.value.specification!.metaValues?.mobileDisplay,
                   onChanged: (input){
-                    //controller.productData.value.specificationMobileDisplay=input;
+                    controller.editProductData.value.specification!.metaValues?.mobileDisplay=input;
                   },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -183,9 +196,9 @@ class SpecificationEdit extends GetView<ProductEditController> {
                   keyboardType: TextInputType.text,
                   maxLines: 4,
                   validator: (input){},
-                  initialValue: controller.selectedAttribute.value.attribute![index].description,
+                  initialValue: controller.editProductData.value.specification!.metaValues?.mobileNetwork,
                   onChanged: (input){
-                    //controller.productData.value.specificationMobileNetwork=input;
+                    controller.editProductData.value.specification!.metaValues?.mobileNetwork=input;
                   },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),

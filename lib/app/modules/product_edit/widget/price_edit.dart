@@ -119,13 +119,13 @@ class PriceEdit extends GetView<ProductEditController> {
                                 ),
                                 SizedBox(height: 8,),
                                 DropdownSearch<String>(
-                                    mode: Mode.MENU,
-                                    showFavoriteItems: true,
-                                    items: [ 'Fixed','Percent'],
-                                    onSaved: (v){
+                                  mode: Mode.MENU,
+                                  showFavoriteItems: true,
+                                  items: [ 'Fixed','Percent'],
+                                  selectedItem: controller.editProductData.value.product!.specialPriceType=='1'?'Fixed':'Percent',
+                                  onSaved: (v){
                                       controller.specialPriceType.value = v == 'Fixed'?'1':'0';
                                     },
-                                    selectedItem: controller.editProductData.value.product!.specialPriceType.toString(),
                                 ),
                               ],
                             ),
@@ -254,20 +254,20 @@ class PriceEdit extends GetView<ProductEditController> {
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CommonWidgets.customButton(
-                                color: secondaryColor,
-                                text: 'Confirm',
-                                press: (){
-                                  if( controller.priceEditFormKey.currentState!.validate())
-                                  {
-                                    controller.priceEditFormKey.currentState!.save();
-                                    Get.back();
-                                  }
-                                }
-                            ),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: CommonWidgets.customButton(
+                          //       color: secondaryColor,
+                          //       text: 'Confirm',
+                          //       press: (){
+                          //         if( controller.priceEditFormKey.currentState!.validate())
+                          //         {
+                          //           controller.priceEditFormKey.currentState!.save();
+                          //           Get.back();
+                          //         }
+                          //       }
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -276,7 +276,34 @@ class PriceEdit extends GetView<ProductEditController> {
               ),
             ),
           );
-        })
+        }),
+      bottomNavigationBar: GestureDetector(
+        onTap: (){
+          if( controller.priceEditFormKey.currentState!.validate())
+          {
+            controller.priceEditFormKey.currentState!.save();
+            Get.back();
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            height: _size.width*.15,
+            decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20)
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              'Confirm',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

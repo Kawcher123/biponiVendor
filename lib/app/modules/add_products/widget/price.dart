@@ -4,8 +4,6 @@ import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:intl/intl.dart';
 
 class Price extends GetView<AddProductsController>{

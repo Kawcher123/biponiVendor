@@ -34,7 +34,7 @@ class ProductEditController extends GetxController {
 
   ///switch
   final generalStatus = false.obs;
-  // final statusActive = ''.obs;
+  final statusActive = ''.obs;
   final freeShippingStatus1 = false.obs;
   final insideAllowFreeShipping=''.obs;
   final freeShippingStatus2 = false.obs;
@@ -58,6 +58,7 @@ class ProductEditController extends GetxController {
   final categoryListLoaded = false.obs;
   final categoryTitle=''.obs;
   final categorySelect = ''.obs;
+  var previousCat={}.obs;
 
   ///dropdown
   final weightUnit = ''.obs;
@@ -172,13 +173,14 @@ class ProductEditController extends GetxController {
       specialPriceType.value=editProductData.value.product!.specialPriceType.toString();
       stockAvailability.value=editProductData.value.product!.inStock.toString();
       brandId.value=editProductData.value.product!.weightUnit.toString();
-      generalStatus.value=editProductData.value.product!.isActive!;
+      generalStatus.value=editProductData.value.product!.isActive=='1'?true:false;
       categoryId.value=editProductData.value.product!.categoryId.toString();
       attributeId.value=editProductData.value.product!.attributeSetId.toString();
       freeShippingStatus1.value=editProductData.value.productShipping!.metaValues!.insideOrigin!.insideAllowFreeShipping=='on'?true:false;
       freeShippingStatus2.value=editProductData.value.productShipping!.metaValues!.insideOrigin!.insideAllowFreeShipping=='on'?true:false;
       codStatus.value=editProductData.value.productMiscellaneousInfo!.metaValues!.allowCashOnDelivery=='on'?true:false;
       comStatus.value=editProductData.value.productMiscellaneousInfo!.metaValues!.allowChangeOfMind=='on'?true:false;
+      //defaultImage.value=editProductData.value.product!.defaultImage!.;
 
 
     }
@@ -223,46 +225,46 @@ class ProductEditController extends GetxController {
   }
 
   void updateProduct() async{
-    var updatedData1 = {
-      'title': editProductData.value.product!.title.toString(),
-      'weight': editProductData.value.product!.weight,
-      'weight_unit': weightUnit.value.toLowerCase(),
-      'short_description': editProductData.value.product!.shortDescription.toString(),
-      'description': editProductData.value.product!.description.toString(),
-      'brand_id': brandId.value,
-      'category_id[]': categoryId.value,
-      'price': editProductData.value.product!.price.toString(),
-      'in_stock': '',
-      'sku': editProductData.value.product!.sku.toString(),
-     // 'slug': editProductData.value.product!.slug.toString(),
-      'is_approximate': '0',
-      'attribute_set_id': attributeId.value,
-      'special_price': editProductData.value.product!.specialPrice.toString(),
-      'special_price_type': specialPriceType.value,
-      'special_price_start': '',
-      'special_price_end': '',
-      'manage_stock': '',
-      'qty': editProductData.value.product!.qty.toString(),
-      'viewed': '',
-      'is_active': '1',
-      'max_cart_qty': editProductData.value.product!.maxCartQty.toString(),
-      'meta_title': '',
-      'meta_keyword': '',
-      'meta_description': '',
-      'shipping_option[inside_origin][inside_allow_free_shipping]': '',
-      'shipping_option[inside_origin][inside_standard_shipping]': '200',
-      'shipping_option[inside_origin][inside_express_shipping]': '',
-      'shipping_option[outside_origin][outside_allow_free_shipping]': '',
-      'shipping_option[outside_origin][outside_standard_shipping]': '250',
-      'shipping_option[outside_origin][outside_express_shipping]': '',
-      'miscellaneous_information[allow_cash_on_delivery]': '',
-      'miscellaneous_information[warrenty_period]': '',
-      'miscellaneous_information[allow_change_of_mind]': '',
-      'product_type': productType.value.toLowerCase(),
-      'specification[mobile_color]': '',
-      'specification[mobile_display]': '',
-      'specification[mobile_network]': ''
-    };
+    // var updatedData1 = {
+    //   'title': editProductData.value.product!.title.toString(),
+    //   'weight': editProductData.value.product!.weight,
+    //   'weight_unit': weightUnit.value.toLowerCase(),
+    //   'short_description': editProductData.value.product!.shortDescription.toString(),
+    //   'description': editProductData.value.product!.description.toString(),
+    //   'brand_id': brandId.value,
+    //   'category_id[]': categoryId.value,
+    //   'price': editProductData.value.product!.price.toString(),
+    //   'in_stock': '',
+    //   'sku': editProductData.value.product!.sku.toString(),
+    //  // 'slug': editProductData.value.product!.slug.toString(),
+    //   'is_approximate': '0',
+    //   'attribute_set_id': attributeId.value,
+    //   'special_price': editProductData.value.product!.specialPrice.toString(),
+    //   'special_price_type': specialPriceType.value,
+    //   'special_price_start': '',
+    //   'special_price_end': '',
+    //   'manage_stock': '',
+    //   'qty': editProductData.value.product!.qty.toString(),
+    //   'viewed': '',
+    //   'is_active': '1',
+    //   'max_cart_qty': editProductData.value.product!.maxCartQty.toString(),
+    //   'meta_title': '',
+    //   'meta_keyword': '',
+    //   'meta_description': '',
+    //   'shipping_option[inside_origin][inside_allow_free_shipping]': '',
+    //   'shipping_option[inside_origin][inside_standard_shipping]': '200',
+    //   'shipping_option[inside_origin][inside_express_shipping]': '',
+    //   'shipping_option[outside_origin][outside_allow_free_shipping]': '',
+    //   'shipping_option[outside_origin][outside_standard_shipping]': '250',
+    //   'shipping_option[outside_origin][outside_express_shipping]': '',
+    //   'miscellaneous_information[allow_cash_on_delivery]': '',
+    //   'miscellaneous_information[warrenty_period]': '',
+    //   'miscellaneous_information[allow_change_of_mind]': '',
+    //   'product_type': productType.value.toLowerCase(),
+    //   'specification[mobile_color]': '',
+    //   'specification[mobile_display]': '',
+    //   'specification[mobile_network]': ''
+    // };
     print(stockAvailability.value);
     var updatedData={
       'title': editProductData.value.product!.title.toString(),
@@ -300,9 +302,11 @@ class ProductEditController extends GetxController {
       'miscellaneous_information[warrenty_period]': '${editProductData.value.productMiscellaneousInfo!.metaValues!.warrentyPeriod}',
       'miscellaneous_information[allow_change_of_mind]': '${changeOfMind.value}',
       'product_type': '${productType.value}',
-      'specification[mobile_color]': '',
-      'specification[mobile_display]': '',
-      'specification[mobile_network]': ''
+      'specification[mobile_color]': '${editProductData.value.specification!.metaValues!.mobileColor}',
+      'specification[mobile_display]': '${editProductData.value.specification!.metaValues!.mobileDisplay}',
+      'specification[mobile_network]': '${editProductData.value.specification!.metaValues!.mobileNetwork}',
+      'default_image':'${defaultImage.value}',
+      'gallery_images[]':'${galleryImage.value}',
     };
     print('product type: ${productType.value.toLowerCase()}');
     EditProductRepository().updateProductData(updatedData, productId.value, defaultImage.value, galleryImageList).then((resp)

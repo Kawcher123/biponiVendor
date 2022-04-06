@@ -2,8 +2,9 @@ class EditProductModel {
   Product? product;
   ProductShipping? productShipping;
   MiscellaneousInfo? productMiscellaneousInfo;
+  Specification? specification;
 
-  EditProductModel({this.product, this.productShipping,this.productMiscellaneousInfo});
+  EditProductModel({this.product, this.productShipping,this.productMiscellaneousInfo,this.specification});
 
   EditProductModel.fromJson(Map<String, dynamic> json) {
     product =
@@ -19,6 +20,11 @@ class EditProductModel {
      if(v['meta_key']=='product_miscellaneous_information')
      {
        productMiscellaneousInfo=MiscellaneousInfo.fromJson(v);
+
+     }
+     if(v['meta_key']=='product_sepecification')
+     {
+       specification=Specification.fromJson(v);
 
      }
       });
@@ -68,6 +74,8 @@ class Product {
   var sellerId;
   String? createdAt;
   String? updatedAt;
+  String? categoryImage;
+  Attributes? attributes;
 
   Product(
       {this.id,
@@ -101,7 +109,9 @@ class Product {
         this.isDeleted,
         this.sellerId,
         this.createdAt,
-        this.updatedAt});
+        this.updatedAt,
+        this.categoryImage,
+        this.attributes,});
 
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -136,6 +146,10 @@ class Product {
     sellerId = json['seller_id'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
+    categoryImage = json['category_image']??'';
+    attributes = json['attributes'] != null
+        ? new Attributes.fromJson(json['attributes'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -170,6 +184,59 @@ class Product {
     data['is_active'] = this.isActive;
     data['is_deleted'] = this.isDeleted;
     data['seller_id'] = this.sellerId;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    data['category_image'] = this.categoryImage;
+    if (this.attributes != null) {
+      data['attributes'] = this.attributes!.toJson();
+    }
+    return data;
+  }
+}
+
+class Attributes {
+  var id;
+  String? title;
+  var description;
+  String? attributeSetCode;
+  String? attributeIds;
+  var isActive;
+  var isDeleted;
+  String? createdAt;
+  String? updatedAt;
+
+  Attributes(
+      {this.id,
+        this.title,
+        this.description,
+        this.attributeSetCode,
+        this.attributeIds,
+        this.isActive,
+        this.isDeleted,
+        this.createdAt,
+        this.updatedAt});
+
+  Attributes.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    description = json['description'];
+    attributeSetCode = json['attribute_set_code'];
+    attributeIds = json['attribute_ids'];
+    isActive = json['is_active'];
+    isDeleted = json['is_deleted'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['description'] = this.description;
+    data['attribute_set_code'] = this.attributeSetCode;
+    data['attribute_ids'] = this.attributeIds;
+    data['is_active'] = this.isActive;
+    data['is_deleted'] = this.isDeleted;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     return data;
@@ -315,6 +382,73 @@ class Product {
 
 
 
+class Specification {
+  var id;
+  var productId;
+  String? metaKey;
+  String? metaValue;
+  String? createdAt;
+  String? updatedAt;
+  SpecificationMetaValues? metaValues;
+
+  Specification(
+      {this.id,
+        this.productId,
+        this.metaKey,
+        this.metaValue,
+        this.createdAt,
+        this.updatedAt,
+        this.metaValues});
+
+  Specification.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    productId = json['product_id'];
+    metaKey = json['meta_key'];
+    metaValue = json['meta_value'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    metaValues = json['meta_values'] != null
+        ? new SpecificationMetaValues.fromJson(json['meta_values'])
+        : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['product_id'] = this.productId;
+    data['meta_key'] = this.metaKey;
+    data['meta_value'] = this.metaValue;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    if (this.metaValues != null) {
+      data['meta_values'] = this.metaValues!.toJson();
+    }
+    return data;
+  }
+}
+
+class SpecificationMetaValues {
+  var mobileColor;
+  var mobileDisplay;
+  var mobileNetwork;
+
+  SpecificationMetaValues({this.mobileColor, this.mobileDisplay, this.mobileNetwork});
+
+  SpecificationMetaValues.fromJson(Map<String, dynamic> json) {
+    mobileColor = json['mobile_color'];
+    mobileDisplay = json['mobile_display'];
+    mobileNetwork = json['mobile_network'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['mobile_color'] = this.mobileColor;
+    data['mobile_display'] = this.mobileDisplay;
+    data['mobile_network'] = this.mobileNetwork;
+    return data;
+  }
+}
+
 
 class ProductShipping {
   var id;
@@ -445,8 +579,8 @@ class OutsideOrigin {
 
 
 class MiscellaneousInfo {
-  int? id;
-  int? productId;
+  var id;
+  var productId;
   String? metaKey;
   String? metaValue;
   String? createdAt;

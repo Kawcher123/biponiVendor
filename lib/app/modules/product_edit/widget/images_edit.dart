@@ -153,7 +153,7 @@ class ImagesEdit extends GetView<ProductEditController> {
                                       borderRadius: BorderRadius.circular(10)
                                   ),
                                   child: Text(
-                                    controller.galleryImageList.isEmpty?  'Select File':'Select More',
+                                    controller.galleryImageList.isEmpty? 'Select File':'Select More',
                                     style: TextStyle(
                                         color: Colors.white
                                     ),
@@ -196,11 +196,15 @@ class ImagesEdit extends GetView<ProductEditController> {
                                       );
                                     }),
                                   ),
-                                ):  ClipRRect(
+                                ):
+                                  ClipRRect(
                                   borderRadius: BorderRadius.circular(15),
-                                  child: Image(
-                                    width:Get.size.width,
-                                    image: AssetImage('assets/images/mouse.jpeg'),
+                                  child: CachedNetworkImage(
+                                    width: _size.width,
+                                    imageUrl: ApiClient.imageHead+controller.editProductData.value.product!.galleryImages!,
+                                    progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                        Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
+                                    errorWidget: (context, url, error) => Icon(Icons.error),
                                     fit: BoxFit.fill,
                                   ),
                                 ),

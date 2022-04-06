@@ -7,6 +7,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 class GeneralEdit extends GetView<ProductEditController> {
 
+  final _size = Get.size;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -248,30 +249,16 @@ class GeneralEdit extends GetView<ProductEditController> {
                                   child: Switch.adaptive(
                                     inactiveTrackColor: Colors.grey,
                                     activeColor: Colors.greenAccent,
-                                    value: controller.editProductData.value.product!.isActive!,
+                                    value: controller.generalStatus.value,
                                     onChanged: (val){
                                       controller.generalStatus.value=val;
-                                      // controller.statusActive.value=val==true?'1':'0';
+                                      controller.statusActive.value=val==true?'1':'0';
                                     },
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CommonWidgets.customButton(
-                                color: secondaryColor,
-                                text: 'Confirm',
-                                press: (){
-                                  if( controller.generalEditFormKey.currentState!.validate())
-                                  {
-                                    controller.generalEditFormKey.currentState!.save();
-                                    Get.back();
-                                  }
-                                }
-                            ),
-                          )
                         ],
                       ),
                     ),
@@ -280,7 +267,34 @@ class GeneralEdit extends GetView<ProductEditController> {
               ),
             ),
           );
-        })
+        }),
+      bottomNavigationBar: GestureDetector(
+        onTap: (){
+          if( controller.generalEditFormKey.currentState!.validate())
+          {
+            controller.generalEditFormKey.currentState!.save();
+            Get.back();
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            height: _size.width*.15,
+            decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20)
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              'Confirm',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

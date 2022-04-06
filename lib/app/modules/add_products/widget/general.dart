@@ -249,6 +249,7 @@ class General extends GetView<AddProductsController> {
                                   value: controller.generalStatus.value,
                                   onChanged: (val){
                                     controller.generalStatus.value=val;
+                                    controller.statusActive.value=val==true?'1':'0';
                                   },
                                 ),
                               ),

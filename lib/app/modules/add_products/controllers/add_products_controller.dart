@@ -30,10 +30,15 @@ class AddProductsController extends GetxController {
 
   ///switch
   final generalStatus = false.obs;
+  final statusActive = ''.obs;
   final freeShippingStatus1 = false.obs;
+  final insideAllowFreeShipping=''.obs;
   final freeShippingStatus2 = false.obs;
+  final outsideAllowFreeShipping = ''.obs;
   final codStatus = false.obs;
+  final cashOnDelivery = ''.obs;
   final comStatus = true.obs;
+  final changeOfMind = ''.obs;
 
   ///attributeSet
   final attributeList = <AttributeSetModel>[].obs;
@@ -225,6 +230,7 @@ class AddProductsController extends GetxController {
       stockAvailability.value,
       productData.value.sku??'',
       productData.value.slug??'',
+      attributeId.value,
       productData.value.specialPrice??'',
       specialPriceType.value,
       productData.value.specialPriceStart??'',
@@ -232,20 +238,20 @@ class AddProductsController extends GetxController {
       defaultImage.value,
       galleryImageList,
       productData.value.qty??'',
-      generalStatus.value.toString(),
+      statusActive.value,
       productData.value.maxCartQty??'',
       productData.value.metaTitle??'',
       productData.value.metaKeyword??'',
       productData.value.metaDescription??'',
-      freeShippingStatus1.value.toString(),
+      insideAllowFreeShipping.value,
       productData.value.shippingOptionInsideOriginInsideStandardShipping!,
       productData.value.shippingOptionInsideOriginInsideExpressShipping??'',
-      freeShippingStatus2.value.toString(),
+      outsideAllowFreeShipping.value,
       productData.value.shippingOptionOutsideOriginOutsideStandardShipping!,
       productData.value.shippingOptionOutsideOriginOutsideExpressShipping??'',
-      codStatus.value.toString(),
+      cashOnDelivery.value,
       productData.value.miscellaneousInformationWarrentyPeriod??'',
-      comStatus.value.toString(),
+      changeOfMind.value,
       productType.value,
       specificationMobileColor.value,
       productData.value.specificationMobileDisplay??'',
