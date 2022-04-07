@@ -93,12 +93,70 @@ class Inventory extends GetView<AddProductsController>{
                                   onChanged: (input){
                                     controller.inventoryManagement.value=input!;
                                   },
-                                  selectedItem: controller.inventoryManagement.value
+                                  selectedItem: 'Track Inventory'
                               ),
                             ],
                           ),
                         ),
-                        controller.inventoryManagement.value=='Track Inventory'? buildWidget() : Wrap(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Quantity',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(height: 8,),
+                              TextFormField(
+                                keyboardType: TextInputType.text,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                ),
+                                validator: (input) {
+                                  return input == null || input.isEmpty? "The Field is Required": null ;
+                                },
+                                initialValue: controller.productData.value.qty,
+                                onSaved: (input){
+                                  controller.productData.value.qty=input;
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Stock Availability',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(height: 8,),
+                              DropdownSearch<String>(
+                                  mode: Mode.MENU,
+                                  showFavoriteItems: true,
+                                  items: [ 'In Stock','Out of Stock',],
+                                  onSaved: (input){
+                                    controller.stockAvailability.value=input!;
+                                  },
+                                  selectedItem: controller.stockAvailability.value
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        //controller.inventoryManagement.value=='Track Inventory'? buildWidget() : Wrap(),
+
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
@@ -151,63 +209,66 @@ class Inventory extends GetView<AddProductsController>{
       })
     );
   }
-  buildWidget(){
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Quantity',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black,
-                ),
-              ),
-              SizedBox(height: 8,),
-              TextFormField(
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                ),
-                initialValue: controller.productData.value.qty,
-                onSaved: (input){
-                  controller.productData.value.qty=input;
-                },
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Stock Availability',
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black,
-                ),
-              ),
-              SizedBox(height: 8,),
-              DropdownSearch<String>(
-                  mode: Mode.MENU,
-                  showFavoriteItems: true,
-                  items: [ 'In Stock','Out of Stock',],
-                  onSaved: (input){
-                    controller.stockAvailability.value=input!;
-                  },
-                  selectedItem: controller.stockAvailability.value
-              ),
-            ],
-          ),
-        )
-      ],
-    );
-  }
+  // buildWidget(){
+  //   return Column(
+  //     children: [
+  //       Padding(
+  //         padding: const EdgeInsets.all(8.0),
+  //         child: Column(
+  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //           crossAxisAlignment: CrossAxisAlignment.start,
+  //           children: [
+  //             Text(
+  //               'Quantity',
+  //               style: TextStyle(
+  //                 fontSize: 15,
+  //                 color: Colors.black,
+  //               ),
+  //             ),
+  //             SizedBox(height: 8,),
+  //             TextFormField(
+  //               keyboardType: TextInputType.text,
+  //               decoration: InputDecoration(
+  //                 border: OutlineInputBorder(),
+  //               ),
+  //               validator: (input) {
+  //                 return input == null || input.isEmpty? "The Field is Required": null ;
+  //               },
+  //               initialValue: controller.productData.value.qty,
+  //               onSaved: (input){
+  //                 controller.productData.value.qty=input;
+  //               },
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //       Padding(
+  //         padding: const EdgeInsets.all(8.0),
+  //         child: Column(
+  //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //           crossAxisAlignment: CrossAxisAlignment.start,
+  //           children: [
+  //             Text(
+  //               'Stock Availability',
+  //               style: TextStyle(
+  //                 fontSize: 15,
+  //                 color: Colors.black,
+  //               ),
+  //             ),
+  //             SizedBox(height: 8,),
+  //             DropdownSearch<String>(
+  //                 mode: Mode.MENU,
+  //                 showFavoriteItems: true,
+  //                 items: [ 'In Stock','Out of Stock',],
+  //                 onSaved: (input){
+  //                   controller.stockAvailability.value=input!;
+  //                 },
+  //                 selectedItem: controller.stockAvailability.value
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 }

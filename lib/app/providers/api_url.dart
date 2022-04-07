@@ -2,9 +2,9 @@ import 'package:get/get.dart';
 
 class ApiClient {
   String api_token = '';
-  static String baseUrl = 'http://192.168.1.248:8000/';
+  static String baseUrl = 'https://admin.biponi.com/';
 
-  static String imageHead = 'http://192.168.1.248:8000/';
+  static String imageHead = 'https://admin.biponi.com/';
 
   static String registration = '${baseUrl}api/v1/seller/seller-register';
 
@@ -39,4 +39,10 @@ class ApiClient {
   static String categories = '${baseUrl}api/v1/categories';
 
   static String subCategories = '${baseUrl}api/v1/get-sub-category';
+
+
+  static String editProduct = '${baseUrl}api/v1/seller/product/edit/';
+
+
+  static String saveeditedProduct = '${baseUrl}api/v1/seller/product/update/';
 }

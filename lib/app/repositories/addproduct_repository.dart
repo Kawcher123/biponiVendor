@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:biponi_vendor/app/models/attributeSet_model.dart';
 import 'package:biponi_vendor/app/models/brand_model.dart';
 import 'package:biponi_vendor/app/models/category_model.dart';
@@ -21,35 +19,34 @@ class AddProductRepository {
   String inStock,
   String sku,
   String slug,
-  //String isApproximate,
-  //String brandTitle,
-  //String attributeSetId,
-  //String categoryTitle,
+  String attributeSetId,
   String specialPrice,
   String specialPriceType,
   String specialPriceStart,
   String specialPriceEnd,
   //String manageStock,
-  String qty,
-  String isActive,
   var defaultImage,
   var galleryImage,
+  String qty,
   //String viewed,
-  //String isActive,
+  String isActive,
   String maxCartQty,
   String metaTitle,
   String metaKeyword,
   String metaDescription,
-  String insideAllowFreeShipping,
+  String shippingOptionInsideOriginInsideAllowFreeShipping,
   String insideStandardShipping,
   String insideExpressShipping,
-  String outsideAllowFreeShipping,
+  String shippingOptionOutsideOriginOutsideAllowFreeShipping,
   String outsideStandardShipping,
   String outsideExpressShipping,
   String miscellaneousInformationAllowCashOnDelivery,
   String warrentyPeriod,
   String miscellaneousInformationAllowChangeOfMind,
   String productType,
+      String specificationMobileColor,
+      String specificationMobileDisplay,
+      String specificationMobileNetwork,
       )async {
 
     Map<String,String> product = {
@@ -67,33 +64,34 @@ class AddProductRepository {
     'slug': slug,
     'is_approximate':'',
     'brand_title': '',
-    'attribute_set_id':'',
+    'attribute_set_id': attributeSetId,
     'category_title': '',
     'special_price': specialPrice,
     'special_price_type': specialPriceType,
-      'special_price_start': '',
-      'special_price_end': '',
-    'qty': qty,
-    'is_active': isActive,
+    'special_price_start': '',
+    'special_price_end': '',
     'default_image': '',
     'gallery_images': '',
     'manage_stock':'',
+    'qty': qty,
     'viewed':'',
-    'is_active':'',
+    'is_active': isActive,
     'max_cart_qty': maxCartQty,
     'meta_title': metaTitle,
     'meta_keyword': metaKeyword,
     'meta_description': metaDescription,
-    'shipping_option[inside_origin][inside_allow_free_shipping]': insideAllowFreeShipping,
+    'shipping_option[inside_origin][inside_allow_free_shipping]': shippingOptionInsideOriginInsideAllowFreeShipping,
     'shipping_option[inside_origin][inside_standard_shipping]': insideStandardShipping,
     'shipping_option[inside_origin][inside_express_shipping]': insideExpressShipping,
-    'shipping_option[outside_origin][outside_allow_free_shipping]': outsideAllowFreeShipping,
+    'shipping_option[outside_origin][outside_allow_free_shipping]': shippingOptionOutsideOriginOutsideAllowFreeShipping,
     'shipping_option[outside_origin][outside_standard_shipping]': outsideStandardShipping,
     'shipping_option[outside_origin][outside_express_shipping]': outsideExpressShipping,
     'miscellaneous_information[allow_cash_on_delivery]': miscellaneousInformationAllowCashOnDelivery,
     'miscellaneous_information[warrenty_period]': warrentyPeriod,
     'miscellaneous_information[allow_change_of_mind]': miscellaneousInformationAllowChangeOfMind,
-
+      'specification[mobile_color]': specificationMobileColor,
+      'specification[mobile_display]': specificationMobileDisplay,
+      'specification[mobile_network]': specificationMobileNetwork,
     };
 
     String token = Get.find<AuthService>().user.value.token!;
@@ -104,9 +102,9 @@ class AddProductRepository {
 
     APIManager _manager = APIManager();
 
-    final response = await _manager.postAPICallWithHeader(ApiClient.addProduct, product, headers);
+    // final response = await _manager.postAPICallWithHeader(ApiClient.addProduct, product, headers);
 
-    // final response = await _manager.multipartPostAddProductAPI(ApiClient.addProduct, product, defaultImage, galleryImage, headers);
+    final response = await _manager.multipartPostAddProductAPI(ApiClient.addProduct, product, defaultImage, galleryImage, headers,);
 
     print('addProduct:$response');
 
@@ -156,8 +154,5 @@ class AddProductRepository {
 
     return List.from(response.map((item) => CategoryModel.fromJson(item)));
   }
-
-
-
 
 }

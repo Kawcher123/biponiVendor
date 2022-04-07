@@ -99,7 +99,7 @@ class MessagesView extends GetView<MessagesController> {
                                                         ),
                                                       )
                                                     : CachedNetworkImage(
-                                                        imageUrl: list[index]["fromuserphoto"],
+                                                        imageUrl: list[index]["fromuserphoto"]??'',
                                                         placeholder: (context, url) => Padding(
                                                           padding: const EdgeInsets.all(5.0),
                                                           child: Image(

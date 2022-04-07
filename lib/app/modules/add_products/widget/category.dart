@@ -94,16 +94,17 @@ class Category extends GetView<AddProductsController> {
                                         width: _size.width*.32,
                                         alignment: Alignment.center,
                                         decoration: BoxDecoration(
-                                            color: Colors.blue.shade600,
+                                            color: controller.categoryId.value==controller.categoryList[index].id!.toString()? Colors.blue.shade600:Colors.grey,
                                             borderRadius: BorderRadius.circular(5)
                                         ),
                                         child: Text(
-                                          'Select',
+                                          controller.categoryId.value==controller.categoryList[index].id!.toString()? 'Selected': 'Select',
                                           style: TextStyle(
                                             fontSize: 15,
                                             color: Colors.white,
                                           ),
-                                        ),),
+                                        ),
+                                      ),
                                     ),
                                     SizedBox(width: 10,),
                                     GestureDetector(

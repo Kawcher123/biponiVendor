@@ -66,19 +66,18 @@ class AdditionalOptions extends GetView<AddProductsController>{
                                     //fontWeight: FontWeight.bold
                                   ),
                                 ),
-                                FlutterSwitch(
-                                  width: 80,
-                                  height: 40,
-                                  valueFontSize: 20.0,
-                                  toggleSize: 45.0,
-                                  value: controller.freeShippingStatus1.value,
-                                  borderRadius: 20.0,
-                                  padding: 8.0,
-                                  showOnOff: false,
-                                  activeColor: Colors.greenAccent,
-                                  onToggle: (val) {
-                                    controller.freeShippingStatus1.value=val;
-                                  },
+                                Transform.scale(
+                                  scale: 1.2,
+                                  child: Switch.adaptive(
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.greenAccent,
+                                    value: controller.freeShippingStatus1.value,
+                                    onChanged: (val){
+                                      controller.freeShippingStatus1.value=val;
+                                      controller.insideAllowFreeShipping.value=val==true?'on':'off';
+                                      print( controller.insideAllowFreeShipping.value);
+                                    },
+                                  ),
                                 ),
                               ],
                             ),
@@ -163,19 +162,17 @@ class AdditionalOptions extends GetView<AddProductsController>{
                                     //fontWeight: FontWeight.bold
                                   ),
                                 ),
-                                FlutterSwitch(
-                                  width: 80,
-                                  height: 40,
-                                  valueFontSize: 20.0,
-                                  toggleSize: 45.0,
-                                  value: controller.freeShippingStatus2.value,
-                                  borderRadius: 20.0,
-                                  padding: 8.0,
-                                  showOnOff: false,
-                                  activeColor: Colors.greenAccent,
-                                  onToggle: (val) {
-                                    controller.freeShippingStatus2.value=val;
-                                  },
+                                Transform.scale(
+                                  scale: 1.2,
+                                  child: Switch.adaptive(
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.greenAccent,
+                                    value: controller.freeShippingStatus2.value,
+                                    onChanged: (val){
+                                      controller.freeShippingStatus2.value=val;
+                                      controller.outsideAllowFreeShipping.value=val==true?'on':'off';
+                                    },
+                                  ),
                                 ),
                               ],
                             ),
@@ -259,19 +256,17 @@ class AdditionalOptions extends GetView<AddProductsController>{
                                     //fontWeight: FontWeight.bold
                                   ),
                                 ),
-                                FlutterSwitch(
-                                  width: 80,
-                                  height: 40,
-                                  valueFontSize: 20.0,
-                                  toggleSize: 45.0,
-                                  value: controller.codStatus.value,
-                                  borderRadius: 20.0,
-                                  padding: 8.0,
-                                  showOnOff: false,
-                                  activeColor: Colors.greenAccent,
-                                  onToggle: (val) {
-                                    controller.codStatus.value=val;
-                                  },
+                                Transform.scale(
+                                  scale: 1.2,
+                                  child: Switch.adaptive(
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.greenAccent,
+                                    value: controller.codStatus.value,
+                                    onChanged: (val){
+                                      controller.codStatus.value=val;
+                                      controller.cashOnDelivery.value=val==true?'on':'off';
+                                    },
+                                  ),
                                 ),
                               ],
                             ),
@@ -308,19 +303,17 @@ class AdditionalOptions extends GetView<AddProductsController>{
                                     //fontWeight: FontWeight.bold
                                   ),
                                 ),
-                                FlutterSwitch(
-                                  width: 80,
-                                  height: 40,
-                                  valueFontSize: 20.0,
-                                  toggleSize: 45.0,
-                                  value: controller.comStatus.value,
-                                  borderRadius: 20.0,
-                                  padding: 8.0,
-                                  showOnOff: false,
-                                  activeColor: Colors.greenAccent,
-                                  onToggle: (val) {
-                                    controller.comStatus.value=val;
-                                  },
+                                Transform.scale(
+                                  scale: 1.2,
+                                  child: Switch.adaptive(
+                                    inactiveTrackColor: Colors.grey,
+                                    activeColor: Colors.greenAccent,
+                                    value: controller.comStatus.value,
+                                    onChanged: (val){
+                                        controller.comStatus.value=val;
+                                        controller.changeOfMind.value=val==true?'on':'off';
+                                      },
+                                  ),
                                 ),
                               ],
                             ),

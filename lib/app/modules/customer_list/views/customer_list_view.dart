@@ -55,56 +55,45 @@ class CustomerListView extends GetView<CustomerListController> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
-                                  flex: 270,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      alignment: Alignment.centerLeft,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            '${controller.customerList.value.vendorCustomer![index].name}',
-                                            style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.black),
-                                          ),
-                                          SizedBox(height: 5,),
-                                          Text(
-                                            'Customer ID #${controller.customerList.value.vendorCustomer![index].id}',
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color:Colors.black),
-                                          ),
-                                          Text(
-                                            '${controller.customerList.value.vendorCustomer![index].email}',
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color: Colors.black),
-                                          ),
-                                          Text(
-                                            '${controller.customerList.value.vendorCustomer![index].phone}',
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                color:Colors.black),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )),
-
-                              Expanded(
-                                  flex: 200,
+                                  flex: 300,
                                   child: Container(
+                                    alignment: Alignment.centerLeft,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        //SizedBox(height: 27,),
-                                        //Text('Male '),
-                                        Text('${controller.customerList.value.vendorCustomer![index].address!.shippingAddress}'),
-                                        //Text('Singapore 2222'),
+                                        Text(
+                                          '${controller.customerList.value.vendorCustomer![index].name}',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black),
+                                        ),
+                                        SizedBox(height: 5,),
+                                        Text(
+                                          'Customer ID #${controller.customerList.value.vendorCustomer![index].id}',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color:Colors.black),
+                                        ),
+                                        Text(
+                                          'Email: ${controller.customerList.value.vendorCustomer![index].email}',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.black),
+                                        ),
+                                        Text(
+                                          'Phone: ${controller.customerList.value.vendorCustomer![index].phone}',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color:Colors.black),
+                                        ),
+                                        Text(
+                                          'Address: ${controller.customerList.value.vendorCustomer![index].address!.shippingAddress}',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              // fontWeight: FontWeight.bold,
+                                              color: Colors.black),
+                                        ),
                                       ],
                                     ),
                                   )),
@@ -114,25 +103,34 @@ class CustomerListView extends GetView<CustomerListController> {
                                   child: Container(
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
+                                      //crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Container(
-                                            decoration: BoxDecoration(
-                                              color: Get.theme.primaryColor,
-                                              shape: BoxShape.circle,),
-
+                                            // decoration: BoxDecoration(
+                                            //   borderRadius: BorderRadius.circular(5),
+                                            //   color: Get.theme.primaryColor,
+                                            //   shape: BoxShape.rectangle,),
                                             child: Padding(
                                               padding: const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                '${controller.customerList.value.vendorCustomer![index].totalOrders}',
-                                                style: TextStyle(color: Colors.white),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    'Total Orders',
+                                                    style: TextStyle(color: Colors.black,fontSize: 15),
+                                                  ),
+                                                  Text(
+                                                    '#${controller.customerList.value.vendorCustomer![index].totalOrders}',
+                                                    style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 15),
+                                                  ),
+                                                ],
                                               ),
                                             )
                                         ),
-                                        SizedBox(height: 5,),
+                                        //SizedBox(height: 5,),
                                         Text(
-                                          '${controller.customerList.value.vendorCustomer![index].totalOrderAmount}',
+                                          '${controller.customerList.value.vendorCustomer![index].totalOrderAmount} BDT',
                                           style: TextStyle(
-                                              fontSize: 16, fontWeight: FontWeight.bold),
+                                              fontSize: 16, fontWeight: FontWeight.bold,color: Colors.black),
                                         ),
 
                                       ],

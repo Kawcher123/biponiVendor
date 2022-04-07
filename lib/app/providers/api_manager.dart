@@ -210,62 +210,72 @@ class APIManager {
   }
 
   ///AddProduct Api
-  // Future<dynamic> multipartPostAddProductAPI(String url, Map<String, String> param, var defaultImage, var galleryImage, Map<String, String> headerData) async {
-  //   print("Calling API: $url");
-  //   print("Calling parameters: $param");
-  //
-  //   var responseJson;
-  //   try {
-  //     var request = http.MultipartRequest('POST', Uri.parse(url));
-  //     request.fields.addAll(param);
-  //
-  //     ///defaultProductImage
-  //     String fileName1 = defaultImage.path.split("/").last;
-  //     var stream1 = http.ByteStream(defaultImage.openRead());
-  //
-  //     stream1.cast();
-  //
-  //     print(stream1);
-  //     // get file length
-  //
-  //     var length1 = await defaultImage.length(); //imageFile is your image file
-  //
-  //     // multipart that takes file
-  //     var multipartFileSign1 = await http.MultipartFile('default_image', stream1, length1, filename: fileName1);
-  //
-  //     request.files.add(await multipartFileSign1);
-  //
-  //     ///productImageGallery
-  //     String fileName2 = galleryImage.path.split("/").last;
-  //     var stream2 = http.ByteStream(galleryImage.openRead());
-  //
-  //     stream2.cast();
-  //
-  //     print(stream2);
-  //     // get file length
-  //
-  //     var length2 = await galleryImage.length(); //imageFile is your image file
-  //
-  //     // multipart that takes file
-  //     var multipartFileSign2 = await http.MultipartFile('gallery_images', stream2, length2, filename: fileName2);
-  //
-  //     request.files.add(await multipartFileSign2);
-  //
-  //
-  //     request.headers.addAll(headerData);
-  //     print('fngdfkngdf');
-  //     http.StreamedResponse streamedResponse = await request.send();
-  //
-  //     var response = await http.Response.fromStream(streamedResponse);
-  //
-  //     print(response.statusCode);
-  //     responseJson = _response(response);
-  //     print(responseJson);
-  //   } on SocketException {
-  //     throw FetchDataException('No Internet connection');
-  //   }
-  //   return responseJson;
-  // }
+  Future<dynamic> multipartPostAddProductAPI(String url, Map<String, String> param, File defaultImage, var galleryImage, Map<String, String> headerData) async {
+    print("Calling API: $url");
+    print("Calling parameters: $param");
+
+    var responseJson;
+    try {
+      var request = http.MultipartRequest('POST', Uri.parse(url));
+      request.fields.addAll(param);
+
+      if(defaultImage.isAbsolute){
+        ///defaultProductImage
+        String fileName1 = defaultImage.path.split("/").last;
+        var stream1 = http.ByteStream(defaultImage.openRead());
+
+        stream1.cast();
+
+        print(stream1);
+        // get file length
+
+        var length1 =
+            await defaultImage.length(); //imageFile is your image file
+
+        // multipart that takes file
+        var multipartFileSign1 = await http.MultipartFile(
+            'default_image', stream1, length1,
+            filename: fileName1);
+
+        request.files.add(await multipartFileSign1);
+      }
+
+      if(galleryImage.isNotEmpty){
+        ///productImageGallery
+        for (var item in galleryImage) {
+          String fileName2 = item.path.split("/").last;
+          var stream2 = http.ByteStream(item.openRead());
+
+          stream2.cast();
+
+          print(stream2);
+          // get file length
+
+          var length2 = await item.length(); //imageFile is your image file
+
+          // multipart that takes file
+          var multipartFileSign2 = await http.MultipartFile(
+              'gallery_images[]', stream2, length2,
+              filename: fileName2);
+
+          request.files.add(await multipartFileSign2);
+        }
+      }
+
+      request.headers.addAll(headerData);
+      print('fngdfkngdf');
+      http.StreamedResponse streamedResponse = await request.send();
+
+      var response = await http.Response.fromStream(streamedResponse);
+
+      print(response.body);
+      responseJson = _response(response);
+      print(responseJson);
+    } on SocketException {
+      throw FetchDataException('No Internet connection');
+    }
+    return responseJson;
+  }
 
   Future<dynamic> get(String url) async {
     print("Calling API: $url");

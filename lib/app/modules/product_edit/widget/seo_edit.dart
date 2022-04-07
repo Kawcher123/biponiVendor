@@ -1,11 +1,11 @@
 import 'package:biponi_vendor/app/commons/colors.dart';
 import 'package:biponi_vendor/app/commons/common_widgets.dart';
-import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_controller.dart';
+import 'package:biponi_vendor/app/modules/product_edit/controllers/product_edit_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
-class Seo extends GetView<AddProductsController>{
+class SeoEdit extends GetView<ProductEditController> {
+
+  final _size=Get.size;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class Seo extends GetView<AddProductsController>{
       ),
       body: Obx((){
         return Form(
-          key: controller.seoFormKey,
+          key: controller.seoEditFormKey,
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Padding(
@@ -44,33 +44,33 @@ class Seo extends GetView<AddProductsController>{
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: Column (
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     crossAxisAlignment: CrossAxisAlignment.start,
-                        //     children: [
-                        //       Text(
-                        //         'Slug',
-                        //         style: TextStyle(
-                        //           fontSize: 15,
-                        //           color: Colors.black,
-                        //         ),
-                        //       ),
-                        //       SizedBox(height: 8,),
-                        //       TextFormField(
-                        //         keyboardType: TextInputType.text,
-                        //         decoration: InputDecoration(
-                        //           border: OutlineInputBorder(),
-                        //         ),
-                        //         initialValue: controller.productData.value.slug,
-                        //         onChanged: (input){
-                        //           controller.productData.value.slug=input;
-                        //         },
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column (
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Slug',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              SizedBox(height: 8,),
+                              TextFormField(
+                                keyboardType: TextInputType.none,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                ),
+                                initialValue: controller.editProductData.value.product!.slug,
+                                onChanged: (input){
+                                  controller.editProductData.value.product!.slug=input;
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
@@ -90,9 +90,9 @@ class Seo extends GetView<AddProductsController>{
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),
-                                initialValue: controller.productData.value.metaTitle,
+                                initialValue: '',
                                 onChanged: (input){
-                                  controller.productData.value.metaTitle=input;
+                                  //controller.productData.value.metaTitle=input;
                                 },
                               ),
                             ],
@@ -117,9 +117,9 @@ class Seo extends GetView<AddProductsController>{
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),
-                                initialValue: controller.productData.value.metaKeyword,
+                                //initialValue: controller.productData.value.metaKeyword,
                                 onChanged: (input){
-                                  controller.productData.value.metaKeyword=input;
+                                  //controller.productData.value.metaKeyword=input;
                                 },
                               ),
                             ],
@@ -146,28 +146,28 @@ class Seo extends GetView<AddProductsController>{
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),
-                                initialValue: controller.productData.value.metaDescription,
+                                //initialValue: controller.productData.value.metaDescription,
                                 onChanged: (input){
-                                  controller.productData.value.metaDescription=input;
+                                  //controller.productData.value.metaDescription=input;
                                 },
                               ),
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CommonWidgets.customButton(
-                              color: secondaryColor,
-                              text: 'Confirm',
-                              press: (){
-                                if( controller.seoFormKey.currentState!.validate())
-                                {
-                                  controller.seoFormKey.currentState!.save();
-                                  Get.back();
-                                }
-                              }
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.all(8.0),
+                        //   child: CommonWidgets.customButton(
+                        //       color: secondaryColor,
+                        //       text: 'Confirm',
+                        //       press: (){
+                        //         if( controller.seoEditFormKey.currentState!.validate())
+                        //         {
+                        //           controller.seoEditFormKey.currentState!.save();
+                        //           Get.back();
+                        //         }
+                        //       }
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -177,6 +177,33 @@ class Seo extends GetView<AddProductsController>{
           ),
         );
       }),
+      bottomNavigationBar: GestureDetector(
+        onTap: (){
+          if( controller.seoEditFormKey.currentState!.validate())
+          {
+            controller.seoEditFormKey.currentState!.save();
+            Get.back();
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            height: _size.width*.15,
+            decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(20)
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              'Confirm',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

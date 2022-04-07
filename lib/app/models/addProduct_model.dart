@@ -38,6 +38,9 @@ class AddProductModel {
   String? miscellaneousInformationWarrentyPeriod;
   String? miscellaneousInformationAllowChangeOfMind;
   String? productType;
+  String? specificationMobileColor;
+  String? specificationMobileDisplay;
+  String? specificationMobileNetwork;
 
   AddProductModel(
       {this.title,
@@ -78,7 +81,10 @@ class AddProductModel {
         this.miscellaneousInformationAllowCashOnDelivery,
         this.miscellaneousInformationWarrentyPeriod,
         this.miscellaneousInformationAllowChangeOfMind,
-        this.productType,});
+        this.productType,
+        this.specificationMobileColor,
+        this.specificationMobileDisplay,
+        this.specificationMobileNetwork,});
 
   AddProductModel.fromJson(Map<String, dynamic> json) {
     title = json['title'];
@@ -129,6 +135,9 @@ class AddProductModel {
     miscellaneousInformationAllowChangeOfMind =
     json['miscellaneous_information[allow_change_of_mind]'];
     productType = json['product_type'];
+    specificationMobileColor = json['specification[mobile_color]'];
+    specificationMobileDisplay = json['specification[mobile_display]'];
+    specificationMobileNetwork = json['specification[mobile_network]'];
   }
 
   Map<String, dynamic> toJson() {
@@ -181,6 +190,9 @@ class AddProductModel {
     data['miscellaneous_information[allow_change_of_mind]'] =
         this.miscellaneousInformationAllowChangeOfMind;
     data['product_type'] = this.productType;
+    data['specification[mobile_color]'] = this.specificationMobileColor;
+    data['specification[mobile_display]'] = this.specificationMobileDisplay;
+    data['specification[mobile_network]'] = this.specificationMobileNetwork;
     return data;
   }
 }
