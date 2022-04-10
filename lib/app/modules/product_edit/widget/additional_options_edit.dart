@@ -99,7 +99,7 @@ class AdditionalOptionsEdit extends GetView<ProductEditController> {
                                 validator: (input) {
                                   return input == null || input.isEmpty? "The Field is Required": null ;
                                 },
-                                initialValue: controller.editProductData.value.productShipping!.metaValues?.insideOrigin!.insideStandardShipping,
+                                initialValue: controller.editProductData.value.productShipping?.metaValues?.insideOrigin!.insideStandardShipping,
                                 onSaved: (input){
                                   controller.editProductData.value.productShipping!.metaValues!.insideOrigin!.insideStandardShipping=input;
                                 },
@@ -120,7 +120,7 @@ class AdditionalOptionsEdit extends GetView<ProductEditController> {
                               TextFormField(
                                 keyboardType: TextInputType.text,
                                 validator: (input){},
-                                initialValue: controller.editProductData.value.productShipping!.metaValues?.insideOrigin!.insideExpressShipping,
+                                initialValue: controller.editProductData.value.productShipping?.metaValues?.insideOrigin!.insideExpressShipping,
                                 onSaved: (input){
                                   controller.editProductData.value.productShipping!.metaValues!.insideOrigin!.insideExpressShipping=input;
                                 },
@@ -191,7 +191,7 @@ class AdditionalOptionsEdit extends GetView<ProductEditController> {
                                 validator: (input) {
                                   return input == null || input.isEmpty? "The Field is Required": null ;
                                 },
-                                initialValue: controller.editProductData.value.productShipping!.metaValues?.outsideOrigin!.outsideStandardShipping,
+                                initialValue: controller.editProductData.value.productShipping?.metaValues?.outsideOrigin!.outsideStandardShipping,
                                 onSaved: (input){
                                   controller.editProductData.value.productShipping!.metaValues!.outsideOrigin!.outsideStandardShipping=input;
                                 },
@@ -212,7 +212,7 @@ class AdditionalOptionsEdit extends GetView<ProductEditController> {
                               TextFormField(
                                 keyboardType: TextInputType.text,
                                 validator: (input){},
-                                initialValue: controller.editProductData.value.productShipping!.metaValues?.outsideOrigin!.outsideExpressShipping,
+                                initialValue: controller.editProductData.value.productShipping?.metaValues?.outsideOrigin!.outsideExpressShipping,
                                 onSaved: (input){
                                   controller.editProductData.value.productShipping!.metaValues!.outsideOrigin!.outsideExpressShipping=input;
                                 },
@@ -281,7 +281,7 @@ class AdditionalOptionsEdit extends GetView<ProductEditController> {
                               TextFormField(
                                 keyboardType: TextInputType.text,
                                 validator: (input){},
-                                initialValue: controller.editProductData.value.productMiscellaneousInfo!.metaValues?.warrentyPeriod,
+                                initialValue: controller.editProductData.value.productMiscellaneousInfo?.metaValues?.warrentyPeriod,
                                 onSaved: (input){
                                   controller.editProductData.value.productMiscellaneousInfo!.metaValues!.warrentyPeriod=input;
                                 },
