@@ -3,6 +3,7 @@ import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/commons/text_field_widget.dart';
 import 'package:biponi_vendor/app/modules/root/controllers/root_controller.dart';
 import 'package:biponi_vendor/app/routes/app_pages.dart';
+import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,46 +42,62 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
                 Text(
-                  "Sign in with your email and password  \nor continue with social media",
+                  "Sign in with your email and password",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 60),
-                TextFieldWidget(
-                  labelText: "Phone",
-                  hintText: "+880xxxxxx",
-                  keyboardType: TextInputType.number,
-                  onChanged: (input) {
-                    controller.vendorData.value.phone = input;
-                  },
-                  validator: (input) {
-                    return input!.length < 11 ? 'The phone cannot be less than 11 characters.' : null;
-                  },
-                  suffixIcon: Icon(CupertinoIcons.phone),
-                ),
+                Obx(() {
+                  return TextFieldWidget(
+                    labelText: "Phone",
+                    hintText: "+880xxxxxx",
+                    keyboardType: TextInputType.number,
+                    initialValue: controller.vendorData.value.phone,
+                    obscureText: false,
+                    onChanged: (input) {
+                      controller.vendorData.value.phone = input;
+                    },
+                    validator: (input) {
+                      return input!.length < 11 ? 'The phone cannot be less than 11 characters.' : null;
+                    },
+                    suffixIcon: Icon(CupertinoIcons.phone),
+                  );
+                }),
                 SizedBox(height: 15),
-                TextFieldWidget(
-                  labelText: "Password",
-                  hintText: "Enter your password",
-                  onChanged: (input) {
-                    controller.vendorData.value.password = input;
-                  },
-                  validator: (input) => input!.length < 6 ? "Should be more than 6 characters".tr : null,
-                  obscureText: true,
-                  iconData: Icons.lock_outline,
-                  keyboardType: TextInputType.visiblePassword,
-                  suffixIcon: IconButton(
-                    onPressed: () {},
-                    color: Get.theme.focusColor,
-                    icon: Icon(Icons.visibility_outlined),
-                  ),
-                ),
+                Obx(() {
+                  return TextFieldWidget(
+                    labelText: "Password",
+                    hintText: "Enter your password",
+                    initialValue: controller.vendorData.value.password,
+                    onChanged: (input) {
+                      controller.vendorData.value.password = input;
+                    },
+                    validator: (input) => input!.length < 6 ? "Should be more than 6 characters".tr : null,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: controller.hidePassword.value,
+                    iconData: Icons.lock_outline,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        controller.hidePassword.value = !controller.hidePassword.value;
+                      },
+                      // color: Theme.of(context).focusColor,
+                      icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
+                    ),
+                  );
+                }),
                 Row(
                   children: [
-                    Checkbox(
-                      value: true,
-                      activeColor: Get.theme.primaryColor,
-                      onChanged: (value) {},
-                    ),
+                    Obx(() {
+                      return Checkbox(
+                        value: controller.rememberMe.value,
+                        activeColor: Get.theme.primaryColor,
+                        onChanged: (value) {
+                          controller.rememberMe.value = value!;
+                          if (controller.rememberMe.value) {
+                            Get.put(AuthService()).setRememberUserData(controller.vendorData.value.phone!, controller.vendorData.value.password!);
+                          }
+                        },
+                      );
+                    }),
                     Text("Remember me"),
                     Spacer(),
                     GestureDetector(

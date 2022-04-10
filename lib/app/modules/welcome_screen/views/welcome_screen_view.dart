@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../root/controllers/root_controller.dart';
 import '../controllers/welcome_screen_controller.dart';
 
 class WelcomeScreenView extends GetView<WelcomeScreenController> {
@@ -42,17 +43,18 @@ class WelcomeScreenView extends GetView<WelcomeScreenController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: List.generate(
                           ConstantData().welcomeData.length,
-                              (index) => buildDot(index: index),
+                          (index) => buildDot(index: index),
                         ),
                       ),
                       Spacer(flex: 1),
                       CommonWidgets.customButton(
                           text: 'Continue',
                           press: () {
+                            Get.find<AuthService>().setFirstUseOrNot();
                             if (Get.find<AuthService>().isAuth) {
-                              Get.offNamed(Routes.root);
+                              Get.offAllNamed(Routes.root);
                             } else {
-                              Get.offNamed(Routes.login);
+                              Get.offAllNamed(Routes.login);
                             }
                           })
                     ],

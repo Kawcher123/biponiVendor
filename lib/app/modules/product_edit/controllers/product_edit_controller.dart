@@ -36,7 +36,7 @@ class ProductEditController extends GetxController {
   final generalStatus = false.obs;
   final statusActive = ''.obs;
   final freeShippingStatus1 = false.obs;
-  final insideAllowFreeShipping=''.obs;
+  final insideAllowFreeShipping = ''.obs;
   final freeShippingStatus2 = false.obs;
   final outsideAllowFreeShipping = ''.obs;
   final codStatus = false.obs;
@@ -46,19 +46,19 @@ class ProductEditController extends GetxController {
 
   ///attributeSet
   final attributeList = <AttributeSetModel>[].obs;
-  final selectedAttribute=AttributeSetModel().obs;
-  final attributeValue=''.obs;
+  final selectedAttribute = AttributeSetModel().obs;
+  final attributeValue = ''.obs;
   final attributeId = ''.obs;
   final attributeName = ''.obs;
   final attributeLoaded = true.obs;
 
   ///categories
   final categoryList = <CategoryModel>[].obs;
-  final categoryId=''.obs;
+  final categoryId = ''.obs;
   final categoryListLoaded = false.obs;
-  final categoryTitle=''.obs;
+  final categoryTitle = ''.obs;
   final categorySelect = ''.obs;
-  var previousCat={}.obs;
+  var previousCat = {}.obs;
 
   ///dropdown
   final weightUnit = ''.obs;
@@ -83,7 +83,6 @@ class ProductEditController extends GetxController {
 
   @override
   Future<void> onInit() async {
-
     productId.value = Get.arguments.toString();
     print('product id: ${productId.value}');
     await getProductData();
@@ -106,19 +105,13 @@ class ProductEditController extends GetxController {
   ///Image
   Future<File> productGetImage(ImageSource imageSource) async {
     var file = File('');
-    await ImagePicker().pickImage(source: imageSource).then((resp)
-    {
-      var image =resp;
-      if(image != null)
-      {
+    await ImagePicker().pickImage(source: imageSource).then((resp) {
+      var image = resp;
+      if (image != null) {
         file = File(image.path);
         // galleryImageList.add(file);
-      }else
-      {
-        Get.snackbar(
-            'Error', 'No Picture Selected',
-            snackPosition: SnackPosition.BOTTOM
-        );
+      } else {
+        Get.snackbar('Error', 'No Picture Selected', snackPosition: SnackPosition.BOTTOM);
       }
     });
     return file;
@@ -146,8 +139,7 @@ class ProductEditController extends GetxController {
     TimeOfDay? pickedTime = await showTimePicker(
       context: Get.context!,
       initialTime: selectedStartTime.value,
-      builder: (context, child)
-      {
+      builder: (context, child) {
         return Theme(data: ThemeData.dark(), child: child!);
       },
       initialEntryMode: TimePickerEntryMode.dial,
@@ -164,35 +156,30 @@ class ProductEditController extends GetxController {
   ///Product Data
   getProductData() async {
     print('get product calling');
-    EditProductRepository().getProductData(productId.value).then((resp)
-    {
-      editProductData.value=resp;
-      editProductLoaded.value= true;
-      productType.value=editProductData.value.product!.productType.toString();
-      weightUnit.value=editProductData.value.product!.weightUnit!.toLowerCase();
-      specialPriceType.value=editProductData.value.product!.specialPriceType.toString();
-      stockAvailability.value=editProductData.value.product!.inStock.toString();
-      brandId.value=editProductData.value.product!.weightUnit.toString();
-      generalStatus.value=editProductData.value.product!.isActive=='1'?true:false;
-      categoryId.value=editProductData.value.product!.categoryId.toString();
-      attributeId.value=editProductData.value.product!.attributeSetId.toString();
-      freeShippingStatus1.value=editProductData.value.productShipping!.metaValues!.insideOrigin!.insideAllowFreeShipping=='on'?true:false;
-      freeShippingStatus2.value=editProductData.value.productShipping!.metaValues!.insideOrigin!.insideAllowFreeShipping=='on'?true:false;
-      codStatus.value=editProductData.value.productMiscellaneousInfo!.metaValues!.allowCashOnDelivery=='on'?true:false;
-      comStatus.value=editProductData.value.productMiscellaneousInfo!.metaValues!.allowChangeOfMind=='on'?true:false;
+    EditProductRepository().getProductData(productId.value).then((resp) {
+      editProductData.value = resp;
+      editProductLoaded.value = true;
+      productType.value = editProductData.value.product!.productType.toString();
+      weightUnit.value = editProductData.value.product!.weightUnit!.toLowerCase();
+      specialPriceType.value = editProductData.value.product!.specialPriceType.toString();
+      stockAvailability.value = editProductData.value.product!.inStock.toString();
+      brandId.value = editProductData.value.product!.weightUnit.toString();
+      generalStatus.value = editProductData.value.product!.isActive == '1' ? true : false;
+      categoryId.value = editProductData.value.product!.categoryId.toString();
+      attributeId.value = editProductData.value.product!.attributeSetId.toString();
+      freeShippingStatus1.value = editProductData.value.productShipping!.metaValues!.insideOrigin!.insideAllowFreeShipping == 'on' ? true : false;
+      freeShippingStatus2.value = editProductData.value.productShipping!.metaValues!.insideOrigin!.insideAllowFreeShipping == 'on' ? true : false;
+      codStatus.value = editProductData.value.productMiscellaneousInfo!.metaValues!.allowCashOnDelivery == 'on' ? true : false;
+      comStatus.value = editProductData.value.productMiscellaneousInfo!.metaValues!.allowChangeOfMind == 'on' ? true : false;
       //defaultImage.value=editProductData.value.product!.defaultImage!.;
-
-
-    }
-    );
+    });
   }
 
   ///Attributes
-  getAttribute() async{
-    AddProductRepository().getAttribute().then((res){
+  getAttribute() async {
+    AddProductRepository().getAttribute().then((res) {
       attributeList.value = res;
     });
-
   }
 
   ///Brands
@@ -203,70 +190,25 @@ class ProductEditController extends GetxController {
   }
 
   ///Categories
-  getCategoryList() async
-  {
-    AddProductRepository().getCategoryList().then((res)
-    {
+  getCategoryList() async {
+    AddProductRepository().getCategoryList().then((res) {
       categoryList.value = res;
       categoryListLoaded.value = true;
     });
   }
 
   ///SubCategories
-  subCategoryList(String id) async
-  {
+  subCategoryList(String id) async {
     categoryListLoaded.value = false;
-    AddProductRepository().getSubCategoryList(id).then((res)
-    {
+    AddProductRepository().getSubCategoryList(id).then((res) {
       categoryList.value = res;
       categoryListLoaded.value = true;
-
     });
   }
 
-  void updateProduct() async{
-    // var updatedData1 = {
-    //   'title': editProductData.value.product!.title.toString(),
-    //   'weight': editProductData.value.product!.weight,
-    //   'weight_unit': weightUnit.value.toLowerCase(),
-    //   'short_description': editProductData.value.product!.shortDescription.toString(),
-    //   'description': editProductData.value.product!.description.toString(),
-    //   'brand_id': brandId.value,
-    //   'category_id[]': categoryId.value,
-    //   'price': editProductData.value.product!.price.toString(),
-    //   'in_stock': '',
-    //   'sku': editProductData.value.product!.sku.toString(),
-    //  // 'slug': editProductData.value.product!.slug.toString(),
-    //   'is_approximate': '0',
-    //   'attribute_set_id': attributeId.value,
-    //   'special_price': editProductData.value.product!.specialPrice.toString(),
-    //   'special_price_type': specialPriceType.value,
-    //   'special_price_start': '',
-    //   'special_price_end': '',
-    //   'manage_stock': '',
-    //   'qty': editProductData.value.product!.qty.toString(),
-    //   'viewed': '',
-    //   'is_active': '1',
-    //   'max_cart_qty': editProductData.value.product!.maxCartQty.toString(),
-    //   'meta_title': '',
-    //   'meta_keyword': '',
-    //   'meta_description': '',
-    //   'shipping_option[inside_origin][inside_allow_free_shipping]': '',
-    //   'shipping_option[inside_origin][inside_standard_shipping]': '200',
-    //   'shipping_option[inside_origin][inside_express_shipping]': '',
-    //   'shipping_option[outside_origin][outside_allow_free_shipping]': '',
-    //   'shipping_option[outside_origin][outside_standard_shipping]': '250',
-    //   'shipping_option[outside_origin][outside_express_shipping]': '',
-    //   'miscellaneous_information[allow_cash_on_delivery]': '',
-    //   'miscellaneous_information[warrenty_period]': '',
-    //   'miscellaneous_information[allow_change_of_mind]': '',
-    //   'product_type': productType.value.toLowerCase(),
-    //   'specification[mobile_color]': '',
-    //   'specification[mobile_display]': '',
-    //   'specification[mobile_network]': ''
-    // };
+  void updateProduct() async {
     print(stockAvailability.value);
-    var updatedData={
+    var updatedData = {
       'title': editProductData.value.product!.title.toString(),
       'weight': '${editProductData.value.product!.weight}',
       'weight_unit': '${weightUnit.value.toLowerCase()}',
@@ -305,18 +247,15 @@ class ProductEditController extends GetxController {
       'specification[mobile_color]': '${editProductData.value.specification!.metaValues!.mobileColor}',
       'specification[mobile_display]': '${editProductData.value.specification!.metaValues!.mobileDisplay}',
       'specification[mobile_network]': '${editProductData.value.specification!.metaValues!.mobileNetwork}',
-      'default_image':'${defaultImage.value}',
-      'gallery_images[]':'${galleryImage.value}',
+      'default_image': '${defaultImage.value}',
+      'gallery_images[]': '${galleryImage.value}',
     };
     print('product type: ${productType.value.toLowerCase()}');
-    EditProductRepository().updateProductData(updatedData, productId.value, defaultImage.value, galleryImageList).then((resp)
-    {
+    EditProductRepository().updateProductData(updatedData, productId.value, defaultImage.value, galleryImageList).then((resp) {
       print('updated response: ${resp}');
-      if(resp['status'].toString()=='0')
-      {
-        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Product Update successful',title: 'Updated'));
+      if (resp['status'].toString() == '0') {
+        Get.showSnackbar(Ui.SuccessSnackBar(message: 'Product Update successful', title: 'Updated'));
       }
     });
   }
-
 }

@@ -45,12 +45,15 @@ class TextFieldWidget extends StatelessWidget {
     return TextFormField(
       keyboardType: keyboardType ?? TextInputType.text,
       onSaved: onSaved,
+      initialValue: initialValue,
       onChanged: onChanged,
       validator: validator,
+      obscureText: obscureText!,
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
         floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: suffixIcon,
         border: OutlineInputBorder(
           borderRadius: const BorderRadius.all(
             Radius.circular(20.0),
