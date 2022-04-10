@@ -28,6 +28,8 @@ import 'package:biponi_vendor/app/modules/register/bindings/register_binding.dar
 import 'package:biponi_vendor/app/modules/register/views/register_view.dart';
 import 'package:biponi_vendor/app/modules/root/bindings/root_binding.dart';
 import 'package:biponi_vendor/app/modules/root/views/root_view.dart';
+import 'package:biponi_vendor/app/modules/splashScreen/bindings/splash_screen_binding.dart';
+import 'package:biponi_vendor/app/modules/splashScreen/views/splash_screen_view.dart';
 import 'package:biponi_vendor/app/modules/welcome_screen/bindings/welcome_screen_binding.dart';
 import 'package:biponi_vendor/app/modules/welcome_screen/views/welcome_screen_view.dart';
 
@@ -36,7 +38,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const initial = Routes.WELCOME_SCREEN;
+  static const initial = Routes.SPLASH_SCREEN;
 
   static final routes = [
     GetPage(
@@ -113,6 +115,11 @@ class AppPages {
       name: _Paths.PRODUCT_EDIT,
       page: () => ProductEditView(),
       binding: ProductEditBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH_SCREEN,
+      page: () => SplashScreenView(),
+      binding: SplashScreenBinding(),
     ),
   ];
 }

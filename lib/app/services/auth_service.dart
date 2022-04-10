@@ -5,10 +5,25 @@ import 'package:get_storage/get_storage.dart';
 class AuthService extends GetxService {
   final user = UserModel().obs;
 
+  final used = false.obs;
+
   late GetStorage _box;
+
+  final rememberUserData = {}.obs;
 
   AuthService() {
     _box = GetStorage();
+  }
+
+  void setFirstUseOrNot() async {
+    _box.write('used', true);
+    getUsed();
+  }
+
+  Future getUsed() async {
+    if (_box.hasData('used')) {
+      used.value = await _box.read('used');
+    }
   }
 
   // Future<AuthService> init() async {
@@ -27,12 +42,25 @@ class AuthService extends GetxService {
     // TODO: implement onInit
     _box = GetStorage();
     getCurrentUser();
+    getRememberedUser();
+    await getUsed();
     super.onInit();
   }
 
   void setUser(UserModel user) async {
     _box.write('current_user', user.toJson());
     getCurrentUser();
+  }
+
+  void setRememberUserData(String phone, String password) async {
+    _box.write('remember_data', {'phone': phone, 'password': password});
+    getRememberedUser();
+  }
+
+  Future getRememberedUser() async {
+    if (_box.hasData('remember_data')) {
+      rememberUserData.value = await _box.read('remember_data');
+    }
   }
 
   Future getCurrentUser() async {

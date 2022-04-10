@@ -1,6 +1,7 @@
 import 'package:biponi_vendor/app/models/user_model.dart';
 import 'package:biponi_vendor/app/repositories/auth_repositories.dart';
 import 'package:biponi_vendor/app/routes/app_pages.dart';
+import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:biponi_vendor/app/services/firebase_messaging_service.dart';
 import 'package:biponi_vendor/common/ui.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +15,16 @@ class LoginController extends GetxController {
   final vendorData = Vendor().obs;
 
   late GlobalKey<FormState> loginFormKey;
+
+  final rememberMe = false.obs;
+  final hidePassword = true.obs;
   @override
   void onInit() {
     loginFormKey = GlobalKey<FormState>();
+    vendorData.value.phone = Get.put(AuthService()).rememberUserData['phone'];
+    vendorData.value.password = Get.put(AuthService()).rememberUserData['password'];
+    print(vendorData.value.phone);
+    print(vendorData.value.password);
     super.onInit();
   }
 

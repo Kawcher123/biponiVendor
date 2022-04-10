@@ -4,29 +4,21 @@ class EditProductModel {
   MiscellaneousInfo? productMiscellaneousInfo;
   Specification? specification;
 
-  EditProductModel({this.product, this.productShipping,this.productMiscellaneousInfo,this.specification});
+  EditProductModel({this.product, this.productShipping, this.productMiscellaneousInfo, this.specification});
 
   EditProductModel.fromJson(Map<String, dynamic> json) {
-    product =
-    json['product'] != null ? new Product.fromJson(json['product']) : null;
+    product = json['product'] != null ? new Product.fromJson(json['product']) : null;
     if (json['meta'] != null) {
-
       json['meta'].forEach((v) {
-     if(v['meta_key']=='product_shipping_option')
-       {
-         productShipping=ProductShipping.fromJson(v);
-
-       }
-     if(v['meta_key']=='product_miscellaneous_information')
-     {
-       productMiscellaneousInfo=MiscellaneousInfo.fromJson(v);
-
-     }
-     if(v['meta_key']=='product_sepecification')
-     {
-       specification=Specification.fromJson(v);
-
-     }
+        if (v['meta_key'] == 'product_shipping_option') {
+          productShipping = ProductShipping.fromJson(v);
+        }
+        if (v['meta_key'] == 'product_miscellaneous_information') {
+          productMiscellaneousInfo = MiscellaneousInfo.fromJson(v);
+        }
+        if (v['meta_key'] == 'product_sepecification') {
+          specification = Specification.fromJson(v);
+        }
       });
     }
   }
@@ -77,50 +69,51 @@ class Product {
   String? categoryImage;
   Attributes? attributes;
 
-  Product(
-      {this.id,
-        this.brandId,
-        this.brandTitle,
-        this.categoryId,
-        this.categoryTitle,
-        this.productType,
-        this.attributeSetId,
-        this.title,
-        this.defaultImage,
-        this.galleryImages,
-        this.shortDescription,
-        this.description,
-        this.slug,
-        this.price,
-        this.specialPrice,
-        this.specialPriceType,
-        this.specialPriceStart,
-        this.specialPriceEnd,
-        this.sku,
-        this.manageStock,
-        this.qty,
-        this.maxCartQty,
-        this.weight,
-        this.weightUnit,
-        this.inStock,
-        this.viewed,
-        this.isApproximate,
-        this.isActive,
-        this.isDeleted,
-        this.sellerId,
-        this.createdAt,
-        this.updatedAt,
-        this.categoryImage,
-        this.attributes,});
+  Product({
+    this.id,
+    this.brandId,
+    this.brandTitle,
+    this.categoryId,
+    this.categoryTitle,
+    this.productType,
+    this.attributeSetId,
+    this.title,
+    this.defaultImage,
+    this.galleryImages,
+    this.shortDescription,
+    this.description,
+    this.slug,
+    this.price,
+    this.specialPrice,
+    this.specialPriceType,
+    this.specialPriceStart,
+    this.specialPriceEnd,
+    this.sku,
+    this.manageStock,
+    this.qty,
+    this.maxCartQty,
+    this.weight,
+    this.weightUnit,
+    this.inStock,
+    this.viewed,
+    this.isApproximate,
+    this.isActive,
+    this.isDeleted,
+    this.sellerId,
+    this.createdAt,
+    this.updatedAt,
+    this.categoryImage,
+    this.attributes,
+  });
 
   Product.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     brandId = json['brand_id'];
     brandTitle = json['brand_title'];
-    categoryId = json['category_id']??'';
+    categoryId = json['category_id'] ?? '';
     categoryTitle = json['category_title'];
     productType = json['product_type'];
-    attributeSetId = json['attribute_set_id']??'';
+    attributeSetId = json['attribute_set_id'] ?? '';
     title = json['title'];
     defaultImage = json['default_image'];
     galleryImages = json['gallery_images'];
@@ -128,7 +121,7 @@ class Product {
     description = json['description'];
     slug = json['slug'];
     price = json['price'];
-    specialPrice = json['special_price']??'0';
+    specialPrice = json['special_price'] ?? '0';
     specialPriceType = json['special_price_type'];
     specialPriceStart = json['special_price_start'];
     specialPriceEnd = json['special_price_end'];
@@ -141,15 +134,13 @@ class Product {
     inStock = json['in_stock'];
     viewed = json['viewed'];
     isApproximate = json['is_approximate'];
-    isActive = json['is_active']==1?true:false;
+    isActive = json['is_active'] == 1 ? true : false;
     isDeleted = json['is_deleted'];
     sellerId = json['seller_id'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    categoryImage = json['category_image']??'';
-    attributes = json['attributes'] != null
-        ? new Attributes.fromJson(json['attributes'])
-        : null;
+    categoryImage = json['category_image'] ?? '';
+    attributes = json['attributes'] != null ? new Attributes.fromJson(json['attributes']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -205,16 +196,7 @@ class Attributes {
   String? createdAt;
   String? updatedAt;
 
-  Attributes(
-      {this.id,
-        this.title,
-        this.description,
-        this.attributeSetCode,
-        this.attributeIds,
-        this.isActive,
-        this.isDeleted,
-        this.createdAt,
-        this.updatedAt});
+  Attributes({this.id, this.title, this.description, this.attributeSetCode, this.attributeIds, this.isActive, this.isDeleted, this.createdAt, this.updatedAt});
 
   Attributes.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -380,8 +362,6 @@ class Attributes {
 //
 // }
 
-
-
 class Specification {
   var id;
   var productId;
@@ -391,14 +371,7 @@ class Specification {
   String? updatedAt;
   SpecificationMetaValues? metaValues;
 
-  Specification(
-      {this.id,
-        this.productId,
-        this.metaKey,
-        this.metaValue,
-        this.createdAt,
-        this.updatedAt,
-        this.metaValues});
+  Specification({this.id, this.productId, this.metaKey, this.metaValue, this.createdAt, this.updatedAt, this.metaValues});
 
   Specification.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -407,9 +380,7 @@ class Specification {
     metaValue = json['meta_value'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    metaValues = json['meta_values'] != null
-        ? new SpecificationMetaValues.fromJson(json['meta_values'])
-        : null;
+    metaValues = json['meta_values'] != null ? new SpecificationMetaValues.fromJson(json['meta_values']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -449,7 +420,6 @@ class SpecificationMetaValues {
   }
 }
 
-
 class ProductShipping {
   var id;
   var productId;
@@ -459,14 +429,7 @@ class ProductShipping {
   String? updatedAt;
   MetaValues? metaValues;
 
-  ProductShipping(
-      {this.id,
-        this.productId,
-        this.metaKey,
-        this.metaValue,
-        this.createdAt,
-        this.updatedAt,
-        this.metaValues});
+  ProductShipping({this.id, this.productId, this.metaKey, this.metaValue, this.createdAt, this.updatedAt, this.metaValues});
 
   ProductShipping.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -475,11 +438,7 @@ class ProductShipping {
     metaValue = json['meta_value'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    metaValues = json['meta_values'] != null
-        ? new MetaValues.fromJson(json['meta_values'])
-        : null;
-
-
+    metaValues = json['meta_values'] != null ? new MetaValues.fromJson(json['meta_values']) : null;
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -503,12 +462,8 @@ class MetaValues {
   MetaValues({this.insideOrigin, this.outsideOrigin});
 
   MetaValues.fromJson(Map<String, dynamic> json) {
-    insideOrigin = json['inside_origin'] != null
-        ? new InsideOrigin.fromJson(json['inside_origin'])
-        : null;
-    outsideOrigin = json['outside_origin'] != null
-        ? new OutsideOrigin.fromJson(json['outside_origin'])
-        : null;
+    insideOrigin = json['inside_origin'] != null ? new InsideOrigin.fromJson(json['inside_origin']) : null;
+    outsideOrigin = json['outside_origin'] != null ? new OutsideOrigin.fromJson(json['outside_origin']) : null;
     print('freeshipping1: ${insideOrigin!.insideAllowFreeShipping}');
   }
 
@@ -529,10 +484,7 @@ class InsideOrigin {
   String? insideStandardShipping;
   String? insideExpressShipping;
 
-  InsideOrigin(
-      {this.insideAllowFreeShipping,
-        this.insideStandardShipping,
-        this.insideExpressShipping});
+  InsideOrigin({this.insideAllowFreeShipping, this.insideStandardShipping, this.insideExpressShipping});
 
   InsideOrigin.fromJson(Map<String, dynamic> json) {
     insideAllowFreeShipping = json['inside_allow_free_shipping'];
@@ -554,13 +506,9 @@ class OutsideOrigin {
   String? outsideStandardShipping;
   String? outsideExpressShipping;
 
-  OutsideOrigin(
-      {this.outsideAllowFreeShipping,
-        this.outsideStandardShipping,
-        this.outsideExpressShipping});
+  OutsideOrigin({this.outsideAllowFreeShipping, this.outsideStandardShipping, this.outsideExpressShipping});
 
   OutsideOrigin.fromJson(Map<String, dynamic> json) {
-
     outsideAllowFreeShipping = json['outside_allow_free_shipping'];
     outsideStandardShipping = json['outside_standard_shipping'];
     outsideExpressShipping = json['outside_express_shipping'];
@@ -575,9 +523,6 @@ class OutsideOrigin {
   }
 }
 
-
-
-
 class MiscellaneousInfo {
   var id;
   var productId;
@@ -587,14 +532,7 @@ class MiscellaneousInfo {
   String? updatedAt;
   MiscellaneousMetaValues? metaValues;
 
-  MiscellaneousInfo(
-      {this.id,
-        this.productId,
-        this.metaKey,
-        this.metaValue,
-        this.createdAt,
-        this.updatedAt,
-        this.metaValues});
+  MiscellaneousInfo({this.id, this.productId, this.metaKey, this.metaValue, this.createdAt, this.updatedAt, this.metaValues});
 
   MiscellaneousInfo.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -603,9 +541,7 @@ class MiscellaneousInfo {
     metaValue = json['meta_value'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    metaValues = json['meta_values'] != null
-        ? new MiscellaneousMetaValues.fromJson(json['meta_values'])
-        : null;
+    metaValues = json['meta_values'] != null ? new MiscellaneousMetaValues.fromJson(json['meta_values']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -628,8 +564,7 @@ class MiscellaneousMetaValues {
   String? warrentyPeriod;
   String? allowChangeOfMind;
 
-  MiscellaneousMetaValues(
-      {this.allowCashOnDelivery, this.warrentyPeriod, this.allowChangeOfMind});
+  MiscellaneousMetaValues({this.allowCashOnDelivery, this.warrentyPeriod, this.allowChangeOfMind});
 
   MiscellaneousMetaValues.fromJson(Map<String, dynamic> json) {
     allowCashOnDelivery = json['allow_cash_on_delivery'];

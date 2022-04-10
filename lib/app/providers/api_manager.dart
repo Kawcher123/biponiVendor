@@ -14,7 +14,7 @@ class APIManager {
     var responseJson;
     try {
       final response = await http.post(Uri.parse(url), body: param, headers: headerData);
-    print(response.body);
+      print(response.body);
       responseJson = _response(response);
       print(responseJson);
     } on SocketException {
@@ -81,8 +81,7 @@ class APIManager {
     return responseJson;
   }
 
-
-  Future<dynamic> multipartPostSignupAPI(String url, Map<String, String> param, var profile, var nidFront, var nidBack, var logo,var banner, var license, Map<String, String> headerData) async {
+  Future<dynamic> multipartPostSignupAPI(String url, Map<String, String> param, var profile, var nidFront, var nidBack, var logo, var banner, var license, Map<String, String> headerData) async {
     print("Calling API: $url");
     print("Calling parameters: $param");
 
@@ -90,6 +89,7 @@ class APIManager {
     try {
       var request = http.MultipartRequest('POST', Uri.parse(url));
       request.fields.addAll(param);
+
       ///avatar
       String fileName1 = profile.path.split("/").last;
       var stream1 = http.ByteStream(profile.openRead());
@@ -105,8 +105,6 @@ class APIManager {
       var multipartFileSign1 = await http.MultipartFile('avatar', stream1, length1, filename: fileName1);
 
       request.files.add(await multipartFileSign1);
-
-
 
       ///nid front
       String fileName2 = nidFront.path.split("/").last;
@@ -124,7 +122,6 @@ class APIManager {
 
       request.files.add(await multipartFileSign2);
 
-
       ///nid back
       String fileName3 = nidBack.path.split("/").last;
       var stream3 = http.ByteStream(nidBack.openRead());
@@ -140,7 +137,6 @@ class APIManager {
       var multipartFileSign3 = await http.MultipartFile('nid_back_side', stream3, length3, filename: fileName3);
 
       request.files.add(await multipartFileSign3);
-
 
       ///logo
       String fileName4 = logo.path.split("/").last;
@@ -158,7 +154,6 @@ class APIManager {
 
       request.files.add(await multipartFileSign4);
 
-
       ///banner
       String fileName5 = license.path.split("/").last;
       var stream5 = http.ByteStream(banner.openRead());
@@ -175,7 +170,6 @@ class APIManager {
 
       request.files.add(await multipartFileSign5);
 
-
       ///license
       String fileName6 = license.path.split("/").last;
       var stream6 = http.ByteStream(license.openRead());
@@ -191,8 +185,6 @@ class APIManager {
       var multipartFileSign6 = await http.MultipartFile('trade_license', stream6, length6, filename: fileName6);
 
       request.files.add(await multipartFileSign6);
-
-
 
       request.headers.addAll(headerData);
       print('fngdfkngdf');
@@ -219,7 +211,7 @@ class APIManager {
       var request = http.MultipartRequest('POST', Uri.parse(url));
       request.fields.addAll(param);
 
-      if(defaultImage.isAbsolute){
+      if (defaultImage.isAbsolute) {
         ///defaultProductImage
         String fileName1 = defaultImage.path.split("/").last;
         var stream1 = http.ByteStream(defaultImage.openRead());
@@ -229,18 +221,15 @@ class APIManager {
         print(stream1);
         // get file length
 
-        var length1 =
-            await defaultImage.length(); //imageFile is your image file
+        var length1 = await defaultImage.length(); //imageFile is your image file
 
         // multipart that takes file
-        var multipartFileSign1 = await http.MultipartFile(
-            'default_image', stream1, length1,
-            filename: fileName1);
+        var multipartFileSign1 = http.MultipartFile('default_image', stream1, length1, filename: fileName1);
 
-        request.files.add(await multipartFileSign1);
+        request.files.add(multipartFileSign1);
       }
 
-      if(galleryImage.isNotEmpty){
+      if (galleryImage.isNotEmpty) {
         ///productImageGallery
         for (var item in galleryImage) {
           String fileName2 = item.path.split("/").last;
@@ -254,11 +243,9 @@ class APIManager {
           var length2 = await item.length(); //imageFile is your image file
 
           // multipart that takes file
-          var multipartFileSign2 = await http.MultipartFile(
-              'gallery_images[]', stream2, length2,
-              filename: fileName2);
+          var multipartFileSign2 = http.MultipartFile('gallery_images[]', stream2, length2, filename: fileName2);
 
-          request.files.add(await multipartFileSign2);
+          request.files.add(multipartFileSign2);
         }
       }
 

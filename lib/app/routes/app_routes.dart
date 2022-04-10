@@ -20,6 +20,7 @@ abstract class Routes {
   static const ORDER_LIST = _Paths.ORDER_LIST;
   static const MESSAGES = _Paths.MESSAGES;
   static const PRODUCT_EDIT = _Paths.PRODUCT_EDIT;
+  static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
 }
 
 abstract class _Paths {
@@ -39,4 +40,5 @@ abstract class _Paths {
   static const ORDER_LIST = '/order-list';
   static const MESSAGES = '/messages';
   static const PRODUCT_EDIT = '/product-edit';
+  static const SPLASH_SCREEN = '/splash-screen';
 }
