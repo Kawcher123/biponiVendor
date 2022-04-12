@@ -1,3 +1,4 @@
+import 'package:biponi_vendor/app/modules/product_edit/controllers/product_edit_controller.dart';
 import 'package:biponi_vendor/app/modules/product_edit/widget/additional_options_edit.dart';
 import 'package:biponi_vendor/app/modules/product_edit/widget/category_edit.dart';
 import 'package:biponi_vendor/app/modules/product_edit/widget/general_edit.dart';
@@ -8,8 +9,7 @@ import 'package:biponi_vendor/app/modules/product_edit/widget/specification_edit
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class VariableProductEdit extends StatelessWidget {
-  VariableProductEdit({Key? key}) : super(key: key);
+class VariableProductEdit extends GetView<ProductEditController> {
 
   final _size=Get.size;
 
@@ -86,6 +86,7 @@ class VariableProductEdit extends StatelessWidget {
               ),
             ),
           ),
+          controller.editProductData.value.specification!=null?
           GestureDetector(
             onTap: ()
             {
@@ -119,7 +120,7 @@ class VariableProductEdit extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          ):Wrap(),
           GestureDetector(
             onTap: ()
             {

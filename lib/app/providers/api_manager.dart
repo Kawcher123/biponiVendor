@@ -204,7 +204,10 @@ class APIManager {
   ///AddProduct Api
   Future<dynamic> multipartPostAddProductAPI(String url, Map<String, String> param, File defaultImage, var galleryImage, Map<String, String> headerData) async {
     print("Calling API: $url");
-    print("Calling parameters: $param");
+    print("Calling parameters: ${param['specification']}");
+
+    print(defaultImage);
+    print(galleryImage);
 
     var responseJson;
     try {
@@ -218,7 +221,7 @@ class APIManager {
 
         stream1.cast();
 
-        print(stream1);
+        print(fileName1);
         // get file length
 
         var length1 = await defaultImage.length(); //imageFile is your image file

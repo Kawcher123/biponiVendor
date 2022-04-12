@@ -53,7 +53,7 @@ class CommonWidgets {
             child: Stack(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 10.0),
+                  padding: const EdgeInsets.only(top:5,right: 15.0),
                   child: CircleAvatar(
                       backgroundColor: Colors.grey.withOpacity(.15),
                       radius: 20.0,
@@ -64,8 +64,8 @@ class CommonWidgets {
                       )),
                 ),
                 Positioned(
-                    top: 0,
-                    right: 6,
+                    top: 3,
+                    right: 10,
                     child: CircleAvatar(
                         backgroundColor: Colors.red,
                         radius: 9,

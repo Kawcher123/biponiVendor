@@ -7,6 +7,7 @@ import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -101,6 +102,17 @@ class LoginView extends GetView<LoginController> {
                     Text("Remember me"),
                     Spacer(),
                     GestureDetector(
+                      onTap: () async {
+                        // Get.toNamed(Routes.FORGOT_PASSWORD);
+
+                        final url = 'https://seller.biponi.com/admin/password/reset';
+                        if(await canLaunch(url)){
+                          await launch(
+                            url,
+                            forceSafariVC: false
+                          );
+                        }
+                      },
                       child: Text(
                         "Forgot Password?",
                       ),

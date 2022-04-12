@@ -88,6 +88,7 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.name=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
                     iconData: Icons.alternate_email,
                   ),
@@ -98,6 +99,7 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.email=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
                     iconData: Icons.alternate_email,
                   ),
@@ -109,6 +111,7 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.phone=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
                     iconData: Icons.alternate_email,
                   ),
@@ -120,13 +123,14 @@ class RegisterView extends GetView<RegisterController> {
                       controller.userData.value.password=input;
                     },
                     validator: (input) {},
-                    obscureText: true,
+                    obscureText: controller.hidePassword.value,
                     iconData: Icons.lock_outline,
                     keyboardType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
-                      onPressed: () {},
-                      color: Get.theme.focusColor,
-                      icon: Icon(Icons.visibility_outlined),
+                      onPressed: () {
+                        controller.hidePassword.value = !controller.hidePassword.value;
+                      },
+                      icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
                     ),
                   ),
                   SizedBox(height: 15),
@@ -134,13 +138,14 @@ class RegisterView extends GetView<RegisterController> {
                     labelText: "Confirm Password",
                     hintText: "Retype your password",
                     validator: (input) {},
-                    obscureText: true,
+                    obscureText: controller.hidePassword.value,
                     iconData: Icons.lock_outline,
                     keyboardType: TextInputType.visiblePassword,
                     suffixIcon: IconButton(
-                      onPressed: () {},
-                      color: Get.theme.focusColor,
-                      icon: Icon(Icons.visibility_outlined),
+                      onPressed: () {
+                        controller.hidePassword.value = !controller.hidePassword.value;
+                      },
+                      icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
                     ),
                   ),
                   SizedBox(height: 15),
@@ -466,6 +471,7 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.shopName=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
                     iconData: Icons.alternate_email,
                   ),
@@ -476,6 +482,7 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.slug=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
                     iconData: Icons.alternate_email,
                   ),
@@ -486,6 +493,7 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.shopPhone=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
                     iconData: Icons.alternate_email,
                   ),
@@ -496,6 +504,7 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.shopEmail=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
                     iconData: Icons.alternate_email,
                   ),
@@ -909,6 +918,7 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.address=input;
                     },
+                    obscureText: false,
                     validator: (input) {
                       return input == null || input.isEmpty? "The Field is Required": null ;
                     },
@@ -936,10 +946,8 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.bankName=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
-                    suffixIcon: Icon(
-                      CupertinoIcons.location_solid,
-                    ),
                   ),
                   SizedBox(height: 15),
                   TextFieldWidget(
@@ -949,10 +957,8 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.accountName=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
-                    suffixIcon: Icon(
-                      CupertinoIcons.location_solid,
-                    ),
                   ),
                   SizedBox(height: 15),
                   TextFieldWidget(
@@ -962,10 +968,8 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.accountNumber=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
-                    suffixIcon: Icon(
-                      CupertinoIcons.location_solid,
-                    ),
                   ),
                   SizedBox(height: 15),
                   TextFieldWidget(
@@ -975,10 +979,8 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.routingNumber=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
-                    suffixIcon: Icon(
-                      CupertinoIcons.location_solid,
-                    ),
                   ),
                   SizedBox(height: 15),
 
@@ -1000,10 +1002,9 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.bkash=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
-                    suffixIcon: Icon(
-                      CupertinoIcons.location_solid,
-                    ),
+                    suffixIcon: Icon(CupertinoIcons.phone_solid),
                   ),
                   SizedBox(height: 15),
                   TextFieldWidget(
@@ -1013,10 +1014,9 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.nagad=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
-                    suffixIcon: Icon(
-                      CupertinoIcons.location_solid,
-                    ),
+                    suffixIcon: Icon(CupertinoIcons.phone_solid),
                   ),
                   SizedBox(height: 15),
                   TextFieldWidget(
@@ -1026,10 +1026,9 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.rocket=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
-                    suffixIcon: Icon(
-                      CupertinoIcons.location_solid,
-                    ),
+                    suffixIcon: Icon(CupertinoIcons.phone_solid),
                   ),
                   SizedBox(height: 15),
                   TextFieldWidget(
@@ -1039,9 +1038,10 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.upay=input;
                     },
+                    obscureText: false,
                     validator: (input) {},
                     suffixIcon: Icon(
-                      CupertinoIcons.location_solid,
+                      CupertinoIcons.phone_solid,
                     ),
                   ),
 

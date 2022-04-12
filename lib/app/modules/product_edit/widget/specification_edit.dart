@@ -62,6 +62,7 @@ class SpecificationEdit extends GetView<ProductEditController> {
                                 mode: Mode.MENU,
                                 showFavoriteItems: true,
                                 items: controller.attributeList.map((item) => item.title!).toList(),
+
                                 onChanged: (input){
                                   for(var item in controller.attributeList){
                                     if(item.title == input){

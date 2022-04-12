@@ -71,6 +71,7 @@ class Specification extends GetView<AddProductsController>{
                                       break;
                                     }
                                   }
+                                  controller.specification.value=[];
                                 },
                                 selectedItem: controller.attributeName.value,
                               ),
@@ -127,6 +128,15 @@ class Specification extends GetView<AddProductsController>{
                   items: controller.selectedAttribute.value.attribute![index].attributeValues!.map((item) => item.label!).toList(),
                   onSaved: (input){
                     controller.productData.value.specificationMobileColor = input;
+
+
+
+                    controller.specification.add(
+                      {
+                        'key':'${controller.selectedAttribute.value.attribute![index].attributeCode}',
+                        'value':'$input',
+                      }
+                    );
                   },
                   selectedItem: controller.attributeValue.value),
               SizedBox(height: 8,),
@@ -151,8 +161,16 @@ class Specification extends GetView<AddProductsController>{
                 keyboardType: TextInputType.text,
                 validator: (input){},
                 initialValue: controller.selectedAttribute.value.attribute![index].description,
-                onSaved: (input){
+
+                onChanged: (input)
+                {
                   controller.productData.value.specificationMobileDisplay = input;
+                  controller.specification.add(
+                      {
+                        'key':'${controller.selectedAttribute.value.attribute![index].attributeCode}',
+                        'value':input,
+                      }
+                  );
                 },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -181,8 +199,16 @@ class Specification extends GetView<AddProductsController>{
                   maxLines: 4,
                   validator: (input){},
                   initialValue: controller.selectedAttribute.value.attribute![index].description,
-                  onSaved: (input){
+
+                  onChanged: (input)
+                  {
                     controller.productData.value.specificationMobileNetwork=input;
+
+                    controller.specification.add(
+                        {
+                          'key':'${controller.selectedAttribute.value.attribute![index].attributeCode}',
+                          'value':input,
+                        });
                   },
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),

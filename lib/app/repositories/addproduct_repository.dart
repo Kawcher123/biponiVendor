@@ -47,6 +47,7 @@ class AddProductRepository {
     String specificationMobileColor,
     String specificationMobileDisplay,
     String specificationMobileNetwork,
+      var specifications
   ) async {
     Map<String, String> product = {
       'product_type': productType.toLowerCase(),
@@ -86,10 +87,17 @@ class AddProductRepository {
       'miscellaneous_information[allow_cash_on_delivery]': miscellaneousInformationAllowCashOnDelivery,
       'miscellaneous_information[warrenty_period]': warrentyPeriod,
       'miscellaneous_information[allow_change_of_mind]': miscellaneousInformationAllowChangeOfMind,
-      'specification[mobile_color]': specificationMobileColor,
-      'specification[mobile_display]': specificationMobileDisplay,
-      'specification[mobile_network]': specificationMobileNetwork,
+      // 'specification[mobile_color]': specificationMobileColor,
+      // 'specification[mobile_display]': specificationMobileDisplay,
+      // 'specification[mobile_network]': specificationMobileNetwork,
     };
+
+    print('specifications: ${specifications}');
+    for(var item in specifications)
+      {
+        product['specification[${item['key']}]']=item['value'];
+        print(product['specification']);
+      }
 
     String token = Get.find<AuthService>().user.value.token!;
 
