@@ -61,7 +61,6 @@ class Price extends GetView<AddProductsController>{
                               ),
                               SizedBox(height: 8,),
                               TextFormField(
-                                keyboardType: TextInputType.text,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),
@@ -69,6 +68,7 @@ class Price extends GetView<AddProductsController>{
                                 validator: (input) {
                                   return input == null || input.isEmpty? "The Field is Required": null ;
                                 },
+                                keyboardType: TextInputType.number,
                                 onSaved: (input){
                                   controller.productData.value.price=input;
                                 },
@@ -93,7 +93,7 @@ class Price extends GetView<AddProductsController>{
                               ),
                               SizedBox(height: 8,),
                               TextFormField(
-                                keyboardType: TextInputType.text,
+                                keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),

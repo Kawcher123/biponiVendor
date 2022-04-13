@@ -116,7 +116,7 @@ class ProfileView extends GetView<ProfileController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Shop Name',
+                            'Seller Name',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16

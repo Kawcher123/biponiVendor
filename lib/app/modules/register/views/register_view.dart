@@ -268,7 +268,6 @@ class RegisterView extends GetView<RegisterController> {
                     height: _size.width*.5,
                     width: _size.width,
                     decoration: BoxDecoration(
-                      //color: Colors.grey,
                         borderRadius: BorderRadius.circular(15)
                     ),
                     child: Obx(()
@@ -495,6 +494,7 @@ class RegisterView extends GetView<RegisterController> {
                     },
                     obscureText: false,
                     validator: (input) {},
+                    keyboardType: TextInputType.phone,
                     iconData: Icons.alternate_email,
                   ),
                   SizedBox(height: 15),
@@ -523,7 +523,6 @@ class RegisterView extends GetView<RegisterController> {
                     height: _size.width*.5,
                     width: _size.width,
                     decoration: BoxDecoration(
-                      //color: Colors.grey,
                         borderRadius: BorderRadius.circular(15)
                     ),
                     child: Obx(()
@@ -625,7 +624,6 @@ class RegisterView extends GetView<RegisterController> {
                     height: _size.width*.5,
                     width: _size.width,
                     decoration: BoxDecoration(
-                      //color: Colors.grey,
                         borderRadius: BorderRadius.circular(15)
                     ),
                     child: Obx(()
@@ -942,7 +940,6 @@ class RegisterView extends GetView<RegisterController> {
                   TextFieldWidget(
                     labelText: "Bank Name".tr,
                     hintText: "Ex: Eastern Bank Ltd".tr,
-                    //initialValue: controller.address.value,
                     onChanged: (input) {
                       controller.userData.value.bankName=input;
                     },
@@ -953,7 +950,6 @@ class RegisterView extends GetView<RegisterController> {
                   TextFieldWidget(
                     labelText: "Account Name".tr,
                     hintText: "Ex: Biponi Enterprise".tr,
-                    //initialValue: controller.address.value,
                     onChanged: (input) {
                       controller.userData.value.accountName=input;
                     },
@@ -964,23 +960,23 @@ class RegisterView extends GetView<RegisterController> {
                   TextFieldWidget(
                     labelText: "Account Number".tr,
                     hintText: "Ex: 200023452452".tr,
-                    //initialValue: controller.address.value,
                     onChanged: (input) {
                       controller.userData.value.accountNumber=input;
                     },
                     obscureText: false,
                     validator: (input) {},
+                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 15),
                   TextFieldWidget(
                     labelText: "Routing Number".tr,
                     hintText: "Ex: 54756".tr,
-                    //initialValue: controller.address.value,
                     onChanged: (input) {
                       controller.userData.value.routingNumber=input;
                     },
                     obscureText: false,
                     validator: (input) {},
+                    keyboardType: TextInputType.number,
                   ),
                   SizedBox(height: 15),
 
@@ -998,51 +994,49 @@ class RegisterView extends GetView<RegisterController> {
                   TextFieldWidget(
                     labelText: "Bkash Number".tr,
                     hintText: "Ex: 01707070707".tr,
-                    //initialValue: controller.address.value,
                     onChanged: (input) {
                       controller.userData.value.bkash=input;
                     },
                     obscureText: false,
                     validator: (input) {},
+                    keyboardType: TextInputType.phone,
                     suffixIcon: Icon(CupertinoIcons.phone_solid),
                   ),
                   SizedBox(height: 15),
                   TextFieldWidget(
                     labelText: "Nagad Number".tr,
                     hintText: "Ex: 01707070707".tr,
-                    //initialValue: controller.address.value,
                     onChanged: (input) {
                       controller.userData.value.nagad=input;
                     },
                     obscureText: false,
                     validator: (input) {},
+                    keyboardType: TextInputType.phone,
                     suffixIcon: Icon(CupertinoIcons.phone_solid),
                   ),
                   SizedBox(height: 15),
                   TextFieldWidget(
                     labelText: "Rocket Number".tr,
                     hintText: "Ex: 01707070707".tr,
-                    //initialValue: controller.address.value,
                     onChanged: (input) {
                       controller.userData.value.rocket=input;
                     },
                     obscureText: false,
                     validator: (input) {},
+                    keyboardType: TextInputType.phone,
                     suffixIcon: Icon(CupertinoIcons.phone_solid),
                   ),
                   SizedBox(height: 15),
                   TextFieldWidget(
                     labelText: "Upay Number".tr,
                     hintText: "Ex: 01707070707".tr,
-                    //initialValue: controller.address.value,
                     onChanged: (input) {
                       controller.userData.value.upay=input;
                     },
                     obscureText: false,
                     validator: (input) {},
-                    suffixIcon: Icon(
-                      CupertinoIcons.phone_solid,
-                    ),
+                    keyboardType: TextInputType.phone,
+                    suffixIcon: Icon(CupertinoIcons.phone_solid,),
                   ),
 
                   SizedBox(height: 40),

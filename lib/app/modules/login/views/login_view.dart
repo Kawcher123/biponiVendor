@@ -109,7 +109,9 @@ class LoginView extends GetView<LoginController> {
                         if(await canLaunch(url)){
                           await launch(
                             url,
-                            forceSafariVC: false
+                            forceSafariVC: true,
+                            forceWebView: true,
+                            enableJavaScript: true,
                           );
                         }
                       },

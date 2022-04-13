@@ -115,7 +115,7 @@ class InventoryEdit extends GetView<ProductEditController> {
                                 ),
                                 SizedBox(height: 8,),
                                 TextFormField(
-                                  keyboardType: TextInputType.text,
+                                  keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                   ),
@@ -174,7 +174,7 @@ class InventoryEdit extends GetView<ProductEditController> {
                                 ),
                                 SizedBox(height: 8,),
                                 TextFormField(
-                                  keyboardType: TextInputType.text,
+                                  keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                   ),
