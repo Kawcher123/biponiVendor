@@ -21,6 +21,7 @@ abstract class Routes {
   static const MESSAGES = _Paths.MESSAGES;
   static const PRODUCT_EDIT = _Paths.PRODUCT_EDIT;
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
+  static const COMMON_WEBVIEW = _Paths.COMMON_WEBVIEW;
 }
 
 abstract class _Paths {
@@ -41,4 +42,5 @@ abstract class _Paths {
   static const MESSAGES = '/messages';
   static const PRODUCT_EDIT = '/product-edit';
   static const SPLASH_SCREEN = '/splash-screen';
+  static const COMMON_WEBVIEW = '/common-webview';
 }
