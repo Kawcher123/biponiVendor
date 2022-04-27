@@ -32,7 +32,7 @@ void main() async {
   await initServices();
   runApp(
     GetMaterialApp(
-      title: "Application",
+      title: "Biponi Seller",
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
       debugShowCheckedModeBanner: false,

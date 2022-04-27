@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import 'package:biponi_vendor/app/modules/add_products/bindings/add_products_binding.dart';
 import 'package:biponi_vendor/app/modules/add_products/views/add_products_view.dart';
+import 'package:biponi_vendor/app/modules/common_webview/bindings/common_webview_binding.dart';
+import 'package:biponi_vendor/app/modules/common_webview/views/common_webview_view.dart';
 import 'package:biponi_vendor/app/modules/customer_list/bindings/customer_list_binding.dart';
 import 'package:biponi_vendor/app/modules/customer_list/views/customer_list_view.dart';
 import 'package:biponi_vendor/app/modules/dashboard/bindings/dashboard_binding.dart';
@@ -124,9 +126,15 @@ class AppPages {
       binding: SplashScreenBinding(),
     ),
     GetPage(
+
       name: _Paths.FORGOT_PASSWORD,
       page: () => ForgotPasswordView(),
       binding: ForgotPasswordBinding(),
+
+      name: _Paths.COMMON_WEBVIEW,
+      page: () => CommonWebviewView(),
+      binding: CommonWebviewBinding(),
+
     ),
   ];
 }
