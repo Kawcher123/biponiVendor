@@ -3,7 +3,6 @@ import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 class AdditionalOptions extends GetView<AddProductsController>{
 
@@ -92,8 +91,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                             ),
                             SizedBox(height: 8,),
                             TextFormField(
-                              //controller: _title,
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               validator: (input) {
                                 return input == null || input.isEmpty? "The Field is Required": null ;
                               },
@@ -111,13 +109,11 @@ class AdditionalOptions extends GetView<AddProductsController>{
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.black,
-                                //fontWeight: FontWeight.bold
                               ),
                             ),
                             SizedBox(height: 8,),
                             TextFormField(
-                              //controller: _title,
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               validator: (input){},
                               initialValue: controller.productData.value.shippingOptionInsideOriginInsideExpressShipping,
                               onSaved: (input){
@@ -187,8 +183,7 @@ class AdditionalOptions extends GetView<AddProductsController>{
                             ),
                             SizedBox(height: 8,),
                             TextFormField(
-                              //controller: _title,
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               validator: (input) {
                                 return input == null || input.isEmpty? "The Field is Required": null ;
                               },
@@ -206,13 +201,11 @@ class AdditionalOptions extends GetView<AddProductsController>{
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.black,
-                                //fontWeight: FontWeight.bold
                               ),
                             ),
                             SizedBox(height: 8,),
                             TextFormField(
-                              //controller: _title,
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               validator: (input){},
                               initialValue: controller.productData.value.shippingOptionOutsideOriginOutsideExpressShipping,
                               onSaved: (input){
@@ -272,16 +265,15 @@ class AdditionalOptions extends GetView<AddProductsController>{
                             ),
                             SizedBox(height: 15,),
                             Text(
-                              'Warrenty Periods(Days)',
+                              'Warranty Periods(Days)',
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Colors.black,
-                                //fontWeight: FontWeight.bold
                               ),
                             ),
                             SizedBox(height: 8,),
                             TextFormField(
-                              keyboardType: TextInputType.text,
+                              keyboardType: TextInputType.number,
                               validator: (input){},
                               initialValue: controller.productData.value.miscellaneousInformationWarrentyPeriod,
                               onSaved: (input){

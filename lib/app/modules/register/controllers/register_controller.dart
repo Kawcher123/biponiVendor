@@ -14,6 +14,8 @@ class RegisterController extends GetxController {
 
   late GlobalKey<FormState> registrationFormKey;
 
+  final hidePassword = true.obs;
+
   final divisionId = ''.obs;
 
   final district = <PlaceModel>[].obs;

@@ -89,7 +89,7 @@ class GeneralEdit extends GetView<ProductEditController> {
                                 ),
                                 SizedBox(height: 8,),
                                 TextFormField(
-                                  keyboardType: TextInputType.text,
+                                  keyboardType: TextInputType.number,
                                   validator: (input) {
                                     return input == null || input.isEmpty? "The Field is Required": null ;
                                   },

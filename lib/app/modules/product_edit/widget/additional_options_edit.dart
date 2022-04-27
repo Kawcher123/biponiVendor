@@ -1,5 +1,3 @@
-import 'package:biponi_vendor/app/commons/colors.dart';
-import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/modules/product_edit/controllers/product_edit_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -95,7 +93,7 @@ class AdditionalOptionsEdit extends GetView<ProductEditController> {
                               ),
                               SizedBox(height: 8,),
                               TextFormField(
-                                keyboardType: TextInputType.text,
+                                keyboardType: TextInputType.number,
                                 validator: (input) {
                                   return input == null || input.isEmpty? "The Field is Required": null ;
                                 },
@@ -118,7 +116,7 @@ class AdditionalOptionsEdit extends GetView<ProductEditController> {
                               ),
                               SizedBox(height: 8,),
                               TextFormField(
-                                keyboardType: TextInputType.text,
+                                keyboardType: TextInputType.number,
                                 validator: (input){},
                                 initialValue: controller.editProductData.value.productShipping?.metaValues?.insideOrigin!.insideExpressShipping,
                                 onSaved: (input){
@@ -187,7 +185,7 @@ class AdditionalOptionsEdit extends GetView<ProductEditController> {
                               ),
                               SizedBox(height: 8,),
                               TextFormField(
-                                keyboardType: TextInputType.text,
+                                keyboardType: TextInputType.number,
                                 validator: (input) {
                                   return input == null || input.isEmpty? "The Field is Required": null ;
                                 },
@@ -210,7 +208,7 @@ class AdditionalOptionsEdit extends GetView<ProductEditController> {
                               ),
                               SizedBox(height: 8,),
                               TextFormField(
-                                keyboardType: TextInputType.text,
+                                keyboardType: TextInputType.number,
                                 validator: (input){},
                                 initialValue: controller.editProductData.value.productShipping?.metaValues?.outsideOrigin!.outsideExpressShipping,
                                 onSaved: (input){
@@ -270,7 +268,7 @@ class AdditionalOptionsEdit extends GetView<ProductEditController> {
                               ),
                               SizedBox(height: 15,),
                               Text(
-                                'Warrenty Periods(Days)',
+                                'Warranty Periods(Days)',
                                 style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.black,
@@ -279,7 +277,7 @@ class AdditionalOptionsEdit extends GetView<ProductEditController> {
                               ),
                               SizedBox(height: 8,),
                               TextFormField(
-                                keyboardType: TextInputType.text,
+                                keyboardType: TextInputType.number,
                                 validator: (input){},
                                 initialValue: controller.editProductData.value.productMiscellaneousInfo?.metaValues?.warrentyPeriod,
                                 onSaved: (input){

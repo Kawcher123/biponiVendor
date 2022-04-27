@@ -172,6 +172,8 @@ class ProductEditController extends GetxController {
       codStatus.value = editProductData.value.productMiscellaneousInfo!.metaValues!.allowCashOnDelivery == 'on' ? true : false;
       comStatus.value = editProductData.value.productMiscellaneousInfo!.metaValues!.allowChangeOfMind == 'on' ? true : false;
       //defaultImage.value=editProductData.value.product!.defaultImage!.;
+      // selectedAttribute.value=editProductData.value.product!.attributes!.;
+
     });
   }
 
@@ -247,8 +249,8 @@ class ProductEditController extends GetxController {
       'specification[mobile_color]': '${editProductData.value.specification!.metaValues!.mobileColor}',
       'specification[mobile_display]': '${editProductData.value.specification!.metaValues!.mobileDisplay}',
       'specification[mobile_network]': '${editProductData.value.specification!.metaValues!.mobileNetwork}',
-      'default_image': '${defaultImage.value}',
-      'gallery_images[]': '${galleryImage.value}',
+      // 'default_image': '${defaultImage.value}',
+      // 'gallery_images[]': '${galleryImage.value}',
     };
     print('product type: ${productType.value.toLowerCase()}');
     EditProductRepository().updateProductData(updatedData, productId.value, defaultImage.value, galleryImageList).then((resp) {

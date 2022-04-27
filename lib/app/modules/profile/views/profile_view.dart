@@ -14,6 +14,9 @@ import 'package:get/get.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
+
+  final _size=Get.size;
+
   @override
   Widget build(BuildContext context) {
     UserModel currentUser=Get.find<AuthService>().user.value;
@@ -26,12 +29,79 @@ class ProfileView extends GetView<ProfileController> {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
+              // Stack(
+              //   children: [
+              //     currentUser.vendor!.avatar!=null?
+              //     CircleAvatar(
+              //       radius: 70,
+              //       backgroundImage: CachedNetworkImageProvider(
+              //         ApiClient.imageHead+currentUser.vendor!.avatar!,
+              //
+              //       ),
+              //     ):Image.asset('assets/images/user.png'),
+              //     Positioned(
+              //       bottom: 0,
+              //       right: 0,
+              //       child: CircleAvatar(
+              //           backgroundColor: Colors.blue.shade400,
+              //           radius: 20,
+              //           child: IconButton(
+              //             onPressed: (){
+              //               showModalBottomSheet(
+              //                 context: context,
+              //                 builder: (BuildContext context) {
+              //                   return Container(
+              //                     height: _size.width*.5,
+              //                     width: _size.width*.5,
+              //                     color: Colors.white,
+              //                     child: Center(
+              //                       child: Column(
+              //                         mainAxisAlignment: MainAxisAlignment.center,
+              //                         mainAxisSize: MainAxisSize.min,
+              //                         children:
+              //                         [
+              //                           ElevatedButton(
+              //                             child: const Text('Open Camera'),
+              //                             onPressed: () {
+              //                               // controller.getImage(ImageSource.camera).then((res)
+              //                               // {
+              //                               //   controller.profileImage.value=res;
+              //                               //   Get.back();
+              //                               // });
+              //                             },
+              //                           ),
+              //                           ElevatedButton(
+              //                             child: const Text('From Gallery'),
+              //                             onPressed: () {
+              //                               // controller.getImage(ImageSource.gallery).then((res)
+              //                               // {
+              //                               //   controller.profileImage.value=res;
+              //                               //   Get.back();
+              //                               // });
+              //
+              //                             },
+              //                           )
+              //                         ],
+              //                       ),
+              //                     ),
+              //                   );
+              //                 },
+              //               );
+              //             },
+              //             icon: Icon(Icons.camera_alt_outlined,size: 20,color: Colors.white,),
+              //           )
+              //       ),
+              //     ),
+              //
+              //   ],
+              // ),
+
               currentUser.vendor!.avatar!=null?
               CircleAvatar(
-                radius: 60,
+                radius: 70,
                 backgroundImage: CachedNetworkImageProvider(
                    ApiClient.imageHead+currentUser.vendor!.avatar!,
-                  
+
                 ),
               ):Image.asset('assets/images/user.png'),
               SizedBox(height: CommonWidgets.size.width*0.05,),
@@ -46,7 +116,7 @@ class ProfileView extends GetView<ProfileController> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Shop Name',
+                            'Seller Name',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16

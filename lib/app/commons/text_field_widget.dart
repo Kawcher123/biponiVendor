@@ -12,7 +12,7 @@ class TextFieldWidget extends StatelessWidget {
       this.errorText,
       this.iconData,
       this.labelText,
-      this.obscureText,
+      this.obscureText=false,
       this.suffixIcon,
       this.isFirst,
       this.isLast,

@@ -60,7 +60,7 @@ class PriceEdit extends GetView<ProductEditController> {
                                 ),
                                 SizedBox(height: 8,),
                                 TextFormField(
-                                  keyboardType: TextInputType.text,
+                                  keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                   ),
@@ -92,7 +92,7 @@ class PriceEdit extends GetView<ProductEditController> {
                                 ),
                                 SizedBox(height: 8,),
                                 TextFormField(
-                                  keyboardType: TextInputType.text,
+                                  keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(),
                                   ),

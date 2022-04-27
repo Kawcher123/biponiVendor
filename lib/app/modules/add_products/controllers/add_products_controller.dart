@@ -22,6 +22,8 @@ class AddProductsController extends GetxController {
   late GlobalKey<FormState> seoFormKey;
   late GlobalKey<FormState> additionalFormKey;
 
+  final specification=[].obs;
+
   ///date & time picker
   final selectedStartDate = DateTime.now().obs;
   final selectedEndDate = DateTime.now().obs;
@@ -256,6 +258,7 @@ class AddProductsController extends GetxController {
       specificationMobileColor.value,
       productData.value.specificationMobileDisplay??'',
       productData.value.specificationMobileNetwork??'',
+      specification
     ).then((res){
 
       print(res);

@@ -3,7 +3,6 @@ import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/modules/add_products/controllers/add_products_controller.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -90,7 +89,6 @@ class General extends GetView<AddProductsController> {
                               ),
                               SizedBox(height: 8,),
                               TextFormField(
-                                keyboardType: TextInputType.text,
                                 validator: (input) {
                                   return input == null || input.isEmpty? "The Field is Required": null ;
                                 },
@@ -98,6 +96,7 @@ class General extends GetView<AddProductsController> {
                                 onSaved: (input){
                                   controller.productData.value.weight=input;
                                 },
+                                keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                 ),

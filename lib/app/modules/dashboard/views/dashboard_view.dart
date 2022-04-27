@@ -127,7 +127,7 @@ class DashboardView extends GetView<DashboardController> {
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
-                                        flex: 145,
+                                        flex: 140,
                                         child: Card(
                                           color: primaryColor,
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
@@ -195,7 +195,7 @@ class DashboardView extends GetView<DashboardController> {
                                           height: CommonWidgets.size.width * 0.15,
                                         )),
                                     Expanded(
-                                        flex: 130,
+                                        flex: 125,
                                         child: Container(
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.center,
@@ -205,17 +205,16 @@ class DashboardView extends GetView<DashboardController> {
                                                 '#${controller.orderlist.value.orders![index].id}',
                                                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                               ),
-                                              SizedBox(
-                                                height: 5,
-                                              ),
-                                              Container(
-                                                alignment: Alignment.center,
-                                                  decoration: BoxDecoration(color: primaryColor, borderRadius: BorderRadius.circular(5.0)),
-                                                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
-                                                  child: Text(
-                                                    Helper.getStatus(controller.orderlist.value.orders![index].status.toString()),
-                                                    style: TextStyle(fontSize: 10, color: backgroundColor),
-                                                  ))
+
+                                              // SizedBox(height: 5,),
+                                              // Container(
+                                              //   alignment: Alignment.center,
+                                              //     decoration: BoxDecoration(color: primaryColor, borderRadius: BorderRadius.circular(5.0)),
+                                              //     padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
+                                              //     child: Text(
+                                              //       Helper.getStatus(controller.orderlist.value.orders![index].status.toString()),
+                                              //       style: TextStyle(fontSize: 10, color: backgroundColor),
+                                              //     ))
                                             ],
                                           ),
                                         )),

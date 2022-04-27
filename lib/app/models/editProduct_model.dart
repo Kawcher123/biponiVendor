@@ -225,50 +225,50 @@ class Attributes {
   }
 }
 
-// class Meta {
-//   var id;
-//   var productId;
-//   String? metaKey;
-//   String? metaValue;
-//   String? createdAt;
-//   String? updatedAt;
-//   MetaValues? metaValues;
-//
-//   Meta(
-//       {this.id,
-//         this.productId,
-//         this.metaKey,
-//         this.metaValue,
-//         this.createdAt,
-//         this.updatedAt,
-//         this.metaValues});
-//
-//   Meta.fromJson(Map<String, dynamic> json) {
-//     id = json['id'];
-//     productId = json['product_id'];
-//     metaKey = json['meta_key'];
-//     metaValue = json['meta_value'];
-//     createdAt = json['created_at'];
-//     updatedAt = json['updated_at'];
-//     metaValues = json['meta_values'] != null
-//         ? new MetaValues.fromJson(json['meta_values'])
-//         : null;
-//   }
-//
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = new Map<String, dynamic>();
-//     data['id'] = this.id;
-//     data['product_id'] = this.productId;
-//     data['meta_key'] = this.metaKey;
-//     data['meta_value'] = this.metaValue;
-//     data['created_at'] = this.createdAt;
-//     data['updated_at'] = this.updatedAt;
-//     if (this.metaValues != null) {
-//       data['meta_values'] = this.metaValues!.toJson();
-//     }
-//     return data;
-//   }
-// }
+class Meta {
+  var id;
+  var productId;
+  String? metaKey;
+  String? metaValue;
+  String? createdAt;
+  String? updatedAt;
+  MetaValues? metaValues;
+
+  Meta(
+      {this.id,
+        this.productId,
+        this.metaKey,
+        this.metaValue,
+        this.createdAt,
+        this.updatedAt,
+        this.metaValues});
+
+  Meta.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    productId = json['product_id'];
+    metaKey = json['meta_key'];
+    metaValue = json['meta_value'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    metaValues = json['meta_values'] != null
+        ? new MetaValues.fromJson(json['meta_values'])
+        : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['product_id'] = this.productId;
+    data['meta_key'] = this.metaKey;
+    data['meta_value'] = this.metaValue;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    if (this.metaValues != null) {
+      data['meta_values'] = this.metaValues!.toJson();
+    }
+    return data;
+  }
+}
 //
 // class MetaValues {
 //   InsideOrigin? insideOrigin;

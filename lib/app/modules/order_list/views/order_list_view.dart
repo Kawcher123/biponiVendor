@@ -140,15 +140,15 @@ class OrderListView extends GetView<OrderListController> {
                                         '#${controller.orderlist.value.orders![index].id}',
                                         style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                       ),
-                                      SizedBox(height: 5,),
-                                      Container(
-                                        alignment: Alignment.center,
-                                          decoration: BoxDecoration(color: primaryColor, borderRadius: BorderRadius.circular(5.0)),
-                                          padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
-                                          child: Text(
-                                            Helper.getStatus(controller.orderlist.value.orders![index].status.toString()),
-                                            style: TextStyle(fontSize: 10,color: backgroundColor),
-                                          ))
+                                      // SizedBox(height: 5,),
+                                      // Container(
+                                      //   alignment: Alignment.center,
+                                      //     decoration: BoxDecoration(color: primaryColor, borderRadius: BorderRadius.circular(5.0)),
+                                      //     padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
+                                      //     child: Text(
+                                      //       Helper.getStatus(controller.orderlist.value.orders![index].status.toString()),
+                                      //       style: TextStyle(fontSize: 10,color: backgroundColor),
+                                      //     ))
                                     ],
                                   ),
                                 )),
