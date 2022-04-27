@@ -3,8 +3,6 @@ import 'dart:io';
 
 import 'package:biponi_vendor/app/providers/customExceptions.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'dart:io';
 
 class APIManager {
   Future<dynamic> postAPICallWithHeader(String url, Map param, Map<String, String> headerData) async {

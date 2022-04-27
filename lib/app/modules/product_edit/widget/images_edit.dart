@@ -201,7 +201,7 @@ class ImagesEdit extends GetView<ProductEditController> {
                                   borderRadius: BorderRadius.circular(15),
                                   child: CachedNetworkImage(
                                     width: _size.width,
-                                    imageUrl: ApiClient.imageHead+controller.editProductData.value.product!.galleryImages!,
+                                    imageUrl: ApiClient.imageHead+controller.editProductData.value.product!.galleryImages,
                                     progressIndicatorBuilder: (context, url, downloadProgress) =>
                                         Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
                                     errorWidget: (context, url, error) => Icon(Icons.error),
