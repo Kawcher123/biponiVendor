@@ -131,6 +131,10 @@ class AppPages {
       page: () => ForgotPasswordView(),
       binding: ForgotPasswordBinding(),
 
+    ),
+    GetPage(
+
+
       name: _Paths.COMMON_WEBVIEW,
       page: () => CommonWebviewView(),
       binding: CommonWebviewBinding(),

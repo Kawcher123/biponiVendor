@@ -22,7 +22,6 @@ class AddProductsController extends GetxController {
   late GlobalKey<FormState> seoFormKey;
   late GlobalKey<FormState> additionalFormKey;
 
-  final specification=[].obs;
 
   ///date & time picker
   final selectedStartDate = DateTime.now().obs;
@@ -49,6 +48,7 @@ class AddProductsController extends GetxController {
   final attributeId = ''.obs;
   final attributeName = ''.obs;
   final attributeLoaded = true.obs;
+  final specification=[].obs;
 
   ///categories
   final categoryList = <CategoryModel>[].obs;
@@ -60,7 +60,6 @@ class AddProductsController extends GetxController {
   ///dropdown
   final weightUnit = ''.obs;
   final productType = ''.obs;
-  //final specification = ''.obs;
   final specialPriceType = ''.obs;
   final inventoryManagement = ''.obs;
   final stockAvailability = ''.obs;

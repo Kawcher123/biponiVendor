@@ -115,8 +115,8 @@ class Product {
     productType = json['product_type'];
     attributeSetId = json['attribute_set_id'] ?? '';
     title = json['title'];
-    defaultImage = json['default_image'];
-    galleryImages = json['gallery_images'];
+    defaultImage = json['default_image']??'';
+    galleryImages = json['gallery_images']??'';
     shortDescription = json['short_description'];
     description = json['description'];
     slug = json['slug'];

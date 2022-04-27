@@ -939,7 +939,7 @@ class RegisterView extends GetView<RegisterController> {
                   SizedBox(height: 15),
                   TextFieldWidget(
                     labelText: "Bank Name".tr,
-                    hintText: "Ex: Eastern Bank Ltd".tr,
+                    hintText: "Ex: East Bank Ltd".tr,
                     onChanged: (input) {
                       controller.userData.value.bankName=input;
                     },
@@ -959,7 +959,7 @@ class RegisterView extends GetView<RegisterController> {
                   SizedBox(height: 15),
                   TextFieldWidget(
                     labelText: "Account Number".tr,
-                    hintText: "Ex: 200023452452".tr,
+                    hintText: "Ex: 200023******2".tr,
                     onChanged: (input) {
                       controller.userData.value.accountNumber=input;
                     },
@@ -993,7 +993,7 @@ class RegisterView extends GetView<RegisterController> {
                   SizedBox(height: 15),
                   TextFieldWidget(
                     labelText: "Bkash Number".tr,
-                    hintText: "Ex: 01707070707".tr,
+                    hintText: "Ex: 01xxxxxxxxx".tr,
                     onChanged: (input) {
                       controller.userData.value.bkash=input;
                     },
@@ -1005,7 +1005,7 @@ class RegisterView extends GetView<RegisterController> {
                   SizedBox(height: 15),
                   TextFieldWidget(
                     labelText: "Nagad Number".tr,
-                    hintText: "Ex: 01707070707".tr,
+                    hintText: "Ex: 01xxxxxxxxx".tr,
                     onChanged: (input) {
                       controller.userData.value.nagad=input;
                     },
@@ -1017,7 +1017,7 @@ class RegisterView extends GetView<RegisterController> {
                   SizedBox(height: 15),
                   TextFieldWidget(
                     labelText: "Rocket Number".tr,
-                    hintText: "Ex: 01707070707".tr,
+                    hintText: "Ex: 01xxxxxxxxx".tr,
                     onChanged: (input) {
                       controller.userData.value.rocket=input;
                     },
@@ -1029,7 +1029,7 @@ class RegisterView extends GetView<RegisterController> {
                   SizedBox(height: 15),
                   TextFieldWidget(
                     labelText: "Upay Number".tr,
-                    hintText: "Ex: 01707070707".tr,
+                    hintText: "Ex: 01xxxxxxxxx".tr,
                     onChanged: (input) {
                       controller.userData.value.upay=input;
                     },
