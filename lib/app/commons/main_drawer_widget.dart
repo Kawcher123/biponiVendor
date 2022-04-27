@@ -18,49 +18,46 @@ class MainDrawerWidget extends StatelessWidget {
           DrawerLinkWidget(
             icon: Icons.home_outlined,
             text: "Home",
-            onTap: (e){
+            onTap: (e) {
               Get.back();
             },
           ),
           DrawerLinkWidget(
             icon: Icons.people_outline,
             text: "Customer List",
-            onTap: (e)
-            {
+            onTap: (e) {
               Get.toNamed(Routes.CUSTOMER_LIST);
             },
           ),
           DrawerLinkWidget(
             icon: Icons.add_circle_outline,
             text: "Add Product",
-            onTap: (e)
-            {
+            onTap: (e) {
               Get.toNamed(Routes.ADD_PRODUCTS);
             },
           ),
           DrawerLinkWidget(
             icon: Icons.notifications_none_outlined,
             text: "Notifications",
-            onTap: (e)
-            {
+            onTap: (e) {
               Get.toNamed(Routes.NOTIFICATION);
             },
           ),
-          ListTile(
-            dense: true,
-            title: Text(
-              "Application preferences".tr,
-              style: Get.textTheme.caption,
-            ),
-            trailing: Icon(
-              Icons.remove,
-              color: Get.theme.focusColor.withOpacity(0.3),
-            ),
-          ),
-          DrawerLinkWidget(
-            icon: Icons.settings_outlined,
-            text: "Settings",
-          ),
+          // ListTile(
+          //   dense: true,
+          //   title: Text(
+          //     "Application preferences".tr,
+          //     style: Get.textTheme.caption,
+          //   ),
+          //   trailing: Icon(
+          //     Icons.remove,
+          //     color: Get.theme.focusColor.withOpacity(0.3),
+          //   ),
+          // ),
+          // DrawerLinkWidget(
+          //   icon: Icons.settings_outlined,
+          //   text: "Settings",
+          // ),
           ListTile(
             dense: true,
             title: Text(
@@ -73,17 +70,19 @@ class MainDrawerWidget extends StatelessWidget {
             ),
           ),
           DrawerLinkWidget(
-            icon: Icons.help_outline,
-            text: "Help & FAQ",
+            icon: Icons.policy_outlined,
+            text: "Privacy Policy",
+            onTap: (e) {
+              Get.toNamed(Routes.COMMON_WEBVIEW, arguments: 'https://biponi.com/pages/privacy_policy');
+            },
           ),
           DrawerLinkWidget(
-            icon: Icons.logout_outlined,
-            text: "Logout",
-            onTap: (e){
-              Get.find<AuthService>().removeCurrentUser();
-              Get.offAllNamed(Routes.login);
-            }
-          ),
+              icon: Icons.logout_outlined,
+              text: "Logout",
+              onTap: (e) {
+                Get.find<AuthService>().removeCurrentUser();
+                Get.offAllNamed(Routes.login);
+              }),
           ListTile(
             dense: true,
             title: Text(
@@ -124,7 +123,6 @@ class MainDrawerWidget extends StatelessWidget {
           //     ),
           //   ),
           // )
-
         ],
       ),
     );
