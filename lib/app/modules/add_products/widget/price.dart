@@ -120,8 +120,8 @@ class Price extends GetView<AddProductsController>{
                               ),
                               SizedBox(height: 8,),
                               DropdownSearch<String>(
-                                  mode: Mode.MENU,
-                                  showFavoriteItems: true,
+                                  // mode: Mode.MENU,
+                                  // showFavoriteItems: true,
                                   items: [ 'Fixed','Percent'],
                                   onSaved: (v){
                                     controller.specialPriceType.value = v!;

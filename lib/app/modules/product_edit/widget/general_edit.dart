@@ -1,9 +1,6 @@
-import 'package:biponi_vendor/app/commons/colors.dart';
-import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/modules/product_edit/controllers/product_edit_controller.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 class GeneralEdit extends GetView<ProductEditController> {
 
@@ -119,8 +116,8 @@ class GeneralEdit extends GetView<ProductEditController> {
                                 ),
                                 SizedBox(height: 8,),
                                 DropdownSearch<String>(
-                                    mode: Mode.MENU,
-                                    showFavoriteItems: true,
+                                    // mode: Mode.MENU,
+                                    // showFavoriteItems: true,
                                     validator: (input) {
                                       return input == null || input.isEmpty? "The Field is Required": null ;
                                     },
@@ -209,9 +206,9 @@ class GeneralEdit extends GetView<ProductEditController> {
                                 ),
                                 SizedBox(height: 8,),
                                 DropdownSearch<String>(
-                                  mode: Mode.MENU,
-                                  showFavoriteItems: true,
-                                  showSearchBox: true,
+                                  // mode: Mode.MENU,
+                                  // showFavoriteItems: true,
+                                  // showSearchBox: true,
                                   validator: (input) {
                                     return input == null || input.isEmpty? "The Field is Required": null ;
                                   },

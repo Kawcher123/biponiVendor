@@ -1,4 +1,5 @@
 import 'package:biponi_vendor/app/models/notification_model.dart';
+import 'package:biponi_vendor/app/models/viewNotification_model.dart';
 import 'package:biponi_vendor/app/repositories/notification_repositories.dart';
 import 'package:get/get.dart';
 
@@ -7,6 +8,7 @@ class NotificationController extends GetxController {
 
   final notifications = NotificationModel().obs;
   final notificationLoaded = false.obs;
+  final viewNotification = ViewNotificationModel().obs;
 
   @override
   Future<void> onInit() async {

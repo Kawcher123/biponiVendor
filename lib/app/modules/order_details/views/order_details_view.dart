@@ -222,7 +222,7 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                                                   color: Colors.black,
                                                 )),
                                             SizedBox(height: 4,),
-                                            Text('Shipping Method: ${controller.orderDetailsPerStatus[index].shippingMethod!.replaceAll('_', ' ')}',
+                                            Text('Shipping Method: ${controller.orderDetailsPerStatus[index].shippingMethod!.replaceAll('_', ' ').capitalizeFirst}',
                                                 style: TextStyle(
                                                   fontSize: 12,
                                                   color: Colors.black,
@@ -232,8 +232,8 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                                               width: 165,
                                               height: 50,
                                               child: DropdownSearch<String>(
-                                                mode: Mode.MENU,
-                                                showFavoriteItems: true,
+                                                // mode: Mode.MENU,
+                                                // showFavoriteItems: true,
                                                 items: controller.orderStatus.map((item) => item['status']!).toList(),
                                                 onChanged: (input) {
                                                   for (var item in controller.orderStatus) {
@@ -331,7 +331,7 @@ class OrderDetailsView extends GetView<OrderDetailsController> {
                                   ),
                                   SizedBox(height: 10,),
                                   Text(
-                                    '${controller.orderDetails.value.orders!.paymentMethod!.replaceAll('_', ' ')}',
+                                    '${controller.orderDetails.value.orders!.paymentMethod!.replaceAll('_', ' ').capitalizeFirst}',
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.black,

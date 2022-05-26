@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 
 class NotificationRepository {
+
   ///Get all notifications
   Future<NotificationModel> getNotifications() async {
     String token = Get.find<AuthService>().user.value.token!;

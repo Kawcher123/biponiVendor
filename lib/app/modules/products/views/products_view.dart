@@ -50,7 +50,7 @@ class ProductsView extends GetView<ProductsController> {
                           Row(
                             children: [
                               Text('Product Type: '),
-                              Text('${controller.productList.value.product![index].productType}'),
+                              Text('${controller.productList.value.product![index].productType!.capitalizeFirst}'),
                             ],
                           ),
                           Row(

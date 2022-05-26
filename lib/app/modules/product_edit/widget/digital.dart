@@ -248,8 +248,8 @@ class DigitalProductEdit extends StatelessWidget {
                             ),
                             SizedBox(height: 8,),
                             DropdownSearch<String>(
-                                mode: Mode.MENU,
-                                showFavoriteItems: true,
+                                // mode: Mode.MENU,
+                                // showFavoriteItems: true,
                                 items: [ 'Digital','Downloadable'],
                                 onChanged: print,
                                 selectedItem: ""),

@@ -119,8 +119,8 @@ class General extends GetView<AddProductsController> {
                               ),
                               SizedBox(height: 8,),
                               DropdownSearch<String>(
-                                  mode: Mode.MENU,
-                                  showFavoriteItems: true,
+                                  // mode: Mode.MENU,
+                                  // showFavoriteItems: true,
                                   validator: (input) {
                                     return input == null || input.isEmpty? "The Field is Required": null ;
                                   },
@@ -209,9 +209,9 @@ class General extends GetView<AddProductsController> {
                               ),
                               SizedBox(height: 8,),
                               DropdownSearch<String>(
-                                  mode: Mode.MENU,
-                                  showFavoriteItems: true,
-                                  showSearchBox: true,
+                                  // mode: Mode.MENU,
+                                  // showFavoriteItems: true,
+                                  // showSearchBox: true,
                                   items: controller.brand.map((item) => item.title!).toList(),
                                   onSaved: (input){
                                     for(var item in controller.brand) {
