@@ -3,7 +3,6 @@ import 'package:biponi_vendor/app/commons/colors.dart';
 import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/commons/text_field_widget.dart';
 import 'package:biponi_vendor/app/routes/app_pages.dart';
-import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -816,7 +815,8 @@ class RegisterView extends GetView<RegisterController> {
 
                   ///Address
                   DropdownSearch<String>(
-                    mode: Mode.MENU,
+                    // mode: Mode.MENU,
+                    // showSelectedItems: true,
                     dropdownSearchDecoration: InputDecoration(
                       labelText: 'Division',
                       contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -824,7 +824,6 @@ class RegisterView extends GetView<RegisterController> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
-                    showSelectedItems: true,
                     items: division.map((item) => item['title']!).toList(),
                     onChanged: (input) {
                       for (var item in division) {
@@ -840,7 +839,8 @@ class RegisterView extends GetView<RegisterController> {
                   ),
                   SizedBox(height: 15),
                   DropdownSearch<String>(
-                    mode: Mode.MENU,
+                    // mode: Mode.MENU,
+                    // showSelectedItems: true,
                     dropdownSearchDecoration: InputDecoration(
                       labelText: 'District',
                       contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -848,7 +848,6 @@ class RegisterView extends GetView<RegisterController> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
-                    showSelectedItems: true,
                     items: controller.district.map((item) => item.title!).toList(),
                     onChanged: (input) {
                       for (var item in controller.district) {
@@ -864,7 +863,8 @@ class RegisterView extends GetView<RegisterController> {
                   ),
                   SizedBox(height: 15),
                   DropdownSearch<String>(
-                    mode: Mode.MENU,
+                    // mode: Mode.MENU,
+                    // showSelectedItems: true,
                     dropdownSearchDecoration: InputDecoration(
                       labelText: 'Upazila',
                       contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -872,7 +872,6 @@ class RegisterView extends GetView<RegisterController> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
-                    showSelectedItems: true,
                     items: controller.upazila.map((item) => item.title!).toList(),
                     onChanged: (input) {
                       for (var item in controller.upazila) {
@@ -888,7 +887,8 @@ class RegisterView extends GetView<RegisterController> {
                   ),
                   SizedBox(height: 15),
                   DropdownSearch<String>(
-                    mode: Mode.MENU,
+                    // mode: Mode.MENU,
+                    // showSelectedItems: true,
                     dropdownSearchDecoration: InputDecoration(
                       labelText: 'Union',
                       contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -896,7 +896,6 @@ class RegisterView extends GetView<RegisterController> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                     ),
-                    showSelectedItems: true,
                     items: controller.union.map((item) => item.title!).toList(),
                     onChanged: (input) {
                       for (var item in controller.union) {

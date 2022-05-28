@@ -59,8 +59,8 @@ class Specification extends GetView<AddProductsController>{
                               ),
                               SizedBox(height: 8,),
                               DropdownSearch<String>(
-                                mode: Mode.MENU,
-                                showFavoriteItems: true,
+                                // mode: Mode.MENU,
+                                // showFavoriteItems: true,
                                 items: controller.attributeList.map((item) => item.title!).toList(),
                                 onChanged: (input){
                                   for(var item in controller.attributeList){
@@ -123,8 +123,8 @@ class Specification extends GetView<AddProductsController>{
               ),
               SizedBox(height: 8,),
               DropdownSearch<String>(
-                  mode: Mode.MENU,
-                  showFavoriteItems: true,
+                  // mode: Mode.MENU,
+                  // showFavoriteItems: true,
                   items: controller.selectedAttribute.value.attribute![index].attributeValues!.map((item) => item.label!).toList(),
                   onSaved: (input){
                     controller.productData.value.specificationMobileColor = input;

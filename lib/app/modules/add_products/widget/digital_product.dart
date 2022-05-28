@@ -3,7 +3,6 @@ import 'package:biponi_vendor/app/modules/add_products/widget/images.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/inventory.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/price.dart';
 import 'package:biponi_vendor/app/modules/add_products/widget/seo.dart';
-import 'package:biponi_vendor/app/modules/add_products/widget/specification.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -251,8 +250,8 @@ class DigitalProduct extends StatelessWidget {
                             SizedBox(height: 8,),
 
                             DropdownSearch<String>(
-                                mode: Mode.MENU,
-                                showFavoriteItems: true,
+                                // mode: Mode.MENU,
+                                // showFavoriteItems: true,
                                 items: [ 'Digital','Downloadable'],
                                 onChanged: print,
                                 selectedItem: ""),

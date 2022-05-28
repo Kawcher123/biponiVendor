@@ -22,13 +22,15 @@ class MainDrawerWidget extends StatelessWidget {
               Get.back();
             },
           ),
-          DrawerLinkWidget(
-            icon: Icons.people_outline,
-            text: "Customer List",
-            onTap: (e) {
-              Get.toNamed(Routes.CUSTOMER_LIST);
-            },
-          ),
+
+          // DrawerLinkWidget(
+          //   icon: Icons.people_outline,
+          //   text: "Customer List",
+          //   onTap: (e) {
+          //     Get.toNamed(Routes.CUSTOMER_LIST);
+          //   },
+          // ),
+
           DrawerLinkWidget(
             icon: Icons.add_circle_outline,
             text: "Add Product",

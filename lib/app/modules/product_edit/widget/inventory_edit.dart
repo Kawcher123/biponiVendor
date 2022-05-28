@@ -1,5 +1,3 @@
-import 'package:biponi_vendor/app/commons/colors.dart';
-import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/modules/product_edit/controllers/product_edit_controller.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -89,8 +87,8 @@ class InventoryEdit extends GetView<ProductEditController> {
                                 ),
                                 SizedBox(height: 8,),
                                 DropdownSearch<String>(
-                                    mode: Mode.MENU,
-                                    showFavoriteItems: true,
+                                    // mode: Mode.MENU,
+                                    // showFavoriteItems: true,
                                     items: [ 'Track Inventory',"Don't Track Inventory"],
                                     onChanged: (input){
                                       controller.inventoryManagement.value=input!;
@@ -145,8 +143,8 @@ class InventoryEdit extends GetView<ProductEditController> {
                                 ),
                                 SizedBox(height: 8,),
                                 DropdownSearch<String>(
-                                    mode: Mode.MENU,
-                                    showFavoriteItems: true,
+                                    // mode: Mode.MENU,
+                                    // showFavoriteItems: true,
                                     items: [ 'In Stock','Out of Stock',],
                                     onSaved: (input){
                                       controller.stockAvailability.value=input=='In Stock'?'1':'0';

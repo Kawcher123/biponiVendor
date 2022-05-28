@@ -69,8 +69,8 @@ class AddProductsView extends GetView<AddProductsController> {
                                 ),
                                 SizedBox(height: 8,),
                                 DropdownSearch<String>(
-                                    mode: Mode.MENU,
-                                    showFavoriteItems: true,
+                                    // mode: Mode.MENU,
+                                    // showFavoriteItems: true,
                                     items: [ 'Simple','Variable','Digital'],
                                     onChanged:(v) {
                                       controller.productType.value=v!;

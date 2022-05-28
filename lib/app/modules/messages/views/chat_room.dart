@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 
 import 'package:biponi_vendor/app/modules/messages/views/full_image.dart';
@@ -60,7 +61,7 @@ class _ChatRoomState extends State<ChatRoom> {
             elevation: 0,
             centerTitle: true,
             title: Text(
-              widget.toUsername!,
+              widget.fromusername!,
               style: TextStyle(
                 color: Get.theme.accentColor,
               ),
@@ -82,7 +83,7 @@ class _ChatRoomState extends State<ChatRoom> {
                                 reverse: true,
                                 padding: EdgeInsets.only(top: 15),
                                 itemBuilder: (BuildContext contex, int index) {
-                                  if (Uri.parse(list[index]["text"]).isAbsolute) {
+                                  if (Uri.parse(list[index]["text"]).scheme.isAlphabetOnly && Uri.parse(list[index]["text"]).isAbsolute) {
                                     return Padding(
                                       padding: EdgeInsets.only(
                                           left: list[index]["senderId"] == currentUser.value.vendor!.id ? 50 : 24,
@@ -105,7 +106,7 @@ class _ChatRoomState extends State<ChatRoom> {
                                                           : BorderRadius.only(topLeft: Radius.circular(23), topRight: Radius.circular(23), bottomRight: Radius.circular(23))),
                                                   //  margin: EdgeInsets.symmetric(vertical: 16),
                                                   alignment: list[index]["senderId"] == currentUser.value.vendor!.id ? Alignment.centerRight : Alignment.centerLeft,
-                                                  height: 150,
+                                                  height: 200,
                                                   width: 400,
                                                   child: Container(
                                                     padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -156,11 +157,11 @@ class _ChatRoomState extends State<ChatRoom> {
                                                   borderRadius: list[index]["senderId"] == currentUser.value.vendor!.id
                                                       ? BorderRadius.only(topLeft: Radius.circular(23), topRight: Radius.circular(23), bottomLeft: Radius.circular(23))
                                                       : BorderRadius.only(topLeft: Radius.circular(23), topRight: Radius.circular(23), bottomRight: Radius.circular(23))),
-                                              child: Text(
-                                                list[index]["text"],
-                                                style: TextStyle(
-                                                  color: list[index]["senderId"] == currentUser.value.vendor!.id ? Colors.white : Get.theme.textTheme.bodyText1!.color,
-                                                ),
+                                              child: Html(
+                                               data: list[index]["text"],
+                                                // style: TextStyle(
+                                                //   color: list[index]["senderId"] == currentUser.value.vendor!.id ? Colors.white : Get.theme.textTheme.bodyText1!.color,
+                                                // ),
                                               ),
                                             ),
                                           ),
@@ -173,8 +174,8 @@ class _ChatRoomState extends State<ChatRoom> {
                                         ],
                                       ),
                                     );
-                                  }
-                                });
+
+                                }});
                           } else {
                             return Center(child: CircularProgressIndicator());
                           }

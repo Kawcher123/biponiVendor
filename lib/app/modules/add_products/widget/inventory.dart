@@ -87,8 +87,8 @@ class Inventory extends GetView<AddProductsController>{
                               ),
                               SizedBox(height: 8,),
                               DropdownSearch<String>(
-                                  mode: Mode.MENU,
-                                  showFavoriteItems: true,
+                                  // mode: Mode.MENU,
+                                  // showFavoriteItems: true,
                                   items: [ 'Track Inventory',"Don't Track Inventory"],
                                   onChanged: (input){
                                     controller.inventoryManagement.value=input!;
@@ -143,8 +143,8 @@ class Inventory extends GetView<AddProductsController>{
                               ),
                               SizedBox(height: 8,),
                               DropdownSearch<String>(
-                                  mode: Mode.MENU,
-                                  showFavoriteItems: true,
+                                  // mode: Mode.MENU,
+                                  // showFavoriteItems: true,
                                   items: [ 'In Stock','Out of Stock',],
                                   onSaved: (input){
                                     controller.stockAvailability.value=input!;

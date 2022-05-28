@@ -29,4 +29,12 @@ class NotificationController extends GetxController {
       notificationLoaded.value = true;
     });
   }
+
+  Future updateNotifications(String notificatonId) async {
+    NotificationRepository().updateNotification(notificatonId).then((resp) async {
+      if (resp['status'] == 1) {
+        await getNotifications();
+      }
+    });
+  }
 }

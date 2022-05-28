@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 
 import 'package:timeago/timeago.dart' as timeago;
@@ -56,9 +57,9 @@ class MessagesView extends GetView<MessagesController> {
                                               toUserId: list[index]["senderId"],
                                               ids: gettotalTripmembersId(list[index]["usersid"]),
                                               toUsername: list[index]["fromusername"],
-                                              toUserphoto: list[index]["fromuserphoto"],
+                                              toUserphoto: list[index]["fromuserphoto"]??'',
                                               fromusername: list[index]["tousername"],
-                                              fromuserphoto: list[index]["toUserphoto"],
+                                              fromuserphoto: list[index]["toUserphoto"]??'',
                                             ));
                                           } else {
                                             Get.to(ChatRoom(
@@ -66,9 +67,9 @@ class MessagesView extends GetView<MessagesController> {
                                               toUserId: list[index]["toUserId"],
                                               ids: gettotalTripmembersId(list[index]["usersid"]),
                                               toUsername: list[index]["tousername"],
-                                              toUserphoto: list[index]["toUserphoto"],
+                                              toUserphoto: list[index]["toUserphoto"]??'',
                                               fromusername: list[index]["fromusername"],
-                                              fromuserphoto: list[index]["fromuserphoto"],
+                                              fromuserphoto: list[index]["fromuserphoto"]??"",
                                             ));
                                           }
                                         },
@@ -116,23 +117,25 @@ class MessagesView extends GetView<MessagesController> {
                                               ),
                                             ),
                                             title: Text(
-                                              list[index]["senderId"] == currentUser.value.vendor!.id ? list[index]["tousername"] : list[index]["fromusername"],
+                                              list[index]["toUserId"] == currentUser.value.vendor!.id ?  list[index]["tousername"]:list[index]["fromusername"],
                                               style: TextStyle(color: Get.theme.textTheme.bodyText1!.color, fontWeight: FontWeight.bold),
                                             ),
-                                            subtitle: Uri.parse(list[index]["text"]).isAbsolute
-                                                ? Text(
-                                                    list[index]["senderId"] == currentUser.value.vendor!.id ? "You: " + "Photo" : "Photo",
-                                                    style: Get.textTheme.bodyText1,
-                                                  )
-                                                : Text(
-                                                    list[index]["senderId"] == currentUser.value.vendor!.id
+                                            subtitle:
+                                            // Uri.parse(list[index]["text"]).isAbsolute
+                                            //     ? Text(
+                                            //         list[index]["senderId"] == currentUser.value.vendor!.id ? "You: " + "Photo" : "Photo",
+                                            //         style: Get.textTheme.bodyText1,
+                                            //       )
+                                            //     :
+                                            Html(
+                                                   data: list[index]["senderId"] == currentUser.value.vendor!.id
                                                         ? list[index]["text"].toString().length > 15
                                                             ? "You: " + list[index]["text"].toString().substring(0, 10) + "..."
                                                             : "You: " + list[index]["text"].toString()
                                                         : list[index]["text"].toString().length > 15
                                                             ? list[index]["text"].toString().substring(0, 10) + "..."
                                                             : list[index]["text"].toString(),
-                                                    style: Get.textTheme.bodyText1,
+
                                                   ),
                                             trailing: Column(
                                               crossAxisAlignment: CrossAxisAlignment.end,
