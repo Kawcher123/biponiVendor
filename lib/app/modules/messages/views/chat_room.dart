@@ -83,56 +83,56 @@ class _ChatRoomState extends State<ChatRoom> {
                                 reverse: true,
                                 padding: EdgeInsets.only(top: 15),
                                 itemBuilder: (BuildContext contex, int index) {
-                                  // if (Uri.parse(list[index]["text"]).scheme.isAlphabetOnly && Uri.parse(list[index]["text"]).isAbsolute) {
-                                  //   return Padding(
-                                  //     padding: EdgeInsets.only(
-                                  //         left: list[index]["senderId"] == currentUser.value.vendor!.id ? 50 : 24,
-                                  //         right: list[index]["senderId"] == currentUser.value.vendor!.id ? 24 : 50,
-                                  //         bottom: 16),
-                                  //     child: Column(
-                                  //       crossAxisAlignment: list[index]["senderId"] == currentUser.value.vendor!.id ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-                                  //       children: [
-                                  //         GestureDetector(
-                                  //           onTap: () {
-                                  //             Get.to(ShowFullImage(list[index]["text"], list[index]["text"]), fullscreenDialog: true, transition: Transition.zoom);
-                                  //           },
-                                  //           child: Hero(
-                                  //             tag: list[index]["text"],
-                                  //             child: Container(
-                                  //                 decoration: BoxDecoration(
-                                  //                     color: Get.theme.focusColor.withOpacity(0.2),
-                                  //                     borderRadius: list[index]["senderId"] == currentUser.value.vendor!.id
-                                  //                         ? BorderRadius.only(topLeft: Radius.circular(23), topRight: Radius.circular(23), bottomLeft: Radius.circular(23))
-                                  //                         : BorderRadius.only(topLeft: Radius.circular(23), topRight: Radius.circular(23), bottomRight: Radius.circular(23))),
-                                  //                 //  margin: EdgeInsets.symmetric(vertical: 16),
-                                  //                 alignment: list[index]["senderId"] == currentUser.value.vendor!.id ? Alignment.centerRight : Alignment.centerLeft,
-                                  //                 height: 150,
-                                  //                 width: 400,
-                                  //                 child: Container(
-                                  //                   padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                                  //                   child: CachedNetworkImage(
-                                  //                     width: double.infinity,
-                                  //                     imageUrl: list[index]["text"],
-                                  //                     fit: BoxFit.cover,
-                                  //                     placeholder: (context, url) => Image.asset(
-                                  //                       'assets/images/loading.gif',
-                                  //                       fit: BoxFit.cover,
-                                  //                     ),
-                                  //                     errorWidget: (context, url, error) => Icon(Icons.error),
-                                  //                   ),
-                                  //                 )),
-                                  //           ),
-                                  //         ),
-                                  //         Text(
-                                  //           DateFormat.jm().format(list[index]["timestamp"].toDate()) + ' ' + DateFormat.yMMMd().format(list[index]["timestamp"].toDate()),
-                                  //           overflow: TextOverflow.fade,
-                                  //           softWrap: false,
-                                  //           style: Get.textTheme.caption,
-                                  //         )
-                                  //       ],
-                                  //     ),
-                                  //   );
-                                  // } else {
+                                  if (Uri.parse(list[index]["text"]).scheme.isAlphabetOnly && Uri.parse(list[index]["text"]).isAbsolute) {
+                                    return Padding(
+                                      padding: EdgeInsets.only(
+                                          left: list[index]["senderId"] == currentUser.value.vendor!.id ? 50 : 24,
+                                          right: list[index]["senderId"] == currentUser.value.vendor!.id ? 24 : 50,
+                                          bottom: 16),
+                                      child: Column(
+                                        crossAxisAlignment: list[index]["senderId"] == currentUser.value.vendor!.id ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () {
+                                              Get.to(ShowFullImage(list[index]["text"], list[index]["text"]), fullscreenDialog: true, transition: Transition.zoom);
+                                            },
+                                            child: Hero(
+                                              tag: list[index]["text"],
+                                              child: Container(
+                                                  decoration: BoxDecoration(
+                                                      color: Get.theme.focusColor.withOpacity(0.2),
+                                                      borderRadius: list[index]["senderId"] == currentUser.value.vendor!.id
+                                                          ? BorderRadius.only(topLeft: Radius.circular(23), topRight: Radius.circular(23), bottomLeft: Radius.circular(23))
+                                                          : BorderRadius.only(topLeft: Radius.circular(23), topRight: Radius.circular(23), bottomRight: Radius.circular(23))),
+                                                  //  margin: EdgeInsets.symmetric(vertical: 16),
+                                                  alignment: list[index]["senderId"] == currentUser.value.vendor!.id ? Alignment.centerRight : Alignment.centerLeft,
+                                                  height: 200,
+                                                  width: 400,
+                                                  child: Container(
+                                                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                                                    child: CachedNetworkImage(
+                                                      width: double.infinity,
+                                                      imageUrl: list[index]["text"],
+                                                      fit: BoxFit.cover,
+                                                      placeholder: (context, url) => Image.asset(
+                                                        'assets/images/loading.gif',
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                      errorWidget: (context, url, error) => Icon(Icons.error),
+                                                    ),
+                                                  )),
+                                            ),
+                                          ),
+                                          Text(
+                                            DateFormat.jm().format(list[index]["timestamp"].toDate()) + ' ' + DateFormat.yMMMd().format(list[index]["timestamp"].toDate()),
+                                            overflow: TextOverflow.fade,
+                                            softWrap: false,
+                                            style: Get.textTheme.caption,
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  } else {
                                     return Padding(
                                       padding: EdgeInsets.only(
                                           left: list[index]["senderId"] == currentUser.value.vendor!.id ? 50 : 24,
@@ -175,7 +175,7 @@ class _ChatRoomState extends State<ChatRoom> {
                                       ),
                                     );
 
-                                });
+                                }});
                           } else {
                             return Center(child: CircularProgressIndicator());
                           }
