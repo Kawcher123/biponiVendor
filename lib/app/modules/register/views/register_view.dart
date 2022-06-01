@@ -87,8 +87,8 @@ class RegisterView extends GetView<RegisterController> {
                     onChanged: (input) {
                       controller.userData.value.name=input;
                     },
-                    obscureText: false,
                     validator: (input) {},
+                    obscureText: false,
                     iconData: Icons.alternate_email,
                   ),
                   SizedBox(height: 15),
@@ -99,7 +99,7 @@ class RegisterView extends GetView<RegisterController> {
                       controller.userData.value.email=input;
                     },
                     obscureText: false,
-                    validator: (input) {},
+                    validator: (input) =>!input!.contains('@') ? "Should be a valid email" : null,
                     iconData: Icons.alternate_email,
                   ),
                   SizedBox(height: 15),
@@ -115,38 +115,93 @@ class RegisterView extends GetView<RegisterController> {
                     iconData: Icons.alternate_email,
                   ),
                   SizedBox(height: 15),
-                  TextFieldWidget(
-                    labelText: "Password",
-                    hintText: "Enter your password",
-                    onChanged: (input) {
-                      controller.userData.value.password=input;
-                    },
-                    validator: (input) {},
-                    obscureText: controller.hidePassword.value,
-                    iconData: Icons.lock_outline,
-                    keyboardType: TextInputType.visiblePassword,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        controller.hidePassword.value = !controller.hidePassword.value;
+                  Obx(() {
+                    return TextFieldWidget(
+                      labelText: "Password",
+                      hintText: "Enter your password",
+                      initialValue: controller.userData.value.password,
+                      onChanged: (input) {
+                        controller.userData.value.password = input;
+                        controller.confirmPassword.value = input;
                       },
-                      icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
-                    ),
-                  ),
+                      onSaved: (input) {
+                        controller.userData.value.password = input;
+                        controller.confirmPassword.value = input!;
+                      },
+                      validator: (input) => input!.length < 6 ? "Should be more than 6 characters" : null,
+                      obscureText: controller.hidePassword.value,
+                      iconData: Icons.lock_outline,
+                      keyboardType: TextInputType.visiblePassword,
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          controller.hidePassword.value = !controller.hidePassword.value;
+                        },
+                        // color: Theme.of(context).focusColor,
+                        icon: Icon(controller.hidePassword.value ? Icons.visibility_outlined : Icons.visibility_off_outlined),
+                      ),
+                    );
+                  }),
                   SizedBox(height: 15),
-                  TextFieldWidget(
-                    labelText: "Confirm Password",
-                    hintText: "Retype your password",
-                    validator: (input) {},
-                    obscureText: controller.hidePassword.value,
-                    iconData: Icons.lock_outline,
-                    keyboardType: TextInputType.visiblePassword,
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        controller.hidePassword.value = !controller.hidePassword.value;
+                  Obx(() {
+                    return TextFieldWidget(
+                      labelText: "Confirm Password",
+                      hintText: "Retype your password",
+                      validator: (input) {
+                        print(controller.confirmPassword.value);
+                        print(input);
+                        if (input!.length < 6) {
+                          return "Should be more than 6 characters";
+                        } else if (controller.confirmPassword.value != input) {
+                          return "Password doesn't match";
+                        } else {
+                          return null;
+                        }
                       },
-                      icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
-                    ),
-                  ),
+                      obscureText: controller.hideRetypePassword.value,
+                      iconData: Icons.lock_outline,
+                      keyboardType: TextInputType.visiblePassword,
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          controller.hideRetypePassword.value = !controller.hideRetypePassword.value;
+                        },
+                        // color: Theme.of(context).focusColor,
+                        icon: Icon(controller.hideRetypePassword.value ? Icons.visibility_outlined : Icons.visibility_off_outlined),
+                      ),
+                    );
+                  }),
+
+                  // TextFieldWidget(
+                  //   labelText: "Password",
+                  //   hintText: "Enter your password",
+                  //   onChanged: (input) {
+                  //     controller.userData.value.password=input;
+                  //   },
+                  //   validator: (input) {},
+                  //   obscureText: controller.hidePassword.value,
+                  //   iconData: Icons.lock_outline,
+                  //   keyboardType: TextInputType.visiblePassword,
+                  //   suffixIcon: IconButton(
+                  //     onPressed: () {
+                  //       controller.hidePassword.value = !controller.hidePassword.value;
+                  //     },
+                  //     icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 15),
+                  // TextFieldWidget(
+                  //   labelText: "Confirm Password",
+                  //   hintText: "Retype your password",
+                  //   validator: (input) {},
+                  //   obscureText: controller.hidePassword.value,
+                  //   iconData: Icons.lock_outline,
+                  //   keyboardType: TextInputType.visiblePassword,
+                  //   suffixIcon: IconButton(
+                  //     onPressed: () {
+                  //       controller.hidePassword.value = !controller.hidePassword.value;
+                  //     },
+                  //     icon: Icon(controller.hidePassword.value ? Icons.visibility_off_outlined : Icons.visibility_outlined),
+                  //   ),
+                  // ),
                   SizedBox(height: 15),
 
                   ///Profile Image

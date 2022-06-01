@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
@@ -49,18 +50,26 @@ class LoginView extends GetView<LoginController> {
                 SizedBox(height: 60),
                 Obx(() {
                   return TextFieldWidget(
-                    labelText: "Phone",
-                    hintText: "+880xxxxxx",
-                    keyboardType: TextInputType.number,
+                    labelText: "Phone or Email",
+                    hintText: "Enter your phone number or email address",
+                    keyboardType: TextInputType.text,
                     initialValue: controller.vendorData.value.phone,
                     obscureText: false,
                     onChanged: (input) {
                       controller.vendorData.value.phone = input;
+                      controller.vendorData.update((val) {});
                     },
                     validator: (input) {
-                      return input!.length < 11 ? 'The phone cannot be less than 11 characters.' : null;
+
+                      if (double.tryParse(controller.vendorData.value.phone!) == null) {
+                        return !input!.contains('@') ? 'Please Enter Valid Email Address.' : null;
+                      } else {
+                        return input!.length < 11 ? 'Phone cannot be less or greater than 11 characters.': null;
+                      }
                     },
-                    suffixIcon: Icon(CupertinoIcons.phone),
+
+                    suffixIcon: Icon(double.tryParse(controller.vendorData.value.phone!) == null ? Icons.email_outlined : CupertinoIcons.device_phone_portrait),
+
                   );
                 }),
                 SizedBox(height: 15),
@@ -103,17 +112,23 @@ class LoginView extends GetView<LoginController> {
                     Spacer(),
                     GestureDetector(
                       onTap: () async {
+
                         // Get.toNamed(Routes.FORGOT_PASSWORD);
 
                         final url = 'https://seller.biponi.com/admin/password/reset';
-                        if(await canLaunch(url)){
-                          await launch(
-                            url,
-                            forceSafariVC: true,
-                            forceWebView: true,
-                            enableJavaScript: true,
-                          );
-                        }
+
+                        launchUrlString(url.toString());
+
+                        //launch(url);
+
+                        // if(await canLaunch(url)){
+                        //   await launch(
+                        //     url,
+                        //     forceSafariVC: true,
+                        //     forceWebView: true,
+                        //     enableJavaScript: true,
+                        //   );
+                        // }
                       },
                       child: Text(
                         "Forgot Password?",

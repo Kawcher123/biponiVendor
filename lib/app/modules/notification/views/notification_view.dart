@@ -63,7 +63,9 @@ class NotificationView extends GetView<NotificationController> {
                       children: List.generate(controller.notifications.value.notification!.length, (index) {
                         return GestureDetector(
                           onTap: () async {
+
                             await controller.updateNotifications(controller.notifications.value.notification![index].id.toString());
+
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),

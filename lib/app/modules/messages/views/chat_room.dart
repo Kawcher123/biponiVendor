@@ -204,56 +204,56 @@ class _ChatRoomState extends State<ChatRoom> {
           contentPadding: EdgeInsets.all(20),
           hintText: "Type to start chat".tr,
           hintStyle: TextStyle(color: Get.theme.focusColor.withOpacity(0.8)),
-          prefixIcon: Wrap(
-            children: [
-              SizedBox(width: 10),
-              IconButton(
-                padding: EdgeInsets.zero,
-                onPressed: () async {
-                  var imageUrl = await _messagesController.getImage(ImageSource.gallery);
-                  // if (imageUrl != null && imageUrl.trim() != '') {
-                  //   await _messagesController.addMessage(
-                  //       _messagesController.message.value, imageUrl);
-                  //
-                  //
-                  // }
-                  if (imageUrl != null && imageUrl.trim() != '') {
-                    _handleSubmitted(imageUrl, currentUser);
-                  }
-                  Timer(Duration(milliseconds: 100), () {
-                    _messagesController.chatTextController.clear();
-                  });
-                },
-                icon: Icon(
-                  Icons.photo_outlined,
-                  color: Get.theme.accentColor,
-                  size: 30,
-                ),
-              ),
-              IconButton(
-                padding: EdgeInsets.zero,
-                onPressed: () async {
-                  var imageUrl = await _messagesController.getImage(ImageSource.camera);
-                  // if (imageUrl != null && imageUrl.trim() != '') {
-                  //   await _messagesController.addMessage(
-                  //       _messagesController.message.value, imageUrl);
-                  // }
-
-                  if (imageUrl != null && imageUrl.trim() != '') {
-                    _handleSubmitted(imageUrl, currentUser);
-                  }
-                  Timer(Duration(milliseconds: 100), () {
-                    _messagesController.chatTextController.clear();
-                  });
-                },
-                icon: Icon(
-                  Icons.camera_alt_outlined,
-                  color: Get.theme.accentColor,
-                  size: 30,
-                ),
-              ),
-            ],
-          ),
+          // prefixIcon: Wrap(
+          //   children: [
+          //     SizedBox(width: 10),
+          //     IconButton(
+          //       padding: EdgeInsets.zero,
+          //       onPressed: () async {
+          //         var imageUrl = await _messagesController.getImage(ImageSource.gallery);
+          //         // if (imageUrl != null && imageUrl.trim() != '') {
+          //         //   await _messagesController.addMessage(
+          //         //       _messagesController.message.value, imageUrl);
+          //         //
+          //         //
+          //         // }
+          //         if (imageUrl != null && imageUrl.trim() != '') {
+          //           _handleSubmitted(imageUrl, currentUser);
+          //         }
+          //         Timer(Duration(milliseconds: 100), () {
+          //           _messagesController.chatTextController.clear();
+          //         });
+          //       },
+          //       icon: Icon(
+          //         Icons.photo_outlined,
+          //         color: Get.theme.accentColor,
+          //         size: 30,
+          //       ),
+          //     ),
+          //     IconButton(
+          //       padding: EdgeInsets.zero,
+          //       onPressed: () async {
+          //         var imageUrl = await _messagesController.getImage(ImageSource.camera);
+          //         // if (imageUrl != null && imageUrl.trim() != '') {
+          //         //   await _messagesController.addMessage(
+          //         //       _messagesController.message.value, imageUrl);
+          //         // }
+          //
+          //         if (imageUrl != null && imageUrl.trim() != '') {
+          //           _handleSubmitted(imageUrl, currentUser);
+          //         }
+          //         Timer(Duration(milliseconds: 100), () {
+          //           _messagesController.chatTextController.clear();
+          //         });
+          //       },
+          //       icon: Icon(
+          //         Icons.camera_alt_outlined,
+          //         color: Get.theme.accentColor,
+          //         size: 30,
+          //       ),
+          //     ),
+          //   ],
+          // ),
           suffixIcon: IconButton(
             padding: EdgeInsetsDirectional.only(end: 20, start: 10),
             onPressed: _messagesController.chatTextController.text != null ? () => _handleSubmitted(_messagesController.chatTextController.text, currentUser) : null,

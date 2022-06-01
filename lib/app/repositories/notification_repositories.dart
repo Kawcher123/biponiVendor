@@ -23,7 +23,9 @@ class NotificationRepository {
       'notification_id': notificatonId,
     };
     APIManager _manager = APIManager();
+
     Map<String, String> headers = {'Authorization': 'Bearer $apiToken'};
+
     final response = await _manager.postAPICallWithHeader(ApiClient.updateNotification, postData, headers);
 
     print('update notification response: ${response}');
