@@ -15,6 +15,8 @@ class RegisterController extends GetxController {
   late GlobalKey<FormState> registrationFormKey;
 
   final hidePassword = true.obs;
+  final hideRetypePassword = true.obs;
+  final confirmPassword = ''.obs;
 
   final divisionId = ''.obs;
 

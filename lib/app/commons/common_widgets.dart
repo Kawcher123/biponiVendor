@@ -53,7 +53,7 @@ class CommonWidgets {
             child: Stack(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top:5,right: 15.0),
+                  padding: const EdgeInsets.only(top:7,right: 15.0),
                   child: CircleAvatar(
                       backgroundColor: Colors.grey.withOpacity(.15),
                       radius: 20.0,
@@ -64,14 +64,21 @@ class CommonWidgets {
                       )),
                 ),
                 Positioned(
-                    top: 3,
+                    top: 5,
                     right: 10,
                     child: CircleAvatar(
                         backgroundColor: Colors.red,
-                        radius: 9,
+                        radius: 10,
                         child: Text(
-                          Get.put(NotificationController()).notificationLoaded.isTrue?
-                          '${ Get.put(NotificationController()).notifications.value.notification!.length}':'0',
+                        Get.put(NotificationController()).notificationLoaded.isTrue
+                            && Get.put(NotificationController()).notifications.value.notification!.length.isLowerThan(10)?
+                        '${ Get.put(NotificationController()).notifications.value.notification!.length}' : '9+',
+
+                          // Get.put(NotificationController()).notificationLoaded.isTrue &&
+                          //     Get.put(NotificationController()).notifications.value.notification!.length<10?
+                          //  '${ Get.put(NotificationController()).notifications.value.notification!.length}'
+                          //     : Get.put(NotificationController()).notifications.value.notification!.length>9? '9+' : '0',
+
                           style: TextStyle(
                             fontSize: 11,
                             color: backgroundColor,

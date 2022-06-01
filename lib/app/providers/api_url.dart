@@ -20,7 +20,7 @@ class ApiClient {
 
   static String notifications = '${baseUrl}api/v1/get/seller/notifications';
 
-  static String updateNotification = '${baseUrl}api/v1/seller/view-notification';
+  static String updateNotification = '${baseUrl}api/v1/seller/view-notification/';
 
   static String dashboard = '${baseUrl}api/v1/seller/dashboard';
 
