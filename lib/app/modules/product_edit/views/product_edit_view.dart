@@ -71,8 +71,9 @@ class ProductEditView extends GetView<ProductEditController> {
                                   ),
                                   SizedBox(height: 8,),
                                   DropdownSearch<String>(
-                                    // mode: Mode.MENU,
-                                    // showFavoriteItems: true,
+                                    popupProps: PopupProps.menu(
+                                      showSelectedItems: true,
+                                    ),
                                     items: [ 'Simple','Variable','Digital'],
                                     onChanged:(v) {
                                       controller.productType.value=v!;
@@ -85,7 +86,8 @@ class ProductEditView extends GetView<ProductEditController> {
                             ),
                             controller.editProductData.value.product!.productType!.capitalizeFirst=='Simple'? SimpleProductEdit()
                                 :controller.editProductData.value.product!.productType!.capitalizeFirst=='Variable'? VariableProductEdit()
-                                :controller.editProductData.value.product!.productType!.capitalizeFirst=='Digital'? DigitalProductEdit() : Wrap(),
+                                :controller.editProductData.value.product!.productType!.capitalizeFirst=='Digital'? DigitalProductEdit()
+                                : Wrap(),
                           ],
                         ),
                       ),

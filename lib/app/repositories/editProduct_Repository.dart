@@ -9,7 +9,7 @@ class EditProductRepository{
   Future<EditProductModel> getProductData(String productId) async {
 
     String token=Get.find<AuthService>().user.value.token!;
-print('token:$token');
+    print('token:$token');
     var headers = {
       'Authorization': 'Bearer $token'
     };

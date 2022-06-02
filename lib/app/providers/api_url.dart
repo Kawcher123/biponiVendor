@@ -45,4 +45,10 @@ class ApiClient {
   static String editProduct = '${baseUrl}api/v1/seller/product/edit/';
 
   static String saveeditedProduct = '${baseUrl}api/v1/seller/product/update/';
+
+  static String sellerInfo = '${baseUrl}api/v1/seller/seller-profile';
+
+  static String updatePassword = '${baseUrl}api/v1/seller/seller-change-password';
+
+  static String updateSeller = '${baseUrl}api/v1/seller/seller-update-profile';
 }
