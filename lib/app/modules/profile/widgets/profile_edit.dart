@@ -61,6 +61,7 @@ class ProfileEdit extends GetView<ProfileController> {
               TextFieldWidget(
                 labelText: "Email",
                 hintText: "example@gmail.com",
+                readOnly: true,
                 initialValue: controller.userData.value.user?.email,
                 onSaved: (input) {
                   controller.userData.value.user?.email = input;
@@ -75,6 +76,7 @@ class ProfileEdit extends GetView<ProfileController> {
               TextFieldWidget(
                 labelText: "Phone",
                 hintText: "01xxxxxxxxx",
+                readOnly: true,
                 initialValue: controller.userData.value.user?.phone,
                 onSaved: (input) {
                   controller.userData.value.user?.phone = input;

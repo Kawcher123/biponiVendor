@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import '../controllers/add_products_controller.dart';
 
 class AddProductsView extends GetView<AddProductsController> {
-
   final _size = Get.size;
 
   @override
@@ -37,8 +36,7 @@ class AddProductsView extends GetView<AddProductsController> {
               }),
         ),
       ),
-      body:Obx(()
-      {
+      body: Obx(() {
         return SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -55,7 +53,7 @@ class AddProductsView extends GetView<AddProductsController> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Column (
+                            child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -67,15 +65,18 @@ class AddProductsView extends GetView<AddProductsController> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                SizedBox(height: 8,),
+                                SizedBox(
+                                  height: 8,
+                                ),
                                 DropdownSearch<String>(
-                                    // mode: Mode.MENU,
-                                    // showFavoriteItems: true,
-                                    items: [ 'Simple','Variable','Digital'],
-                                    onChanged:(v) {
-                                      controller.productType.value=v!;
-                                      controller.getAttribute();
-                                      },
+                                  popupProps: PopupProps.menu(showSelectedItems: true),
+                                  // mode: Mode.MENU,
+                                  // showFavoriteItems: true,
+                                  items: ['Simple', 'Variable', 'Digital'],
+                                  onChanged: (v) {
+                                    controller.productType.value = v!;
+                                    controller.getAttribute();
+                                  },
                                   selectedItem: 'Select Product Type',
                                 ),
                               ],
@@ -87,25 +88,26 @@ class AddProductsView extends GetView<AddProductsController> {
                   ),
                 ),
               ),
-              controller.productType.value=='Simple'?SimpleProduct()
-              :controller.productType.value=='Variable'?VariableProduct()
-                  :controller.productType.value=='Digital'?DigitalProduct():Wrap(),
+              controller.productType.value == 'Simple'
+                  ? SimpleProduct()
+                  : controller.productType.value == 'Variable'
+                      ? VariableProduct()
+                      : controller.productType.value == 'Digital'
+                          ? DigitalProduct()
+                          : Wrap(),
             ],
           ),
         );
       }),
       bottomNavigationBar: GestureDetector(
-        onTap: (){
+        onTap: () {
           controller.addProduct();
         },
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Container(
-            height: _size.width*.15,
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(20)
-            ),
+            height: _size.width * .15,
+            decoration: BoxDecoration(color: Colors.blue, borderRadius: BorderRadius.circular(20)),
             alignment: Alignment.center,
             child: Text(
               'Create Product',
@@ -119,5 +121,4 @@ class AddProductsView extends GetView<AddProductsController> {
       ),
     );
   }
-
 }

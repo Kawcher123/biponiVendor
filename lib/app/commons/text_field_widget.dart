@@ -12,7 +12,8 @@ class TextFieldWidget extends StatelessWidget {
       this.errorText,
       this.iconData,
       this.labelText,
-      this.obscureText=false,
+      this.obscureText = false,
+      this.readOnly = false,
       this.suffixIcon,
       this.isFirst,
       this.isLast,
@@ -34,6 +35,7 @@ class TextFieldWidget extends StatelessWidget {
   final TextStyle? style;
   final IconData? iconData;
   final bool? obscureText;
+  final bool? readOnly;
   final bool? isFirst;
   final bool? isLast;
   final Widget? suffixIcon;
@@ -49,6 +51,7 @@ class TextFieldWidget extends StatelessWidget {
       onChanged: onChanged,
       validator: validator,
       obscureText: obscureText!,
+      readOnly: readOnly!,
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
