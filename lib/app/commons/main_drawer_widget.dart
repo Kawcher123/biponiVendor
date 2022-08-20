@@ -1,3 +1,4 @@
+import 'package:biponi_vendor/app/modules/root/controllers/root_controller.dart';
 import 'package:biponi_vendor/app/routes/app_pages.dart';
 import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:flutter/gestures.dart';
@@ -11,15 +12,21 @@ class MainDrawerWidget extends StatelessWidget {
     return Drawer(
       child: ListView(
         children: [
-          SizedBox(height: 100),
-          Divider(
-            thickness: 1,
-          ),
+          //SizedBox(height: 100),
+          DrawerHeader(
+              child: Image(
+            image: AssetImage(
+              'assets/images/Logo.png',
+            ),
+          )),
+          //Divider(thickness: 1),
           DrawerLinkWidget(
             icon: Icons.home_outlined,
             text: "Home",
             onTap: (e) {
               Get.back();
+              Get.offAllNamed(Routes.root);
+              Get.find<RootController>().changePage(0);
             },
           ),
 
@@ -38,6 +45,20 @@ class MainDrawerWidget extends StatelessWidget {
               Get.toNamed(Routes.ADD_PRODUCTS);
             },
           ),
+          // DrawerLinkWidget(
+          //   icon: Icons.reviews_outlined,
+          //   text: "Product Reviews",
+          //   onTap: (e) {
+          //     //Get.toNamed(Routes.ADD_PRODUCTS);
+          //   },
+          // ),
+          // DrawerLinkWidget(
+          //   icon: Icons.assignment_return_outlined,
+          //   text: "Product Return Request",
+          //   onTap: (e) {
+          //     //Get.toNamed(Routes.ADD_PRODUCTS);
+          //   },
+          // ),
           DrawerLinkWidget(
             icon: Icons.notifications_none_outlined,
             text: "Notifications",
@@ -75,7 +96,7 @@ class MainDrawerWidget extends StatelessWidget {
             icon: Icons.policy_outlined,
             text: "Privacy Policy",
             onTap: (e) {
-              Get.toNamed(Routes.COMMON_WEBVIEW, arguments: 'https://biponi.com/pages/privacy_policy');
+              Get.toNamed(Routes.COMMON_WEBVIEW, arguments: {'title': 'Privacy Policy'.tr, 'url': 'https://biponi.com/pages/privacy_policy'});
             },
           ),
           DrawerLinkWidget(

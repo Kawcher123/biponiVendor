@@ -2,6 +2,7 @@ import 'package:biponi_vendor/app/commons/colors.dart';
 import 'package:biponi_vendor/app/commons/common_widgets.dart';
 import 'package:biponi_vendor/app/commons/text_field_widget.dart';
 import 'package:biponi_vendor/app/modules/root/controllers/root_controller.dart';
+import 'package:biponi_vendor/app/providers/api_url.dart';
 import 'package:biponi_vendor/app/routes/app_pages.dart';
 import 'package:biponi_vendor/app/services/auth_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,6 +15,7 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
+    Get.put(RootController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -60,16 +62,13 @@ class LoginView extends GetView<LoginController> {
                       controller.vendorData.update((val) {});
                     },
                     validator: (input) {
-
                       if (double.tryParse(controller.vendorData.value.phone!) == null) {
                         return !input!.contains('@') ? 'Please Enter Valid Email Address.' : null;
                       } else {
-                        return input!.length < 11 ? 'Phone cannot be less or greater than 11 characters.': null;
+                        return input!.length < 11 ? 'Phone cannot be less or greater than 11 characters.' : null;
                       }
                     },
-
-                    suffixIcon: Icon(double.tryParse(controller.vendorData.value.phone!) == null ? Icons.email_outlined : CupertinoIcons.device_phone_portrait),
-
+                    //suffixIcon: Icon(double.tryParse(controller.vendorData.value.phone!) == null ? Icons.email_outlined : CupertinoIcons.device_phone_portrait),
                   );
                 }),
                 SizedBox(height: 15),
@@ -112,12 +111,12 @@ class LoginView extends GetView<LoginController> {
                     Spacer(),
                     GestureDetector(
                       onTap: () async {
-
+                        Get.toNamed(Routes.COMMON_WEBVIEW, arguments: {'title': 'Forgot Password'.tr, 'url': 'https://seller.biponi.com/admin/password/reset'});
                         // Get.toNamed(Routes.FORGOT_PASSWORD);
 
-                        final url = 'https://seller.biponi.com/admin/password/reset';
-
-                        launchUrlString(url.toString());
+                        // final url = 'https://seller.biponi.com/admin/password/reset';
+                        //
+                        // launchUrlString(url.toString());
 
                         //launch(url);
 

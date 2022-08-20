@@ -18,89 +18,87 @@ import 'package:get/get.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
-
-  final _size=Get.size;
+  final _size = Get.size;
 
   @override
   Widget build(BuildContext context) {
-    UserModel currentUser=Get.find<AuthService>().user.value;
+    UserModel currentUser = Get.find<AuthService>().user.value;
     Get.put(ProfileController());
     return Scaffold(
-      appBar: CommonWidgets.defaultAppBar(context),
-      body: RefreshIndicator(
-        onRefresh: () async
-        {
-          controller.refreshSeller();
-        },
-        child: Obx((){
-          if(controller.userDataLoaded.isTrue){
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
+        appBar: CommonWidgets.defaultAppBar(context),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            controller.refreshSeller();
+          },
+          child: Obx(() {
+            if (controller.userDataLoaded.isTrue) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      currentUser.vendor!.avatar != null
+                          ? CircleAvatar(
+                              radius: 70,
+                              backgroundImage: CachedNetworkImageProvider(
+                                ApiClient.imageHead + currentUser.vendor!.avatar!,
+                              ),
+                            )
+                          : Image.asset('assets/images/user.png'),
 
-                    currentUser.vendor!.avatar!=null?
-                    CircleAvatar(
-                      radius: 70,
-                      backgroundImage: CachedNetworkImageProvider(
-                        ApiClient.imageHead+currentUser.vendor!.avatar!,
+                      SizedBox(height: 10),
+                      Obx(() => Text(
+                            '${controller.userData.value.user?.name?.toUpperCase()}',
+                            style: TextStyle(fontSize: 20),
+                          )),
+                      SizedBox(height: 2),
+                      Text('${controller.userData.value.user?.phone}'),
+                      Text('${controller.userData.value.user?.email}'),
 
-                      ),)
-                        : Image.asset('assets/images/user.png'),
+                      SizedBox(height: 20),
 
-                    SizedBox(height: 10),
-                    Text(
-                      '${controller.userData.value.user?.name?.toUpperCase()}',
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    SizedBox(height: 2),
-                    Text('${controller.userData.value.user?.phone}'),
-                    Text('${controller.userData.value.user?.email}'),
+                      ProfileMenu(
+                        text: "My Profile",
+                        icon: "assets/icons/User Icon.svg",
+                        press: () => {Get.to(() => ProfileEdit())},
+                      ),
+                      ProfileMenu(
+                        text: "Change Password",
+                        icon: "assets/icons/Lock.svg",
+                        press: () => {Get.to(() => ChangePassword())},
+                      ),
+                      ProfileMenu(
+                        text: "Log Out",
+                        icon: "assets/icons/Log out.svg",
+                        press: () async {
+                          await Get.find<AuthService>().removeCurrentUser();
+                          // Get.back();
+                          //Get.put(RootController()).changePageOutRoot(0);
+                          Get.toNamed(Routes.login);
+                        },
+                      ),
 
-                    SizedBox(height: 20),
-
-                    ProfileMenu(
-                      text: "My Profile",
-                      icon: "assets/icons/User Icon.svg",
-                      press: () => {Get.to(()=>ProfileEdit())},
-                    ),
-                    ProfileMenu(
-                      text: "Change Password",
-                      icon: "assets/icons/Lock.svg",
-                      press: () => {Get.to(()=>ChangePassword())},
-                    ),
-                    ProfileMenu(
-                      text: "Log Out",
-                      icon: "assets/icons/Log out.svg",
-                      press: () async {
-                        await Get.find<AuthService>().removeCurrentUser();
-                        // Get.back();
-                        //Get.put(RootController()).changePageOutRoot(0);
-                        Get.toNamed(Routes.login);
-                      },
-                    ),
-
-                    // SizedBox(height: CommonWidgets.size.width*0.1,),
-                    // CommonWidgets.customButton(
-                    //     color: secondaryColor,
-                    //     text: 'Logout',
-                    //     press: (){
-                    //       Get.find<AuthService>().removeCurrentUser();
-                    //
-                    //       Get.offAllNamed(Routes.login);
-                    //     }
-                    // )
-                  ],
+                      // SizedBox(height: CommonWidgets.size.width*0.1,),
+                      // CommonWidgets.customButton(
+                      //     color: secondaryColor,
+                      //     text: 'Logout',
+                      //     press: (){
+                      //       Get.find<AuthService>().removeCurrentUser();
+                      //
+                      //       Get.offAllNamed(Routes.login);
+                      //     }
+                      // )
+                    ],
+                  ),
                 ),
-              ),
-            );
-          } else {
-            return Center(child: CircularProgressIndicator(),);
-          }
-        }),
-      )
-    );
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
+        ));
   }
 }

@@ -1,4 +1,4 @@
- import 'dart:async';
+import 'dart:async';
 import 'package:biponi_vendor/common/ui.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class CommonWebviewView extends GetView<CommonWebviewController> {
       appBar: AppBar(
         backgroundColor: Get.theme.cardColor,
         title: Text(
-          'Privacy Policy'.tr,
+          controller.title.value,
           style: TextStyle(color: Get.theme.textTheme.bodyText1!.color),
         ),
         centerTitle: true,
